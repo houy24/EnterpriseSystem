@@ -40,7 +40,22 @@
     <mappers>
         <!--绑定mapper-->
         <mapper class="com.xxx.dao.UserAccount.UserAccountMapper"/>
-        <mapper class="generate.PositionDao"/>
+        <mapper class="com.xxx.dao.UserData.UserDataDao"/>
+        <mapper class="com.xxx.dao.Product.ProductDao"/>
+        <mapper class="com.xxx.dao.ProductType.ProductTypeDao"/>
+        <mapper class="com.xxx.dao.ProductWarehouse.ProductWarehouseDao"/>
+        <mapper class="com.xxx.dao.SaleRecord.SaleRecordDao"/>
+        <mapper class="com.xxx.dao.SaleTask.SaleTaskDao"/>
+        <mapper class="com.xxx.dao.PersonalResume.PersonalResumeDao"/>
+        <mapper class="com.xxx.dao.SignInRecord.SignInRecordDao"/>
+        <mapper class="com.xxx.dao.Department.DepartmentDao"/>
+        <mapper class="com.xxx.dao.Position.PositionDao"/>
+        <mapper class="com.xxx.dao.WorkTitle.WorkTitleDao"/>
+        <mapper class="com.xxx.dao.WorkAgeMoney.WorkAgeMoneyDao"/>
+        <mapper class="com.xxx.dao.TaxRate.TaxRateDao"/>
+        <mapper class="com.xxx.dao.RoutineItem.RoutineItemDao"/>
+        <mapper class="com.xxx.dao.Wage.WageDao"/>
+        <mapper class="com.xxx.dao.WageContent.WageContentDao"/>
 <!--        <mapper resource="com/kuang/dao/BlogMapper.xml" />-->
     </mappers>
 </configuration>

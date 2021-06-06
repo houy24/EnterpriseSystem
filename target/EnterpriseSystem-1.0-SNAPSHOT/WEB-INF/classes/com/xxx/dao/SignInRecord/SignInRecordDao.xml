@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxx.dao.SignInRecord.SignInRecordDao">
+  <resultMap id="BaseResultMap" type="com.xxx.pojo.SignInRecord">
+    <id column="signInId" jdbcType="VARCHAR" property="signInId" />
+    <result column="userId" jdbcType="VARCHAR" property="userId" />
+    <result column="userName" jdbcType="VARCHAR" property="userName" />
+    <result column="signInTime" jdbcType="TIMESTAMP" property="signInTime" />
+    <result column="signOutTime" jdbcType="TIMESTAMP" property="signOutTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    signInId, userId, userName, signInTime, signOutTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sign_in_record
+    where signInId = #{signinid,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAllByUserId" resultType="com.xxx.pojo.SignInRecord">
+    select
+    <include refid="Base_Column_List" />
+    from sign_in_record
+    where userId = #{userId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sign_in_record
+    where signInId = #{signinid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" keyColumn="signInId" keyProperty="signinid" parameterType="com.xxx.pojo.SignInRecord" useGeneratedKeys="true">
+    insert into sign_in_record (userId, userName, signInTime, 
+      signOutTime)
+    values (#{userid,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{signintime,jdbcType=TIMESTAMP}, 
+      #{signouttime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="signInId" keyProperty="signinid" parameterType="com.xxx.pojo.SignInRecord" useGeneratedKeys="true">
+    insert into sign_in_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        userId,
+      </if>
+      <if test="username != null">
+        userName,
+      </if>
+      <if test="signintime != null">
+        signInTime,
+      </if>
+      <if test="signouttime != null">
+        signOutTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="signintime != null">
+        #{signintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signouttime != null">
+        #{signouttime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xxx.pojo.SignInRecord">
+    update sign_in_record
+    <set>
+      <if test="userid != null">
+        userId = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        userName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="signintime != null">
+        signInTime = #{signintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signouttime != null">
+        signOutTime = #{signouttime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where signInId = #{signinid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xxx.pojo.SignInRecord">
+    update sign_in_record
+    set userId = #{userid,jdbcType=VARCHAR},
+      userName = #{username,jdbcType=VARCHAR},
+      signInTime = #{signintime,jdbcType=TIMESTAMP},
+      signOutTime = #{signouttime,jdbcType=TIMESTAMP}
+    where signInId = #{signinid,jdbcType=VARCHAR}
+  </update>
+</mapper>

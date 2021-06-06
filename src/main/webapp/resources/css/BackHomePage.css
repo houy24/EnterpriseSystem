@@ -1,0 +1,34 @@
+.page-content{
+    position: absolute;
+    top: 45px;
+    right: 0;
+    /*bottom: 42px;*/
+    bottom: 0px;
+    left: 220px;
+    overflow: hidden;
+    z-index: 1;
+}
+.page-content-bg{
+    position: absolute;
+    top: 45px;
+    right: 0;
+    /*bottom: 42px;*/
+    bottom: 0px;
+    left: 220px;
+    background: rgba(0,0,0,0.5);
+    overflow: hidden;
+    z-index: 100;
+    display: none;
+}
+.page-content .tab{
+    height: 100%;
+    width: 100%;
+    /*background: #EFEEF0;*/
+    margin: 0px;
+}
+
+.edit-menu{
+    border: 1px solid black;
+    height: 160px;
+    width: 100px;
+}
