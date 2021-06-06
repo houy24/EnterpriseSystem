@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxx.dao.WorkAgeMoney.WorkAgeMoneyDao">
+  <resultMap id="BaseResultMap" type="com.xxx.pojo.WorkAgeMoney">
+    <id column="workAge" jdbcType="INTEGER" property="workAge" />
+    <result column="baseAgeMoney" jdbcType="DOUBLE" property="baseAgeMoney" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    workAge, baseAgeMoney
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from work_age_money
+    where workAge = #{workAge,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultType="com.xxx.pojo.WorkAgeMoney">
+    select
+    <include refid="Base_Column_List" />
+    from work_age_money
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from work_age_money
+    where workAge = #{workAge,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="workAge" keyProperty="workAge" parameterType="com.xxx.pojo.WorkAgeMoney" useGeneratedKeys="true">
+    insert into work_age_money (baseAgeMoney)
+    values (#{baseAgeMoney,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" keyColumn="workAge" keyProperty="workAge" parameterType="com.xxx.pojo.WorkAgeMoney" useGeneratedKeys="true">
+    insert into work_age_money
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="baseAgeMoney != null">
+        baseAgeMoney,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="baseAgeMoney != null">
+        #{baseAgeMoney,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xxx.pojo.WorkAgeMoney">
+    update work_age_money
+    <set>
+      <if test="baseAgeMoney != null">
+        baseAgeMoney = #{baseAgeMoney,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where workAge = #{workAge,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xxx.pojo.WorkAgeMoney">
+    update work_age_money
+    set baseAgeMoney = #{baseAgeMoney,jdbcType=DOUBLE}
+    where workAge = #{workAge,jdbcType=INTEGER}
+  </update>
+</mapper>

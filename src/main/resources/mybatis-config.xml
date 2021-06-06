@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<!--configuration核心配置文件-->
+<configuration>
+
+    <!--引入外部配置文件-->
+    <properties resource="db.properties"/>
+
+    <!--配置日志-->
+    <settings>
+        <!--标准的日志工厂实现-->
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+        <!--是否开启驼峰命名自动映射-->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+
+    <!--可以给实体类写别名-->
+    <typeAliases>
+        <!--别名设置-->
+        <!-- 在加了扫描包的基础上，在实体类前加注解，简写为注解内容即可   -->
+        <package name="com.xxx.pojo"/>
+    </typeAliases>
+
+    <!--配置环境-->
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <!--绑定mapper-->
+        <mapper class="com.xxx.dao.UserAccount.UserAccountMapper"/>
+        <mapper class="com.xxx.dao.UserData.UserDataDao"/>
+        <mapper class="com.xxx.dao.Product.ProductDao"/>
+        <mapper class="com.xxx.dao.ProductType.ProductTypeDao"/>
+        <mapper class="com.xxx.dao.ProductWarehouse.ProductWarehouseDao"/>
+        <mapper class="com.xxx.dao.SaleRecord.SaleRecordDao"/>
+        <mapper class="com.xxx.dao.SaleTask.SaleTaskDao"/>
+        <mapper class="com.xxx.dao.PersonalResume.PersonalResumeDao"/>
+        <mapper class="com.xxx.dao.SignInRecord.SignInRecordDao"/>
+        <mapper class="com.xxx.dao.Department.DepartmentDao"/>
+        <mapper class="com.xxx.dao.Position.PositionDao"/>
+        <mapper class="com.xxx.dao.WorkTitle.WorkTitleDao"/>
+        <mapper class="com.xxx.dao.WorkAgeMoney.WorkAgeMoneyDao"/>
+        <mapper class="com.xxx.dao.TaxRate.TaxRateDao"/>
+        <mapper class="com.xxx.dao.RoutineItem.RoutineItemDao"/>
+        <mapper class="com.xxx.dao.Wage.WageDao"/>
+        <mapper class="com.xxx.dao.WageContent.WageContentDao"/>
+<!--        <mapper resource="com/kuang/dao/BlogMapper.xml" />-->
+    </mappers>
+</configuration>

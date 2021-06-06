@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxx.dao.RoutineItem.RoutineItemDao">
+  <resultMap id="BaseResultMap" type="com.xxx.pojo.RoutineItem">
+    <id column="routineItemId" jdbcType="VARCHAR" property="routineItemId" />
+    <result column="latePenalty" jdbcType="DOUBLE" property="latePenalty" />
+    <result column="outEarlyPenalty" jdbcType="DOUBLE" property="outEarlyPenalty" />
+    <result column="absentPenalty" jdbcType="DOUBLE" property="absentPenalty" />
+    <result column="fullTimeAllowance" jdbcType="DOUBLE" property="fullTimeAllowance" />
+    <result column="workOvertimeAllowance" jdbcType="DOUBLE" property="workOvertimeAllowance" />
+    <result column="travelAllowance" jdbcType="DOUBLE" property="travelAllowance" />
+    <result column="eatAllowance" jdbcType="DOUBLE" property="eatAllowance" />
+    <result column="carAllowance" jdbcType="DOUBLE" property="carAllowance" />
+    <result column="houseAllowance" jdbcType="DOUBLE" property="houseAllowance" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    routineItemId, latePenalty, outEarlyPenalty, absentPenalty, fullTimeAllowance, workOvertimeAllowance, 
+    travelAllowance, eatAllowance, carAllowance, houseAllowance
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from routine_item
+    where routineItemId = #{routineItemId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from routine_item
+    where routineItemId = #{routineItemId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" keyColumn="routineItemId" keyProperty="routineItemId" parameterType="com.xxx.pojo.RoutineItem" useGeneratedKeys="true">
+    insert into routine_item (latePenalty, outEarlyPenalty, absentPenalty, 
+      fullTimeAllowance, workOvertimeAllowance, 
+      travelAllowance, eatAllowance, carAllowance, 
+      houseAllowance)
+    values (#{latePenalty,jdbcType=DOUBLE}, #{outEarlyPenalty,jdbcType=DOUBLE}, #{absentPenalty,jdbcType=DOUBLE}, 
+      #{fullTimeAllowance,jdbcType=DOUBLE}, #{workOvertimeAllowance,jdbcType=DOUBLE}, 
+      #{travelAllowance,jdbcType=DOUBLE}, #{eatAllowance,jdbcType=DOUBLE}, #{carAllowance,jdbcType=DOUBLE}, 
+      #{houseAllowance,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" keyColumn="routineItemId" keyProperty="routineItemId" parameterType="com.xxx.pojo.RoutineItem" useGeneratedKeys="true">
+    insert into routine_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="latePenalty != null">
+        latePenalty,
+      </if>
+      <if test="outEarlyPenalty != null">
+        outEarlyPenalty,
+      </if>
+      <if test="absentPenalty != null">
+        absentPenalty,
+      </if>
+      <if test="fullTimeAllowance != null">
+        fullTimeAllowance,
+      </if>
+      <if test="workOvertimeAllowance != null">
+        workOvertimeAllowance,
+      </if>
+      <if test="travelAllowance != null">
+        travelAllowance,
+      </if>
+      <if test="eatAllowance != null">
+        eatAllowance,
+      </if>
+      <if test="carAllowance != null">
+        carAllowance,
+      </if>
+      <if test="houseAllowance != null">
+        houseAllowance,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="latePenalty != null">
+        #{latePenalty,jdbcType=DOUBLE},
+      </if>
+      <if test="outEarlyPenalty != null">
+        #{outEarlyPenalty,jdbcType=DOUBLE},
+      </if>
+      <if test="absentPenalty != null">
+        #{absentPenalty,jdbcType=DOUBLE},
+      </if>
+      <if test="fullTimeAllowance != null">
+        #{fullTimeAllowance,jdbcType=DOUBLE},
+      </if>
+      <if test="workOvertimeAllowance != null">
+        #{workOvertimeAllowance,jdbcType=DOUBLE},
+      </if>
+      <if test="travelAllowance != null">
+        #{travelAllowance,jdbcType=DOUBLE},
+      </if>
+      <if test="eatAllowance != null">
+        #{eatAllowance,jdbcType=DOUBLE},
+      </if>
+      <if test="carAllowance != null">
+        #{carAllowance,jdbcType=DOUBLE},
+      </if>
+      <if test="houseAllowance != null">
+        #{houseAllowance,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xxx.pojo.RoutineItem">
+    update routine_item
+    <set>
+      <if test="latePenalty != null">
+        latePenalty = #{latePenalty,jdbcType=DOUBLE},
+      </if>
+      <if test="outEarlyPenalty != null">
+        outEarlyPenalty = #{outEarlyPenalty,jdbcType=DOUBLE},
+      </if>
+      <if test="absentPenalty != null">
+        absentPenalty = #{absentPenalty,jdbcType=DOUBLE},
+      </if>
+      <if test="fullTimeAllowance != null">
+        fullTimeAllowance = #{fullTimeAllowance,jdbcType=DOUBLE},
+      </if>
+      <if test="workOvertimeAllowance != null">
+        workOvertimeAllowance = #{workOvertimeAllowance,jdbcType=DOUBLE},
+      </if>
+      <if test="travelAllowance != null">
+        travelAllowance = #{travelAllowance,jdbcType=DOUBLE},
+      </if>
+      <if test="eatAllowance != null">
+        eatAllowance = #{eatAllowance,jdbcType=DOUBLE},
+      </if>
+      <if test="carAllowance != null">
+        carAllowance = #{carAllowance,jdbcType=DOUBLE},
+      </if>
+      <if test="houseAllowance != null">
+        houseAllowance = #{houseAllowance,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where routineItemId = #{routineItemId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xxx.pojo.RoutineItem">
+    update routine_item
+    set latePenalty = #{latePenalty,jdbcType=DOUBLE},
+      outEarlyPenalty = #{outEarlyPenalty,jdbcType=DOUBLE},
+      absentPenalty = #{absentPenalty,jdbcType=DOUBLE},
+      fullTimeAllowance = #{fullTimeAllowance,jdbcType=DOUBLE},
+      workOvertimeAllowance = #{workOvertimeAllowance,jdbcType=DOUBLE},
+      travelAllowance = #{travelAllowance,jdbcType=DOUBLE},
+      eatAllowance = #{eatAllowance,jdbcType=DOUBLE},
+      carAllowance = #{carAllowance,jdbcType=DOUBLE},
+      houseAllowance = #{houseAllowance,jdbcType=DOUBLE}
+    where routineItemId = #{routineItemId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxx.dao.Position.PositionDao">
+  <resultMap id="BaseResultMap" type="com.xxx.pojo.Position">
+    <id column="positionId" jdbcType="VARCHAR" property="positionId" />
+    <result column="positionName" jdbcType="VARCHAR" property="positionName" />
+    <result column="positionMoney" jdbcType="DOUBLE" property="positionMoney" />
+    <result column="positionDesrciption" jdbcType="VARCHAR" property="positionDesrciption" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    positionId, positionName, positionMoney, positionDesrciption
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from position
+    where positionId = #{positionId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAllByPositionDesrciption" resultType="com.xxx.pojo.Position">
+    select
+    <include refid="Base_Column_List" />
+    from position
+    where positionDesrciption = #{positionDesrciption,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from position
+    where positionId = #{positionId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" keyColumn="positionId" keyProperty="positionId" parameterType="com.xxx.pojo.Position" useGeneratedKeys="true">
+    insert into position (positionName, positionMoney, positionDesrciption
+      )
+    values (#{positionName,jdbcType=VARCHAR}, #{positionMoney,jdbcType=DOUBLE}, #{positionDesrciption,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="positionId" keyProperty="positionId" parameterType="com.xxx.pojo.Position" useGeneratedKeys="true">
+    insert into position
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="positionName != null">
+        positionName,
+      </if>
+      <if test="positionMoney != null">
+        positionMoney,
+      </if>
+      <if test="positionDesrciption != null">
+        positionDesrciption,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="positionName != null">
+        #{positionName,jdbcType=VARCHAR},
+      </if>
+      <if test="positionMoney != null">
+        #{positionMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="positionDesrciption != null">
+        #{positionDesrciption,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xxx.pojo.Position">
+    update position
+    <set>
+      <if test="positionName != null">
+        positionName = #{positionName,jdbcType=VARCHAR},
+      </if>
+      <if test="positionMoney != null">
+        positionMoney = #{positionMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="positionDesrciption != null">
+        positionDesrciption = #{positionDesrciption,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where positionId = #{positionId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xxx.pojo.Position">
+    update position
+    set positionName = #{positionName,jdbcType=VARCHAR},
+      positionMoney = #{positionMoney,jdbcType=DOUBLE},
+      positionDesrciption = #{positionDesrciption,jdbcType=VARCHAR}
+    where positionId = #{positionId,jdbcType=VARCHAR}
+  </update>
+</mapper>

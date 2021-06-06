@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace=绑定一个对应的Dao/Mapper接口-->
+<mapper namespace="com.xxx.dao.UserAccount.UserAccountMapper">
+
+    <select id="getAllUserAccount" resultType="UserAccount">
+        select * from user_account
+    </select>
+    
+    <select id="getUserAccountByUserAccountId" resultType="UserAccount" parameterType="String">
+        select * from user_account
+            where userId = #{userId}
+    </select>
+
+    <select id="getUserAccountByUserPhone" resultType="UserAccount" parameterType="String">
+        select * from user_account
+        where userPhone = #{userPhone}
+    </select>
+
+    <insert id="addUserAccount" parameterType="UserAccount">
+        insert into user_account(userId, userPhone, userPassword, userType)
+            VALUES (#{userId},#{userPhone},#{userPassword},#{userType})
+    </insert>
+
+    <update id="updateUserAccount" parameterType="UserAccount">
+        update user_account set userPhone = #{userPhone} ,
+                                userPassword = #{userPassword} ,
+                                userType = #{userType}
+            where userId = #{userId}
+    </update>
+
+    <delete id="deleteUserAccountByUserId" parameterType="String">
+        delete from user_account
+            where userId = #{userId}
+    </delete>
+
+
+</mapper>

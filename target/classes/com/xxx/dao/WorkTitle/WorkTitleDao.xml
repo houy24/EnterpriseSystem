@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxx.dao.WorkTitle.WorkTitleDao">
+  <resultMap id="BaseResultMap" type="com.xxx.pojo.WorkTitle">
+    <id column="workTitleId" jdbcType="VARCHAR" property="workTitleId" />
+    <result column="workTitleName" jdbcType="VARCHAR" property="workTitleName" />
+    <result column="workTitleMoney" jdbcType="DOUBLE" property="workTitleMoney" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    workTitleId, workTitleName, workTitleMoney
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from work_title
+    where workTitleId = #{workTitleId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultType="com.xxx.pojo.WorkTitle">
+    select
+    <include refid="Base_Column_List" />
+    from work_title
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from work_title
+    where workTitleId = #{workTitleId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" keyColumn="workTitleId" keyProperty="workTitleId" parameterType="com.xxx.pojo.WorkTitle" useGeneratedKeys="true">
+    insert into work_title (workTitleName, workTitleMoney)
+    values (#{workTitleName,jdbcType=VARCHAR}, #{workTitleMoney,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" keyColumn="workTitleId" keyProperty="workTitleId" parameterType="com.xxx.pojo.WorkTitle" useGeneratedKeys="true">
+    insert into work_title
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="workTitleName != null">
+        workTitleName,
+      </if>
+      <if test="workTitleMoney != null">
+        workTitleMoney,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="workTitleName != null">
+        #{workTitleName,jdbcType=VARCHAR},
+      </if>
+      <if test="workTitleMoney != null">
+        #{workTitleMoney,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xxx.pojo.WorkTitle">
+    update work_title
+    <set>
+      <if test="workTitleName != null">
+        workTitleName = #{workTitleName,jdbcType=VARCHAR},
+      </if>
+      <if test="workTitleMoney != null">
+        workTitleMoney = #{workTitleMoney,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where workTitleId = #{workTitleId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xxx.pojo.WorkTitle">
+    update work_title
+    set workTitleName = #{workTitleName,jdbcType=VARCHAR},
+      workTitleMoney = #{workTitleMoney,jdbcType=DOUBLE}
+    where workTitleId = #{workTitleId,jdbcType=VARCHAR}
+  </update>
+</mapper>

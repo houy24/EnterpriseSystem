@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<!--configuration核心配置文件-->
+<configuration>
+
+    <!--引入外部配置文件-->
+    <properties resource="db.properties"/>
+
+    <!--配置日志-->
+    <settings>
+        <!--标准的日志工厂实现-->
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+        <!--是否开启驼峰命名自动映射-->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+
+    <!--可以给实体类写别名-->
+    <typeAliases>
+        <!--别名设置-->
+        <!-- 在加了扫描包的基础上，在实体类前加注解，简写为注解内容即可   -->
+        <package name="com.xxx.pojo"/>
+    </typeAliases>
+
+    <!--配置环境-->
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <!--绑定mapper-->
+        <mapper class="com.xxx.dao.UserAccount.UserAccountMapper"/>
+        <mapper class="generate.PositionDao"/>
+<!--        <mapper resource="com/kuang/dao/BlogMapper.xml" />-->
+    </mappers>
+</configuration>

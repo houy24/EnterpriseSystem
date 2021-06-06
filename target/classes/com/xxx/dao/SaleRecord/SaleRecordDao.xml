@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxx.dao.SaleRecord.SaleRecordDao">
+  <resultMap id="BaseResultMap" type="com.xxx.pojo.SaleRecord">
+    <id column="saleRecordId" jdbcType="VARCHAR" property="saleRecordId" />
+    <result column="userId" jdbcType="VARCHAR" property="userId" />
+    <result column="saleTaskId" jdbcType="VARCHAR" property="saleTaskId" />
+    <result column="productId" jdbcType="VARCHAR" property="productId" />
+    <result column="saleNumber" jdbcType="INTEGER" property="saleNumber" />
+    <result column="saleOneMoney" jdbcType="DOUBLE" property="saleOneMoney" />
+    <result column="saleSumMoney" jdbcType="DOUBLE" property="saleSumMoney" />
+    <result column="saleFinishTime" jdbcType="TIMESTAMP" property="saleFinishTime" />
+    <result column="saleRecordState" jdbcType="VARCHAR" property="saleRecordState" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    saleRecordId, userId, saleTaskId, productId, saleNumber, saleOneMoney, saleSumMoney, 
+    saleFinishTime, saleRecordState
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sale_record
+    where saleRecordId = #{saleRecordId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAllByUserId" resultType="com.xxx.pojo.SaleRecord">
+    select
+    <include refid="Base_Column_List" />
+    from sale_record
+    where userId = #{userId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sale_record
+    where saleRecordId = #{saleRecordId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" keyColumn="saleRecordId" keyProperty="saleRecordId" parameterType="com.xxx.pojo.SaleRecord" useGeneratedKeys="true">
+    insert into sale_record (userId, saleTaskId, productId, 
+      saleNumber, saleOneMoney, saleSumMoney, 
+      saleFinishTime, saleRecordState)
+    values (#{userId,jdbcType=VARCHAR}, #{saleTaskId,jdbcType=VARCHAR}, #{productId,jdbcType=VARCHAR}, 
+      #{saleNumber,jdbcType=INTEGER}, #{saleOneMoney,jdbcType=DOUBLE}, #{saleSumMoney,jdbcType=DOUBLE}, 
+      #{saleFinishTime,jdbcType=TIMESTAMP}, #{saleRecordState,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="saleRecordId" keyProperty="saleRecordId" parameterType="com.xxx.pojo.SaleRecord" useGeneratedKeys="true">
+    insert into sale_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        userId,
+      </if>
+      <if test="saleTaskId != null">
+        saleTaskId,
+      </if>
+      <if test="productId != null">
+        productId,
+      </if>
+      <if test="saleNumber != null">
+        saleNumber,
+      </if>
+      <if test="saleOneMoney != null">
+        saleOneMoney,
+      </if>
+      <if test="saleSumMoney != null">
+        saleSumMoney,
+      </if>
+      <if test="saleFinishTime != null">
+        saleFinishTime,
+      </if>
+      <if test="saleRecordState != null">
+        saleRecordState,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="saleTaskId != null">
+        #{saleTaskId,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="saleNumber != null">
+        #{saleNumber,jdbcType=INTEGER},
+      </if>
+      <if test="saleOneMoney != null">
+        #{saleOneMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="saleSumMoney != null">
+        #{saleSumMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="saleFinishTime != null">
+        #{saleFinishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="saleRecordState != null">
+        #{saleRecordState,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xxx.pojo.SaleRecord">
+    update sale_record
+    <set>
+      <if test="userId != null">
+        userId = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="saleTaskId != null">
+        saleTaskId = #{saleTaskId,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null">
+        productId = #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="saleNumber != null">
+        saleNumber = #{saleNumber,jdbcType=INTEGER},
+      </if>
+      <if test="saleOneMoney != null">
+        saleOneMoney = #{saleOneMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="saleSumMoney != null">
+        saleSumMoney = #{saleSumMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="saleFinishTime != null">
+        saleFinishTime = #{saleFinishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="saleRecordState != null">
+        saleRecordState = #{saleRecordState,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where saleRecordId = #{saleRecordId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xxx.pojo.SaleRecord">
+    update sale_record
+    set userId = #{userId,jdbcType=VARCHAR},
+      saleTaskId = #{saleTaskId,jdbcType=VARCHAR},
+      productId = #{productId,jdbcType=VARCHAR},
+      saleNumber = #{saleNumber,jdbcType=INTEGER},
+      saleOneMoney = #{saleOneMoney,jdbcType=DOUBLE},
+      saleSumMoney = #{saleSumMoney,jdbcType=DOUBLE},
+      saleFinishTime = #{saleFinishTime,jdbcType=TIMESTAMP},
+      saleRecordState = #{saleRecordState,jdbcType=VARCHAR}
+    where saleRecordId = #{saleRecordId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateSaleRecordStateBySaleRecordId" parameterType="java.lang.String">
+    update sale_record
+    set saleRecordState = #{saleRecordState,jdbcType=VARCHAR}
+    where saleRecordId = #{saleRecordId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxx.dao.ProductType.ProductTypeDao">
+  <resultMap id="BaseResultMap" type="com.xxx.pojo.ProductType">
+    <id column="productTypeId" jdbcType="VARCHAR" property="productTypeId" />
+    <result column="productTypeName" jdbcType="VARCHAR" property="productTypeName" />
+    <result column="productCommission" jdbcType="DOUBLE" property="productCommission" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    productTypeId, productTypeName, productCommission
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from product_type
+    where productTypeId = #{productTypeId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultType="com.xxx.pojo.ProductType">
+    select
+    <include refid="Base_Column_List" />
+    from product_type
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from product_type
+    where productTypeId = #{productTypeId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" keyColumn="productTypeId" keyProperty="productTypeId" parameterType="com.xxx.pojo.ProductType" useGeneratedKeys="true">
+    insert into product_type (productTypeName, productCommission
+      )
+    values (#{productTypeName,jdbcType=VARCHAR}, #{productCommission,jdbcType=DOUBLE}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="productTypeId" keyProperty="productTypeId" parameterType="com.xxx.pojo.ProductType" useGeneratedKeys="true">
+    insert into product_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="productTypeName != null">
+        productTypeName,
+      </if>
+      <if test="productCommission != null">
+        productCommission,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="productTypeName != null">
+        #{productTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="productCommission != null">
+        #{productCommission,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xxx.pojo.ProductType">
+    update product_type
+    <set>
+      <if test="productTypeName != null">
+        productTypeName = #{productTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="productCommission != null">
+        productCommission = #{productCommission,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where productTypeId = #{productTypeId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xxx.pojo.ProductType">
+    update product_type
+    set productTypeName = #{productTypeName,jdbcType=VARCHAR},
+      productCommission = #{productCommission,jdbcType=DOUBLE}
+    where productTypeId = #{productTypeId,jdbcType=VARCHAR}
+  </update>
+</mapper>

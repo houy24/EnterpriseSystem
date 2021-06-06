@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxx.dao.PersonalResume.PersonalResumeDao">
+  <resultMap id="BaseResultMap" type="com.xxx.pojo.PersonalResume">
+    <id column="personalResumeId" jdbcType="VARCHAR" property="personalResumeId" />
+    <result column="userId" jdbcType="VARCHAR" property="userId" />
+    <result column="userName" jdbcType="VARCHAR" property="userName" />
+    <result column="userSex" jdbcType="VARCHAR" property="userSex" />
+    <result column="userAge" jdbcType="INTEGER" property="userAge" />
+    <result column="userPhone" jdbcType="VARCHAR" property="userPhone" />
+    <result column="userEmail" jdbcType="VARCHAR" property="userEmail" />
+    <result column="educationExperience" jdbcType="VARCHAR" property="educationExperience" />
+    <result column="jobTarget" jdbcType="VARCHAR" property="jobTarget" />
+    <result column="workExperience" jdbcType="VARCHAR" property="workExperience" />
+    <result column="awards" jdbcType="VARCHAR" property="awards" />
+    <result column="skills" jdbcType="VARCHAR" property="skills" />
+    <result column="selfThink" jdbcType="VARCHAR" property="selfThink" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    personalResumeId, userId, userName, userSex, userAge, userPhone, userEmail, educationExperience, 
+    jobTarget, workExperience, awards, skills, selfThink
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from personal_resume
+    where personalResumeId = #{personalResumeId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAllByUserId" resultType="com.xxx.pojo.PersonalResume">
+    select
+    <include refid="Base_Column_List" />
+    from personal_resume
+    where userId = #{userId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultType="com.xxx.pojo.PersonalResume">
+    select
+    <include refid="Base_Column_List" />
+    from personal_resume
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from personal_resume
+    where personalResumeId = #{personalResumeId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" keyColumn="personalResumeId" keyProperty="personalResumeId" parameterType="com.xxx.pojo.PersonalResume" useGeneratedKeys="true">
+    insert into personal_resume (userId, userName, userSex, 
+      userAge, userPhone, userEmail, 
+      educationExperience, jobTarget, workExperience, 
+      awards, skills, selfThink
+      )
+    values (#{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{userSex,jdbcType=VARCHAR}, 
+      #{userAge,jdbcType=INTEGER}, #{userPhone,jdbcType=VARCHAR}, #{userEmail,jdbcType=VARCHAR}, 
+      #{educationExperience,jdbcType=VARCHAR}, #{jobTarget,jdbcType=VARCHAR}, #{workExperience,jdbcType=VARCHAR}, 
+      #{awards,jdbcType=VARCHAR}, #{skills,jdbcType=VARCHAR}, #{selfThink,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="personalResumeId" keyProperty="personalResumeId" parameterType="com.xxx.pojo.PersonalResume" useGeneratedKeys="true">
+    insert into personal_resume
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        userId,
+      </if>
+      <if test="userName != null">
+        userName,
+      </if>
+      <if test="userSex != null">
+        userSex,
+      </if>
+      <if test="userAge != null">
+        userAge,
+      </if>
+      <if test="userPhone != null">
+        userPhone,
+      </if>
+      <if test="userEmail != null">
+        userEmail,
+      </if>
+      <if test="educationExperience != null">
+        educationExperience,
+      </if>
+      <if test="jobTarget != null">
+        jobTarget,
+      </if>
+      <if test="workExperience != null">
+        workExperience,
+      </if>
+      <if test="awards != null">
+        awards,
+      </if>
+      <if test="skills != null">
+        skills,
+      </if>
+      <if test="selfThink != null">
+        selfThink,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userSex != null">
+        #{userSex,jdbcType=VARCHAR},
+      </if>
+      <if test="userAge != null">
+        #{userAge,jdbcType=INTEGER},
+      </if>
+      <if test="userPhone != null">
+        #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="userEmail != null">
+        #{userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="educationExperience != null">
+        #{educationExperience,jdbcType=VARCHAR},
+      </if>
+      <if test="jobTarget != null">
+        #{jobTarget,jdbcType=VARCHAR},
+      </if>
+      <if test="workExperience != null">
+        #{workExperience,jdbcType=VARCHAR},
+      </if>
+      <if test="awards != null">
+        #{awards,jdbcType=VARCHAR},
+      </if>
+      <if test="skills != null">
+        #{skills,jdbcType=VARCHAR},
+      </if>
+      <if test="selfThink != null">
+        #{selfThink,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xxx.pojo.PersonalResume">
+    update personal_resume
+    <set>
+      <if test="userId != null">
+        userId = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        userName = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userSex != null">
+        userSex = #{userSex,jdbcType=VARCHAR},
+      </if>
+      <if test="userAge != null">
+        userAge = #{userAge,jdbcType=INTEGER},
+      </if>
+      <if test="userPhone != null">
+        userPhone = #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="userEmail != null">
+        userEmail = #{userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="educationExperience != null">
+        educationExperience = #{educationExperience,jdbcType=VARCHAR},
+      </if>
+      <if test="jobTarget != null">
+        jobTarget = #{jobTarget,jdbcType=VARCHAR},
+      </if>
+      <if test="workExperience != null">
+        workExperience = #{workExperience,jdbcType=VARCHAR},
+      </if>
+      <if test="awards != null">
+        awards = #{awards,jdbcType=VARCHAR},
+      </if>
+      <if test="skills != null">
+        skills = #{skills,jdbcType=VARCHAR},
+      </if>
+      <if test="selfThink != null">
+        selfThink = #{selfThink,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where personalResumeId = #{personalResumeId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xxx.pojo.PersonalResume">
+    update personal_resume
+    set userId = #{userId,jdbcType=VARCHAR},
+      userName = #{userName,jdbcType=VARCHAR},
+      userSex = #{userSex,jdbcType=VARCHAR},
+      userAge = #{userAge,jdbcType=INTEGER},
+      userPhone = #{userPhone,jdbcType=VARCHAR},
+      userEmail = #{userEmail,jdbcType=VARCHAR},
+      educationExperience = #{educationExperience,jdbcType=VARCHAR},
+      jobTarget = #{jobTarget,jdbcType=VARCHAR},
+      workExperience = #{workExperience,jdbcType=VARCHAR},
+      awards = #{awards,jdbcType=VARCHAR},
+      skills = #{skills,jdbcType=VARCHAR},
+      selfThink = #{selfThink,jdbcType=VARCHAR}
+    where personalResumeId = #{personalResumeId,jdbcType=VARCHAR}
+  </update>
+</mapper>
