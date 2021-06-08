@@ -25,14 +25,15 @@
     where productTypeId = #{productTypeId,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" keyColumn="productTypeId" keyProperty="productTypeId" parameterType="com.xxx.pojo.ProductType" useGeneratedKeys="true">
-    insert into product_type (productTypeName, productCommission
+    insert into product_type (productTypeId, productTypeName, productCommission
       )
-    values (#{productTypeName,jdbcType=VARCHAR}, #{productCommission,jdbcType=DOUBLE}
+    values (#{productTypeId,jdbcType=VARCHAR}, #{productTypeName,jdbcType=VARCHAR}, #{productCommission,jdbcType=DOUBLE}
       )
   </insert>
   <insert id="insertSelective" keyColumn="productTypeId" keyProperty="productTypeId" parameterType="com.xxx.pojo.ProductType" useGeneratedKeys="true">
     insert into product_type
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      productTypeId,
       <if test="productTypeName != null">
         productTypeName,
       </if>
@@ -41,6 +42,7 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{productTypeId,jdbcType=VARCHAR},
       <if test="productTypeName != null">
         #{productTypeName,jdbcType=VARCHAR},
       </if>

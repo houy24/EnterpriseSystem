@@ -25,8 +25,8 @@
     where workTitleId = #{workTitleId,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" keyColumn="workTitleId" keyProperty="workTitleId" parameterType="com.xxx.pojo.WorkTitle" useGeneratedKeys="true">
-    insert into work_title (workTitleName, workTitleMoney)
-    values (#{workTitleName,jdbcType=VARCHAR}, #{workTitleMoney,jdbcType=DOUBLE})
+    insert into work_title (workTitleId,workTitleName, workTitleMoney)
+    values (#{workTitleId,jdbcType=VARCHAR},#{workTitleName,jdbcType=VARCHAR}, #{workTitleMoney,jdbcType=DOUBLE})
   </insert>
   <insert id="insertSelective" keyColumn="workTitleId" keyProperty="workTitleId" parameterType="com.xxx.pojo.WorkTitle" useGeneratedKeys="true">
     insert into work_title
@@ -39,6 +39,7 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{workTitleId,jdbcType=VARCHAR},
       <if test="workTitleName != null">
         #{workTitleName,jdbcType=VARCHAR},
       </if>

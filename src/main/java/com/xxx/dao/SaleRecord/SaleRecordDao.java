@@ -16,6 +16,8 @@ public interface SaleRecordDao {
 
     List<SaleRecord> selectAllByUserId(String userId);
 
+    List<SaleRecord> selectAll();
+
     int updateSaleRecordStateBySaleRecordId(@Param("saleRecordId") String saleRecordId ,@Param("saleRecordState") String saleRecordState);
 
     int updateByPrimaryKeySelective(SaleRecord record);

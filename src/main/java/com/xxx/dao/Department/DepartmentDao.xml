@@ -25,14 +25,15 @@
     where departmentId = #{departmentId,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" keyColumn="departmentId" keyProperty="departmentId" parameterType="com.xxx.pojo.Department" useGeneratedKeys="true">
-    insert into department (departmentName, departmentDesrciption
+    insert into department (departmentId, departmentName, departmentDesrciption
       )
-    values (#{departmentName,jdbcType=VARCHAR}, #{departmentDesrciption,jdbcType=VARCHAR}
+    values (#{departmentId,jdbcType=VARCHAR}, #{departmentName,jdbcType=VARCHAR}, #{departmentDesrciption,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" keyColumn="departmentId" keyProperty="departmentId" parameterType="com.xxx.pojo.Department" useGeneratedKeys="true">
     insert into department
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      departmentId,
       <if test="departmentName != null">
         departmentName,
       </if>
@@ -41,6 +42,7 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{departmentId,jdbcType=VARCHAR},
       <if test="departmentName != null">
         #{departmentName,jdbcType=VARCHAR},
       </if>

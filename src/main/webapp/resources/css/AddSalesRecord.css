@@ -1,0 +1,34 @@
+
+.btn {
+    width: 120px;
+    height: 60px;
+    font-size: 24px;
+    margin-left: 20px;
+}
+.lab {
+    width: 120px;
+    text-align: left;
+    tab-size: 18px;
+    padding-top: 15px;
+}
+.lab1{
+    width: 400px;
+    text-align: left;
+    tab-size: 18px;
+    padding-top: 15px;
+}
+span {
+    font-size: 18px;
+}
+.bl {
+    margin-left: 150px;;
+    height: 50px;
+}
+.item {
+    height: 50px;
+    margin-top: 30px;
+}
+.inp {
+    height: 50px;
+    font-size: 18px;
+}

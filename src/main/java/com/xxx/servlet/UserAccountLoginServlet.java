@@ -20,6 +20,10 @@ public class UserAccountLoginServlet extends HttpServlet { // 登录
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        response.setContentType("text/html;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("utf-8");
+
         System.out.println("============进入 UserAccountLoginServlet============");
 
         //获取用户名和密码

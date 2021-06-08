@@ -31,16 +31,17 @@
     where productWarehouseId = #{productWarehouseId,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" keyColumn="productWarehouseId" keyProperty="productWarehouseId" parameterType="com.xxx.pojo.ProductWarehouse" useGeneratedKeys="true">
-    insert into product_warehouse (productId, productName, productNumber, 
+    insert into product_warehouse (productWarehouseId, productId, productName, productNumber,
       InWareHouseTime, productionAddress, oneInPrice, 
       totalInPrice)
-    values (#{productId,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, #{productNumber,jdbcType=INTEGER}, 
+    values (#{productWarehouseId,jdbcType=VARCHAR}, #{productId,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, #{productNumber,jdbcType=INTEGER},
       #{inWareHouseTime,jdbcType=TIMESTAMP}, #{productionAddress,jdbcType=VARCHAR}, #{oneInPrice,jdbcType=DOUBLE}, 
       #{totalInPrice,jdbcType=DOUBLE})
   </insert>
   <insert id="insertSelective" keyColumn="productWarehouseId" keyProperty="productWarehouseId" parameterType="com.xxx.pojo.ProductWarehouse" useGeneratedKeys="true">
     insert into product_warehouse
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      productWarehouseId,
       <if test="productId != null">
         productId,
       </if>
@@ -64,6 +65,7 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{productWarehouseId,jdbcType=VARCHAR},
       <if test="productId != null">
         #{productId,jdbcType=VARCHAR},
       </if>

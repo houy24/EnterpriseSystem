@@ -7,7 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import java.util.List;
 
 
-public class UserDataDaoImpl implements UserDataDao{
+public class UserDataDaoImpl implements UserDataDao {
     /**
      *
      * @param userid
@@ -108,5 +108,25 @@ public class UserDataDaoImpl implements UserDataDao{
         }
 
         return i;
+    }
+
+    /* 新增 ，根据职称id查询有几个用户，有该职称 */
+    @Override
+    public int selectCountByWorkTitleId(String workTitleId) {
+
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        UserDataDao userDataDao = sqlSession.getMapper(UserDataDao.class);
+
+        System.out.println("UserDataDaoImpl => selectCountByWorkTitleId");
+        int res = 0;
+        try {
+            res = userDataDao.selectCountByWorkTitleId(workTitleId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+
+        return res;
     }
 }

@@ -88,6 +88,22 @@ public class SaleRecordDaoImpl implements SaleRecordDao{
     }
 
     @Override
+    public List<SaleRecord> selectAll() {
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        SaleRecordDao saleRecordDao = sqlSession.getMapper(SaleRecordDao.class);
+        System.out.println("SaleRecordDaoImpl => selectAll");
+        List<SaleRecord> saleRecords = null;
+        try {
+            saleRecords = saleRecordDao.selectAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+        return saleRecords;
+    }
+
+    @Override
     public int updateSaleRecordStateBySaleRecordId(String saleRecordState, String saleRecordId) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         SaleRecordDao saleRecordDao = sqlSession.getMapper(SaleRecordDao.class);

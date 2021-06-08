@@ -27,14 +27,15 @@
     where wageId = #{wageId,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" keyColumn="wageId" keyProperty="wageId" parameterType="com.xxx.pojo.Wage" useGeneratedKeys="true">
-    insert into wage (userId, departmentId, wageProvideTime, 
+    insert into wage (wageId, userId, departmentId, wageProvideTime,
       realyWage)
-    values (#{userId,jdbcType=VARCHAR}, #{departmentId,jdbcType=VARCHAR}, #{wageProvideTime,jdbcType=TIMESTAMP}, 
+    values (#{wageId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{departmentId,jdbcType=VARCHAR}, #{wageProvideTime,jdbcType=TIMESTAMP},
       #{realyWage,jdbcType=DOUBLE})
   </insert>
   <insert id="insertSelective" keyColumn="wageId" keyProperty="wageId" parameterType="com.xxx.pojo.Wage" useGeneratedKeys="true">
     insert into wage
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      wageId,
       <if test="userId != null">
         userId,
       </if>
@@ -49,6 +50,7 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{wageId,jdbcType=VARCHAR},
       <if test="userId != null">
         #{userId,jdbcType=VARCHAR},
       </if>

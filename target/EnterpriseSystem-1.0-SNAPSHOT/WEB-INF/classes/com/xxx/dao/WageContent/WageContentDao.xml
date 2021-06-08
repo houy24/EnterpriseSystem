@@ -56,7 +56,7 @@
     where wageId = #{wageId,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" keyColumn="wageId" keyProperty="wageId" parameterType="com.xxx.pojo.WageContent" useGeneratedKeys="true">
-    insert into wage_content (userId, wageProvideTime, shouldWage, 
+    insert into wage_content (wageId,userId, wageProvideTime, shouldWage,
       realyWage, positionMoney, workResultMoney, 
       workAgeMoney, fullTimeMoney, workTitleMoney, 
       workOverTimeMoney, eatAllowance, carAllowance, 
@@ -65,7 +65,7 @@
       medicalEnsure, lostJobEnsure, workHurtEnsure, 
       birthEnsure, houseFundEnsure, oneSelfTax
       )
-    values (#{userId,jdbcType=VARCHAR}, #{wageProvideTime,jdbcType=TIMESTAMP}, #{shouldWage,jdbcType=DOUBLE}, 
+    values (#{wageId,jdbcType=VARCHAR},#{userId,jdbcType=VARCHAR}, #{wageProvideTime,jdbcType=TIMESTAMP}, #{shouldWage,jdbcType=DOUBLE},
       #{realyWage,jdbcType=DOUBLE}, #{positionMoney,jdbcType=DOUBLE}, #{workResultMoney,jdbcType=DOUBLE}, 
       #{workAgeMoney,jdbcType=DOUBLE}, #{fullTimeMoney,jdbcType=DOUBLE}, #{workTitleMoney,jdbcType=DOUBLE}, 
       #{workOverTimeMoney,jdbcType=DOUBLE}, #{eatAllowance,jdbcType=DOUBLE}, #{carAllowance,jdbcType=DOUBLE}, 
@@ -78,6 +78,7 @@
   <insert id="insertSelective" keyColumn="wageId" keyProperty="wageId" parameterType="com.xxx.pojo.WageContent" useGeneratedKeys="true">
     insert into wage_content
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      wageId,
       <if test="userId != null">
         userId,
       </if>
@@ -152,6 +153,7 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{wageId,jdbcType=VARCHAR},
       <if test="userId != null">
         #{userId,jdbcType=VARCHAR},
       </if>

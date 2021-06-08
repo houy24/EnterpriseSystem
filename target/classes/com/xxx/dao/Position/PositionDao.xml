@@ -27,14 +27,15 @@
     where positionId = #{positionId,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" keyColumn="positionId" keyProperty="positionId" parameterType="com.xxx.pojo.Position" useGeneratedKeys="true">
-    insert into position (positionName, positionMoney, positionDesrciption
+    insert into position (positionId, positionName, positionMoney, positionDesrciption
       )
-    values (#{positionName,jdbcType=VARCHAR}, #{positionMoney,jdbcType=DOUBLE}, #{positionDesrciption,jdbcType=VARCHAR}
+    values (#{positionId,jdbcType=VARCHAR}, #{positionName,jdbcType=VARCHAR}, #{positionMoney,jdbcType=DOUBLE}, #{positionDesrciption,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" keyColumn="positionId" keyProperty="positionId" parameterType="com.xxx.pojo.Position" useGeneratedKeys="true">
     insert into position
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      positionId,
       <if test="positionName != null">
         positionName,
       </if>
@@ -46,6 +47,7 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{positionId,jdbcType=VARCHAR},
       <if test="positionName != null">
         #{positionName,jdbcType=VARCHAR},
       </if>

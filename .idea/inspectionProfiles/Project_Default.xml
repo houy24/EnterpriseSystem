@@ -4,12 +4,16 @@
     <inspection_tool class="HtmlUnknownAttribute" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="myValues">
         <value>
-          <list size="1">
+          <list size="4">
             <item index="0" class="java.lang.String" itemvalue="lay-filter" />
+            <item index="1" class="java.lang.String" itemvalue="lay-accordion" />
+            <item index="2" class="java.lang.String" itemvalue="lay-allowclose" />
+            <item index="3" class="java.lang.String" itemvalue="lay-verify" />
           </list>
         </value>
       </option>
       <option name="myCustomValuesEnabled" value="true" />
     </inspection_tool>
+    <inspection_tool class="JSJQueryEfficiency" enabled="false" level="WARNING" enabled_by_default="false" />
   </profile>
 </component>

@@ -2,12 +2,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>二手车交易系统</title>
-    <link rel="stylesheet" href="/resources/css/Login.css?time=<%=Math.random()%>" type="text/css">
+    <title>生产型企业信息管理系统</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/Login.css?time=<%=Math.random()%>" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/layui/css/layui.css?time=<%=Math.random()%>">
     <script src="${pageContext.request.contextPath}/resources/layui/layui.js?time=<%=Math.random()%>"></script>
-    <script type="text/javascript" charset="utf-8" src="/resources/js/jquery.min.js?time=<%=Math.random()%>"></script>
-    <script type="text/javascript" charset="utf-8" src="/resources/js/Login.js?time=<%=Math.random()%>"></script>
+    <script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath}/resources/js/jquery.min.js?time=<%=Math.random()%>"></script>
+    <script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath}/resources/js/Login.js?time=<%=Math.random()%>"></script>
 </head>
 <body>
 <div class="login_box">

@@ -15,7 +15,7 @@
     select 
     <include refid="Base_Column_List" />
     from sign_in_record
-    where signInId = #{signinid,jdbcType=VARCHAR}
+    where signInId = #{signInId,jdbcType=VARCHAR}
   </select>
   <select id="selectAllByUserId" resultType="com.xxx.pojo.SignInRecord">
     select
@@ -25,58 +25,60 @@
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from sign_in_record
-    where signInId = #{signinid,jdbcType=VARCHAR}
+    where signInId = #{signInId,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" keyColumn="signInId" keyProperty="signinid" parameterType="com.xxx.pojo.SignInRecord" useGeneratedKeys="true">
-    insert into sign_in_record (userId, userName, signInTime, 
+  <insert id="insert" keyColumn="signInId" keyProperty="signInId" parameterType="com.xxx.pojo.SignInRecord" useGeneratedKeys="true">
+    insert into sign_in_record (signInId,userId, userName, signInTime,
       signOutTime)
-    values (#{userid,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{signintime,jdbcType=TIMESTAMP}, 
-      #{signouttime,jdbcType=TIMESTAMP})
+    values (#{signInId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{signInTime,jdbcType=TIMESTAMP},
+      #{signOutTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" keyColumn="signInId" keyProperty="signinid" parameterType="com.xxx.pojo.SignInRecord" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="signInId" keyProperty="signInId" parameterType="com.xxx.pojo.SignInRecord" useGeneratedKeys="true">
     insert into sign_in_record
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="userid != null">
+      signInId,
+      <if test="userId != null">
         userId,
       </if>
-      <if test="username != null">
+      <if test="userName != null">
         userName,
       </if>
-      <if test="signintime != null">
+      <if test="signInTime != null">
         signInTime,
       </if>
-      <if test="signouttime != null">
+      <if test="signOutTime != null">
         signOutTime,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="userid != null">
-        #{userid,jdbcType=VARCHAR},
+      #{signInId,jdbcType=VARCHAR},
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
       </if>
-      <if test="username != null">
-        #{username,jdbcType=VARCHAR},
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
       </if>
-      <if test="signintime != null">
-        #{signintime,jdbcType=TIMESTAMP},
+      <if test="signInTime != null">
+        #{signInTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="signouttime != null">
-        #{signouttime,jdbcType=TIMESTAMP},
+      <if test="signOutTime != null">
+        #{signOutTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.xxx.pojo.SignInRecord">
     update sign_in_record
     <set>
-      <if test="userid != null">
+      <if test="userId != null">
         userId = #{userid,jdbcType=VARCHAR},
       </if>
-      <if test="username != null">
+      <if test="userName != null">
         userName = #{username,jdbcType=VARCHAR},
       </if>
-      <if test="signintime != null">
+      <if test="signInTime != null">
         signInTime = #{signintime,jdbcType=TIMESTAMP},
       </if>
-      <if test="signouttime != null">
+      <if test="signOutTime != null">
         signOutTime = #{signouttime,jdbcType=TIMESTAMP},
       </if>
     </set>
@@ -84,10 +86,10 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.xxx.pojo.SignInRecord">
     update sign_in_record
-    set userId = #{userid,jdbcType=VARCHAR},
-      userName = #{username,jdbcType=VARCHAR},
-      signInTime = #{signintime,jdbcType=TIMESTAMP},
-      signOutTime = #{signouttime,jdbcType=TIMESTAMP}
-    where signInId = #{signinid,jdbcType=VARCHAR}
+    set userId = #{userId,jdbcType=VARCHAR},
+      userName = #{userName,jdbcType=VARCHAR},
+      signInTime = #{signInTime,jdbcType=TIMESTAMP},
+      signOutTime = #{signOutTime,jdbcType=TIMESTAMP}
+    where signInId = #{signInId,jdbcType=VARCHAR}
   </update>
 </mapper>

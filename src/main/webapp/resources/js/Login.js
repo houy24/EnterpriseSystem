@@ -1,12 +1,19 @@
 $(document).ready(function() {
     layui.use('element', function () {
         var element = layui.element;
+
     });
 })
 
 
 
 function login(){
+
+    var loading = layer.load(0, {
+        shade: false,
+        time: 2*1000,
+        icon: 2   // 图标 0,1,2
+    });
 
     var account = $('#account_input').val();
     var password = $('#password_input').val();
@@ -44,16 +51,29 @@ function login(){
         },
         dataType: "json",
         success: function(value){
+            layer.close(loading);
             if(value.check.toString() === "false"){
                 cleanPasswordTips();
-                $('.login_box_password').append("<p style='color: red;'>请输入正确的手机号和密码</p>");
+                $('.login_box_password').append("<p style='color: #ff0000;'>请输入正确的手机号和密码</p>");
             }
             else {
+                layui.use('layer', function() {
+                    var layer = layui.layer ;
 
-                // window.location = "/pages/BackstageHomePage.jsp";
-                window.location = "/pages/homepage.jsp";
-                layui.msg("登录成功！");
+                    let sure = layer.msg('<span style="font-size:20px;align-content: center;align-items: center;">登录成功!</span>',{time: 1000,area: ['170px','50px']},function () {
+                        // window.location = "/pages/BackstageHomePage.jsp";
+                        window.location = "/pages/homepage.jsp";
+                    });
+                    layer.style(sure,{
+                        // width: 0
+
+                    });
+                });
             }
+        },
+        error(result) {
+            layer.close(loading);
+            console.log(result);
         }
     });
 }

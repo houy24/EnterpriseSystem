@@ -28,11 +28,11 @@
     where routineItemId = #{routineItemId,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" keyColumn="routineItemId" keyProperty="routineItemId" parameterType="com.xxx.pojo.RoutineItem" useGeneratedKeys="true">
-    insert into routine_item (latePenalty, outEarlyPenalty, absentPenalty, 
+    insert into routine_item (routineItemId, latePenalty, outEarlyPenalty, absentPenalty,
       fullTimeAllowance, workOvertimeAllowance, 
       travelAllowance, eatAllowance, carAllowance, 
       houseAllowance)
-    values (#{latePenalty,jdbcType=DOUBLE}, #{outEarlyPenalty,jdbcType=DOUBLE}, #{absentPenalty,jdbcType=DOUBLE}, 
+    values (#{routineItemId,jdbcType=VARCHAR}, #{latePenalty,jdbcType=DOUBLE}, #{outEarlyPenalty,jdbcType=DOUBLE}, #{absentPenalty,jdbcType=DOUBLE},
       #{fullTimeAllowance,jdbcType=DOUBLE}, #{workOvertimeAllowance,jdbcType=DOUBLE}, 
       #{travelAllowance,jdbcType=DOUBLE}, #{eatAllowance,jdbcType=DOUBLE}, #{carAllowance,jdbcType=DOUBLE}, 
       #{houseAllowance,jdbcType=DOUBLE})
@@ -40,6 +40,7 @@
   <insert id="insertSelective" keyColumn="routineItemId" keyProperty="routineItemId" parameterType="com.xxx.pojo.RoutineItem" useGeneratedKeys="true">
     insert into routine_item
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      routineItemId,
       <if test="latePenalty != null">
         latePenalty,
       </if>
@@ -69,6 +70,7 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{routineItemId,jdbcType=VARCHAR},
       <if test="latePenalty != null">
         #{latePenalty,jdbcType=DOUBLE},
       </if>

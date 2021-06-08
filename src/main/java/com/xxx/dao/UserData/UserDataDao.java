@@ -15,4 +15,7 @@ public interface UserDataDao {
     int insert(@Param("record") UserData record);
 
     int updateByPrimaryKey(@Param("userid") UserData record);
+
+    /* 新增 ，根据职称id查询有几个用户，有该职称 */
+    int selectCountByWorkTitleId(@Param("workTitleId") String workTitleId);
 }

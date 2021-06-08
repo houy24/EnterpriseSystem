@@ -24,17 +24,19 @@
     where workAge = #{workAge,jdbcType=INTEGER}
   </delete>
   <insert id="insert" keyColumn="workAge" keyProperty="workAge" parameterType="com.xxx.pojo.WorkAgeMoney" useGeneratedKeys="true">
-    insert into work_age_money (baseAgeMoney)
-    values (#{baseAgeMoney,jdbcType=DOUBLE})
+    insert into work_age_money (workAge,baseAgeMoney)
+    values (#{workAge,jdbcType=INTEGER},#{baseAgeMoney,jdbcType=DOUBLE})
   </insert>
   <insert id="insertSelective" keyColumn="workAge" keyProperty="workAge" parameterType="com.xxx.pojo.WorkAgeMoney" useGeneratedKeys="true">
     insert into work_age_money
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      workAge,
       <if test="baseAgeMoney != null">
         baseAgeMoney,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{workAge,jdbcType=INTEGER},
       <if test="baseAgeMoney != null">
         #{baseAgeMoney,jdbcType=DOUBLE},
       </if>

@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -7,41 +6,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>生产型企业信息化管理系统-后台主页</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/layui/css/layui.css?time=<%=Math.random()%>">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/BackHomePage.css?time=<%=Math.random()%>">
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/resources/layui/css/layui.css?time=<%=Math.random()%>">
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/resources/css/BackHomePage.css?time=<%=Math.random()%>">
     <script src="${pageContext.request.contextPath}/resources/layui/layui.js?time=<%=Math.random()%>"></script>
     <script src="${pageContext.request.contextPath}/resources/js/jquery.min.js?time=<%=Math.random()%>"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/menuComponents.js?time=<%=Math.random()%>"></script>
-    <script>
-        //JavaScript代码区域
-        layui.use(['element','dropdown', 'jquery'], function () {
-            let dropdown = layui.dropdown;
-            let element = layui.element;
-            let $ = layui.jquery;
+    <script type="text/javascript"
+            src="${pageContext.request.contextPath}/resources/js/time.js?time=<%=Math.random()%>"></script>
+    <script type="text/javascript"
+            src="${pageContext.request.contextPath}/resources/js/menuComponents.js?time=<%=Math.random()%>"></script>
 
-            dropdown.render({
-                elem: '.home' //可绑定在任意元素中，此处以上述按钮为例
-                , align: 'left'
-                , trigger: 'contextmenu'
-                , data: [{
-                    title: '关闭当前'
-                    , id: 100
-                },{type: '-'},{
-                    title: '关闭其它'
-                    , id: 101
-                },{type: '-'},{
-                    title: '关闭所有'
-                    , id: 102
-                }]
-                ,click: function(data, othis){
-                    console.log(data); //得到当前所点击的菜单项对应的数据
-                    console.log(othis); //得到当前所点击的菜单项 DOM 对象
-                    console.log(this.elem); //得到当前组件绑定的原始 DOM 对象
-                    close(data.title);
-                }
-            });
-        });
-    </script>
+
 </head>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
@@ -52,7 +28,7 @@
                 <a href="javascript:;">
                 </a>
                 <dl class="layui-nav-child">
-                    <dd><a href="">个人信息</a></dd>
+                    <dd><a onclick="">个人信息</a></dd>
                 </dl>
             </li>
             <li class="layui-nav-item">
@@ -61,54 +37,61 @@
         </ul>
     </div>
     <div class="layui-side layui-bg-black">
-        <div class="layui-side-scroll">
-            <ul class="layui-nav layui-nav-tree" lay-filter="test" >
-                <li class="layui-nav-item">
-                    <a href="javascript:;">销售记录</a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">销售记录查询</a></dd>
-                        <dd><a href="javascript:;">添加销售记录</a></dd>
-                        <dd><a href="javascript:;">销售记录管理</a></dd>
-                    </dl>
-                </li>
-                <li class="layui-nav-item">
-                    <a href="javascript:;">库存管理</a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">库存查询</a></dd>
-                        <dd><a href="javascript:;">库存管理</a></dd>
-                        <dd><a href="javascript:;">添加库存</a></dd>
-                    </dl>
-                </li>
-                <li class="layui-nav-item">
-                    <a href="javascript:;">销售任务</a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">销售任务查询</a></dd>
-                        <dd class="layui-nav-item">
-                            <a href="javascript:;">销售任务管理</a>
-                            <dl class="layui-nav-child">
-                                <dd><a href="javascript:;">分配销售任务</a></dd>
-                                <dd><a href="javascript:;">删除销售任务</a></dd>
-                                <dd><a href="javascript:;">更新销售任务</a></dd>
-                            </dl>
-                        </dd>
-                    </dl>
-                </li>
-                <li class="layui-nav-item">
-                    <a href="javascript:;">销售排行</a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">销售月排行</a></dd>
-                        <dd><a href="javascript:;">销售年排行</a></dd>
-                    </dl>
-                </li>
-            </ul>
-        </div>
+        <ul class="layui-nav layui-nav-tree " lay-filter="test">
+            <li class="layui-nav-item">
+                <a href="javascript:;">销售记录</a>
+                <dl class="layui-nav-child">
+                    <dd><a data-url="SalesRecordQuery" data-title="个人销售记录查询"  data-id="sales-1"  class="lis">个人销售记录查询</a></dd>
+                    <dd><a data-url="AddSalesRecord" data-title="添加销售记录"  data-id="sales-2"  class="lis">添加销售记录</a></dd>
+                    <dd><a data-url="SalesRecordManagement" data-title="销售记录管理"  data-id="sales-3"  class="lis">销售记录管理</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">库存管理</a>
+                <dl class="layui-nav-child">
+                    <dd><a data-url="InventoryQuery" data-title="库存查询"  data-id="sles-4"  class="lis">库存查询</a></dd>
+                    <dd><a data-url="InventoryManagement" data-title="库存管理"  data-id="sales-5"  class="lis">库存管理</a></dd>
+                    <dd><a data-url="AddInventory" data-title="添加库存"  data-id="sales-6"  class="lis">添加库存</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">销售任务</a>
+                <dl class="layui-nav-child">
+                    <dd><a data-url="SalesTaskQuery" data-title="个人销售任务查询"  data-id="sales-7"  class="lis">个人销售任务查询</a></dd>
+                    <dd class="layui-nav-item">
+                        <a href="javascript:;">销售任务管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a data-url="AssignSalesTasks" data-title="分配销售任务" data-id="sales-8" class="lis">分配销售任务</a></dd>
+                            <dd><a data-url="DeleteSalesTask" data-title="删除销售任务" data-id="sales-9" class="lis">删除销售任务</a></dd>
+                            <dd><a data-url="UpdateSalesTask" data-title="更新销售任务" data-id="sales-10" class="lis">更新销售任务</a></dd>
+                        </dl>
+                    </dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">销售排行</a>
+                <dl class="layui-nav-child">
+                    <dd><a data-url="MonthlySalesRanking" data-title="月销售额排行" data-id="sales-11" class="lis">月销售额排行</a></dd>
+                    <dd><a data-url="AnnualSalesRanking" data-title="年销售额排行" data-id="sales-12" class="lis">年销售额排行</a></dd>
+                </dl>
+            </li>
+        </ul>
     </div>
     <div class="layui-body">
-        <div class="layui-tab tab" lay-filter="xbs_tab" lay-allowclose="false">
+        <div class="layui-tab" lay-filter="demo" lay-allowclose="true" style="margin-left: 20px;">
             <ul class="layui-tab-title">
-                <li class="home layui-this">我的桌面</li>
-                <li class="home"  id="home">第二个页面</li>
+                <li class="home">
+                    <i class="layui-icon">&#xe68e;</i>我的桌面</li></ul>
+            <ul class="rightmenu" style="display: none;position: absolute;">
+                <li data-type="closethis"><span style="font-size: 18px">关闭当前</span></li>
+                <li data-type="closeall"><span style="font-size: 18px">关闭所有</span></li>
             </ul>
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show">
+                    <iframe src='MyDesktop.jsp' frameborder="0" scrolling="yes" class="x-iframe"></iframe>
+                </div>
+            </div>
+            <div id="tab_show"></div>
         </div>
     </div>
     <div class="page-content-bg"></div>

@@ -5,6 +5,5 @@
     <file url="file://$PROJECT_DIR$/src/main/java/com/xxx/dao/ProductType/ProductTypeDao.xml" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/xxx/dao/ProductWarehouse/ProductWarehouseDao.xml" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/xxx/dao/SignInRecord/SignInRecordDao.xml" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/xxx/dao/UserData/UserDataDao.xml" dialect="GenericSQL" />
   </component>
 </project>

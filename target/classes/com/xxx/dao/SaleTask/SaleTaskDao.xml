@@ -35,11 +35,11 @@
     where saleTaskId = #{saleTaskId,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" keyColumn="saleTaskId" keyProperty="saleTaskId" parameterType="com.xxx.pojo.SaleTask" useGeneratedKeys="true">
-    insert into sale_task (userId, productId, productPreSumNumber, 
+    insert into sale_task (saleTaskId, userId, productId, productPreSumNumber,
       productNumber, oneInPrice, oneLowestPrice, 
       sumLowestPrice, taskStartTime, latestFinishTime, 
       finishState)
-    values (#{userId,jdbcType=VARCHAR}, #{productId,jdbcType=VARCHAR}, #{productPreSumNumber,jdbcType=INTEGER}, 
+    values (#{saleTaskId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{productId,jdbcType=VARCHAR}, #{productPreSumNumber,jdbcType=INTEGER},
       #{productNumber,jdbcType=INTEGER}, #{oneInPrice,jdbcType=DOUBLE}, #{oneLowestPrice,jdbcType=DOUBLE}, 
       #{sumLowestPrice,jdbcType=DOUBLE}, #{taskStartTime,jdbcType=TIMESTAMP}, #{latestFinishTime,jdbcType=TIMESTAMP}, 
       #{finishState,jdbcType=VARCHAR})
@@ -47,6 +47,7 @@
   <insert id="insertSelective" keyColumn="saleTaskId" keyProperty="saleTaskId" parameterType="com.xxx.pojo.SaleTask" useGeneratedKeys="true">
     insert into sale_task
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      saleTaskId,
       <if test="userId != null">
         userId,
       </if>
@@ -79,6 +80,7 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{saleTaskId,jdbcType=VARCHAR},
       <if test="userId != null">
         #{userId,jdbcType=VARCHAR},
       </if>

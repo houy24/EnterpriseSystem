@@ -32,9 +32,9 @@
     where productId = #{productId,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" keyColumn="productId" keyProperty="productId" parameterType="com.xxx.pojo.Product" useGeneratedKeys="true">
-    insert into product (productName, productSalePrice, productTypeId, 
+    insert into product (productId, productName, productSalePrice, productTypeId,
       productDescription)
-    values (#{productName,jdbcType=VARCHAR}, #{productSalePrice,jdbcType=DOUBLE}, #{productTypeId,jdbcType=VARCHAR}, 
+    values (#{productId,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, #{productSalePrice,jdbcType=DOUBLE}, #{productTypeId,jdbcType=VARCHAR},
       #{productDescription,jdbcType=VARCHAR})
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.xxx.pojo.Product">

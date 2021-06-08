@@ -26,14 +26,15 @@
     where taxRateId = #{taxRateId,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" keyColumn="taxRateId" keyProperty="taxRateId" parameterType="com.xxx.pojo.TaxRate" useGeneratedKeys="true">
-    insert into tax_rate (money, rate, quicklyReduce
+    insert into tax_rate (taxRateId,money, rate, quicklyReduce
       )
-    values (#{money,jdbcType=DOUBLE}, #{rate,jdbcType=DOUBLE}, #{quicklyReduce,jdbcType=DOUBLE}
+    values (#{taxRateId,jdbcType=VARCHAR}, #{money,jdbcType=DOUBLE}, #{rate,jdbcType=DOUBLE}, #{quicklyReduce,jdbcType=DOUBLE}
       )
   </insert>
   <insert id="insertSelective" keyColumn="taxRateId" keyProperty="taxRateId" parameterType="com.xxx.pojo.TaxRate" useGeneratedKeys="true">
     insert into tax_rate
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      taxRateId,
       <if test="money != null">
         money,
       </if>
@@ -45,6 +46,7 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{taxRateId,jdbcType=VARCHAR},
       <if test="money != null">
         #{money,jdbcType=DOUBLE},
       </if>

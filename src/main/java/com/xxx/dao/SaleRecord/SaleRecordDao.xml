@@ -28,21 +28,27 @@
     from sale_record
     where userId = #{userId,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <select id="selectAll" resultType="com.xxx.pojo.SaleRecord">
+      select
+      <include refid="Base_Column_List" />
+      from sale_record
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from sale_record
     where saleRecordId = #{saleRecordId,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" keyColumn="saleRecordId" keyProperty="saleRecordId" parameterType="com.xxx.pojo.SaleRecord" useGeneratedKeys="true">
-    insert into sale_record (userId, saleTaskId, productId, 
+    insert into sale_record (saleRecordId, userId, saleTaskId, productId,
       saleNumber, saleOneMoney, saleSumMoney, 
       saleFinishTime, saleRecordState)
-    values (#{userId,jdbcType=VARCHAR}, #{saleTaskId,jdbcType=VARCHAR}, #{productId,jdbcType=VARCHAR}, 
+    values (#{saleRecordId,jdbcType=VARCHAR},#{userId,jdbcType=VARCHAR}, #{saleTaskId,jdbcType=VARCHAR}, #{productId,jdbcType=VARCHAR},
       #{saleNumber,jdbcType=INTEGER}, #{saleOneMoney,jdbcType=DOUBLE}, #{saleSumMoney,jdbcType=DOUBLE}, 
       #{saleFinishTime,jdbcType=TIMESTAMP}, #{saleRecordState,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" keyColumn="saleRecordId" keyProperty="saleRecordId" parameterType="com.xxx.pojo.SaleRecord" useGeneratedKeys="true">
     insert into sale_record
     <trim prefix="(" suffix=")" suffixOverrides=",">
+        saleRecordId,
       <if test="userId != null">
         userId,
       </if>
@@ -69,6 +75,7 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+        #{saleRecordId,jdbcType=VARCHAR},
       <if test="userId != null">
         #{userId,jdbcType=VARCHAR},
       </if>
