@@ -2,15 +2,9 @@ package com.xxx.servlet;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.xxx.dao.Product.ProductDao;
-import com.xxx.dao.Product.ProductDaoImpl;
-import com.xxx.dao.UserData.UserDataDao;
-import com.xxx.dao.UserData.UserDataDaoImpl;
-import com.xxx.pojo.Product;
-import com.xxx.pojo.SaleRecord;
-import com.xxx.pojo.UserData;
-import com.xxx.service.SalesRecordService.SalesRecordService;
-import com.xxx.service.SalesRecordService.SalesRecordServiceImpl;
+import com.xxx.pojo.ProductWarehouse;
+import com.xxx.service.ProductWarehouseService.ProductWarehouseService;
+import com.xxx.service.ProductWarehouseService.ProductWarehouseServiceImpl;
 import com.xxx.utils.MyPageHelperUtils;
 
 import javax.servlet.ServletException;
@@ -22,40 +16,38 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet("/getAllSalesRecord")
-public class GetAllSalesRecordServlet extends HttpServlet {
+@WebServlet("/getAllInventory")
+public class GetAllInventoryServlet extends HttpServlet {
+
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("utf-8");
 
-        System.out.println("============进入 GetAllSalesRecordServlet============");
-
-        SalesRecordService service = new SalesRecordServiceImpl();
-        List<SaleRecord> saleRecords = service.getAllSalesRecord();
-
+        System.out.println("============进入 GetAllInventoryServlet============");
+        ProductWarehouseService service = new ProductWarehouseServiceImpl();
+        List<ProductWarehouse> productWarehouses = service.getAllProductWarehouse();
+        System.out.println(productWarehouses);
         String limit = request.getParameter("limit");
         String page = request.getParameter("page");
-
-        int count = saleRecords.size();
-        if(page!=null&&limit!=null){
-
+        System.out.println(limit+","+page);
+        int count = productWarehouses.size();
+        if(page ==null || limit == null) {
+        }else {
             int page1 = Integer.parseInt(page);
             int limit1 = Integer.parseInt(limit);
-
-            saleRecords = MyPageHelperUtils.getListByPagesLimit(saleRecords,page1,limit1);
+            productWarehouses = MyPageHelperUtils.getListByPagesLimit(productWarehouses,page1,limit1);
         }
-        JSONArray jsonArray = service.toJSONArray(saleRecords);
+        JSONArray jsonArray = service.toJSONArray(productWarehouses);
         JSONObject sales = new JSONObject();
         sales.put("code",0);
-        sales.put("msg","salesRecord");
+        sales.put("msg","productWarehouse");
         sales.put("count",count);
         sales.put("data",jsonArray);
         System.out.println(sales);
         PrintWriter out = response.getWriter();
         out.print(sales);
         out.close();
-
     }
 }

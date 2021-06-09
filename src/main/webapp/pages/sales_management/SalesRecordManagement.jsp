@@ -32,15 +32,16 @@
                 , toolbar: 'default' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
                 , limits: [5, 10, 15, 20]  //每页条数的选择项，默认：[10,20,30,40,50,60,70,80,90]。
                 , limit: 10 //每页默认显示的数量
+                ,totalRow: true
                 // ,method:'POST'  //提交方式
                 , cols: [[ //表头
-                    {field: 'saleRecordId', title: '销售记录编号', width: 160, fixed: 'left'}
+                    {field: 'saleRecordId', title: '销售记录编号', width: 160, fixed: 'left', totalRowText: '合计'}
                     , {field: 'userName', title: '用户编号', width: 100}
                     , {field: 'saleTaskId', title: '销售任务编号', width: 160}
                     , {field: 'productName', title: '产品编号', width: 160}
-                    , {field: 'saleNumber', title: '销售数量', width: 110, sort: true}
-                    , {field: 'saleOneMoney', title: '销售单价成交价', width: 160, sort: true}
-                    , {field: 'saleSumMoney', title: '销售总金额', width: 130, sort: true}
+                    , {field: 'saleNumber', title: '销售数量', width: 110, sort: true, totalRow: true}
+                    , {field: 'saleOneMoney', title: '销售单价成交价', width: 160, sort: true, totalRow: true}
+                    , {field: 'saleSumMoney', title: '销售总金额', width: 130, sort: true, totalRow: true}
                     , {
                         field: 'saleFinishTime',
                         title: '销售时间',
@@ -50,6 +51,7 @@
                     }
                     , {field: 'saleRecordState', title: '销售记录状态', width: 130}
                     , {fixed: 'right', title: '操作', width: 150, align:'center', toolbar: '#barDemo'}
+
                 ]]
                 , done: function (res, curr, count) {
                     $('th').css({ 'background-color': '#009688', 'color': 'black', 'font-weight': '500' });

@@ -13,16 +13,36 @@
           href="${pageContext.request.contextPath}/resources/layui/css/layui.css?time=<%=Math.random()%>">
     <script src="${pageContext.request.contextPath}/resources/layui/layui.js?time=<%=Math.random()%>"></script>
     <script src="${pageContext.request.contextPath}/resources/js/jquery.min.js?time=<%=Math.random()%>"></script>
-    <script type="text/javascript"
-            src="${pageContext.request.contextPath}/resources/js/time.js?time=<%=Math.random()%>"></script>
+    <script>
+        layui.use(['util', 'laydate', 'layer'], function(){
+            var util = layui.util
+                ,laydate = layui.laydate
+                ,$ = layui.$
+                ,layer = layui.layer;
+
+            let thisTimer, setCountdown = function(y, M, d, H, m, s){
+                let endTime = new Date(y, M||0, d||1, H||0, m||0, s||0) //结束日期
+                    ,serverTime = new Date(); //假设为当前服务器时间，这里采用的是本地时间，实际使用一般是取服务端的
+
+                clearTimeout(thisTimer);
+                util.countdown(endTime, serverTime, function(date, serverTime, timer){
+                    let str = date[0] + '天' + date[1] + '时' +  date[2] + '分' + date[3] + '秒';
+                    lay('#test2').html(str);
+                    thisTimer = timer;
+                });
+            };
+            setCountdown(2099,1,1);
+        });
+    </script>
+
 </head>
 <body>
 <div class="" style="padding: 30px">
     <h1>欢迎使用销售管理系统</h1>
     <br/>
-    <section class="loadTime">
-        <span id="time"></span>
-    </section>
+    <blockquote class="layui-elem-quote" style="margin-top: 10px;">
+        <div id="test2"></div>
+    </blockquote>
 </div>
 </body>
 </html>

@@ -16,7 +16,7 @@
     <result column="positionId" jdbcType="VARCHAR" property="positionId" />
     <result column="workTitleId" jdbcType="VARCHAR" property="workTitleId" />
     <result column="workAge" jdbcType="INTEGER" property="workAge" />
-    <result column="userPhoto" jdbcType="VARCHAR" property="userPhone" />
+    <result column="userPhoto" jdbcType="VARCHAR" property="userPhoto" />
   </resultMap>
   <sql id="Base_Column_List">
     userId, userPhone, userName, userSex, userEmail, userAge, userType, departmentId, 
