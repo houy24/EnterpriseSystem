@@ -120,4 +120,68 @@ public class WageDaoImpl implements WageDao{
         }
         return i;
     }
+
+    @Override
+    public List<Wage> selectAll() {
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        WageDao wageDao = sqlSession.getMapper(WageDao.class);
+        System.out.println("WageDaoImpl => selectAll");
+        List<Wage> wage = null;
+        try {
+            wage = wageDao.selectAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+        return wage;
+    }
+
+    @Override
+    public List<Wage> getWageByMonth(String timeMonthSearch) {
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        WageDao wageDao = sqlSession.getMapper(WageDao.class);
+        System.out.println("WageDaoImpl => getWageByMonth");
+        List<Wage> wage = null;
+        try {
+            wage = wageDao.getWageByMonth(timeMonthSearch);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+        return wage;
+    }
+
+    @Override
+    public Wage getWageByUserIdAndMonth(String userId, String timeMonthSearch) {
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        WageDao wageDao = sqlSession.getMapper(WageDao.class);
+        System.out.println("WageDaoImpl => getWageByUserIdAndMonth");
+        Wage wage = null;
+        try {
+            wage = wageDao.getWageByUserIdAndMonth(userId, timeMonthSearch);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+        return wage;
+    }
+
+    @Override
+    public int getCountByMonth(String timeMonthSearch) {
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        WageDao wageDao = sqlSession.getMapper(WageDao.class);
+        System.out.println("WageDaoImpl => getCountByMonth");
+        int i = 0;
+        try {
+            i = wageDao.getCountByMonth(timeMonthSearch);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+        return i;
+    }
 }

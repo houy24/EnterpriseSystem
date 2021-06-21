@@ -5,20 +5,18 @@
                       http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
-    <!--配置乱码过滤器-->
     <filter>
-        <filter-name>encoding</filter-name>
-        <filter-class>com.xxx.filter.EncodingFilter</filter-class>
-        <init-param>
-            <param-name>encoding</param-name>
-            <param-value>UTF-8</param-value>
-        </init-param>
+        <filter-name>LoginFilter</filter-name>
+        <filter-class>com.xxx.filter.LoginFilter</filter-class>
     </filter>
     <filter-mapping>
-        <filter-name>encoding</filter-name>
-        <url-pattern>*.jsp</url-pattern>
+        <filter-name>LoginFilter</filter-name>
+        <url-pattern>/*</url-pattern>
     </filter-mapping>
+
+    <!--欢迎页-->
     <welcome-file-list>
         <welcome-file>/pages/Login.jsp</welcome-file>
     </welcome-file-list>
+
 </web-app>

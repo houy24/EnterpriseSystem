@@ -15,6 +15,10 @@ public interface ProductWarehouseDao {
 
     List<ProductWarehouse> selectAll();
 
+    List<ProductWarehouse> selectAllByProductId(String productId);
+
+    List<ProductWarehouse> selectAllByProductName(String productName);
+
     int updateByPrimaryKeySelective(ProductWarehouse record);
 
     int updateByPrimaryKey(ProductWarehouse record);

@@ -51,6 +51,26 @@
     from wage_content
     where userId = #{userId,jdbcType=VARCHAR}
   </select>
+
+  <!-- /* 根据月份，获取当月所有的工资详情  */ -->
+    <select id="getWageContentByMonth" resultType="com.xxx.pojo.WageContent">
+      select * from wage_content
+        where wageProvideTime like concat(#{timeMonthSearch},'%')
+    </select>
+
+  <!-- // 根据月份，用户编号，获取该用户该月的工资详情 -->
+  <select id="getWageContentByUserIdAndMonth" resultType="com.xxx.pojo.WageContent">
+    select * from wage_content
+        where userId = #{userId} and wageProvideTime like concat(#{timeMonthSearch},'%')
+  </select>
+
+  <!-- // 统计某月份结算工资的条数 -->
+  <select id="getCountByMonth" resultType="java.lang.Integer">
+        select count(*) from wage_content
+            where wageProvideTime like concat(#{timeMonthSearch},'%')
+  </select>
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from wage_content
     where wageId = #{wageId,jdbcType=VARCHAR}

@@ -120,4 +120,20 @@ public class SignInRecordDaoImpl implements SignInRecordDao{
         }
         return i;
     }
+    // 获取所有签到信息
+    @Override
+    public List<SignInRecord> selectAll() {
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        SignInRecordDao signInRecordDao = sqlSession.getMapper(SignInRecordDao.class);
+        System.out.println("SignInRecordDaoDaoImpl => selectAll");
+        List<SignInRecord> signInRecordList = null;
+        try {
+            signInRecordList = signInRecordDao.selectAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+        return signInRecordList;
+    }
 }

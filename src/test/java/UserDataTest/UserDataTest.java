@@ -21,4 +21,13 @@ public class UserDataTest {
         UserData userData = userDataDao.selectByPrimaryKey(id);
         System.out.println(userData);
     }
+    @Test
+    public void insert(){
+        UserDataDao userDataDao = new UserDataDaoImpl();
+        UserData userData = userDataDao.selectByPrimaryKey("user-1");
+        System.out.println(userData.toString());
+        userData.setUserId("user-5");
+        userData.setUserPhone("12123123412");
+        System.out.println(userDataDao.insert(userData));
+    }
 }

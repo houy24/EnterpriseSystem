@@ -90,6 +90,22 @@ public class SaleTaskDaoImpl implements SaleTaskDao{
     }
 
     @Override
+    public List<SaleTask> selectAll() {
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        SaleTaskDao saleTaskDao = sqlSession.getMapper(SaleTaskDao.class);
+        System.out.println("SaleTaskDaoImpl => selectAll");
+        List<SaleTask> saleTask = null;
+        try {
+            saleTask = saleTaskDao.selectAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+        return saleTask;
+    }
+
+    @Override
     public int updateByPrimaryKeySelective(SaleTask record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         SaleTaskDao saleTaskDao = sqlSession.getMapper(SaleTaskDao.class);

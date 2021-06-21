@@ -15,6 +15,11 @@ public interface ProductTypeDao {
 
     List<ProductType> selectAll();
 
+    //新增，通过类型名称获取
+    ProductType selectByProductTypeName(String productTypeName);
+
+    ProductType getByProductTypeName(String productTypeName);
+
     int updateByPrimaryKeySelective(ProductType record);
 
     int updateByPrimaryKey(ProductType record);

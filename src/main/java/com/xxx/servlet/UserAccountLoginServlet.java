@@ -2,8 +2,11 @@ package com.xxx.servlet;
 
 import com.alibaba.fastjson.JSONObject;
 import com.xxx.pojo.UserAccount;
+import com.xxx.pojo.UserData;
 import com.xxx.service.UserAccount.UserAccountService;
 import com.xxx.service.UserAccount.UserAccountServiceImpl;
+import com.xxx.service.UserData.UserDataService;
+import com.xxx.service.UserData.UserDataServiceImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,10 +22,6 @@ public class UserAccountLoginServlet extends HttpServlet { // 登录
 
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        response.setContentType("text/html;charset=UTF-8");
-        response.setCharacterEncoding("UTF-8");
-        request.setCharacterEncoding("utf-8");
 
         System.out.println("============进入 UserAccountLoginServlet============");
 
@@ -40,6 +39,14 @@ public class UserAccountLoginServlet extends HttpServlet { // 登录
             System.out.println("登录成功！");
             //把登录成功的员工的employee丢进session
             request.getSession().setAttribute("userAccount",userAccount);
+
+            UserDataService userDataService = new UserDataServiceImpl();
+
+            UserData userData = userDataService.selectByUserId(userAccount.getUserId());
+
+            request.getSession().setAttribute("userData",userData);
+
+
             // 返回true
             PrintWriter out = response.getWriter();
             JSONObject jsonObject = new JSONObject();

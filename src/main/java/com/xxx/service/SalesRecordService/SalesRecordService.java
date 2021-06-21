@@ -7,7 +7,9 @@ import java.util.List;
 
 public interface SalesRecordService {
     List<SaleRecord> getPersonalSalesRecord(String userId);
-    int insertOneSaleRecord(SaleRecord saleRecord);
+    boolean insertOneSaleRecord(SaleRecord saleRecord);
     List<SaleRecord> getAllSalesRecord();
     JSONArray toJSONArray(List<SaleRecord> saleRecords);
+    boolean deleteOneSaleRecord(String saleRecordId);
+    boolean updateOneSaleRecord(SaleRecord saleRecord);
 }

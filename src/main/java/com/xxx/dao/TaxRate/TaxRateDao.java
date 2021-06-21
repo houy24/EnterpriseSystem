@@ -18,4 +18,6 @@ public interface TaxRateDao {
     int updateByPrimaryKeySelective(TaxRate record);
 
     int updateByPrimaryKey(TaxRate record);
+
+
 }

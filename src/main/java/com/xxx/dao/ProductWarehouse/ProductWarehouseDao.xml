@@ -26,6 +26,18 @@
     <include refid="Base_Column_List" />
     from product_warehouse
   </select>
+  <select id="selectAllByProductId" resultType="com.xxx.pojo.ProductWarehouse">
+    select
+    <include refid="Base_Column_List"/>
+    from product_warehouse
+    where productId = #{productId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAllByProductName" resultType="com.xxx.pojo.ProductWarehouse">
+    select
+    <include refid="Base_Column_List"/>
+    from product_warehouse
+    where productName LIKE "%"#{productName,jdbcType=VARCHAR}"%"
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from product_warehouse
     where productWarehouseId = #{productWarehouseId,jdbcType=VARCHAR}

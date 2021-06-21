@@ -15,7 +15,8 @@
     <script src="${pageContext.request.contextPath}/resources/layui/layui.js?time=<%=Math.random()%>"></script>
 
     <script>
-        layui.use(['layer', 'table', 'element'], function () {
+        layui.use(['layer', 'laydate', 'table', 'element'], function () {
+            let laydate = layui.laydate;
             let layer = layui.layer //弹层
                 , table = layui.table //表格
             let element = layui.element;
@@ -27,7 +28,9 @@
                 , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
                 , skin: 'line'  //表格风格 line （行边框风格）row （列边框风格）nob （无边框风格）
                 , even: true    //隔行换色
-                , page: true    //开启分页
+                , page: {
+                    layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
+                }
                 , limits: [5, 10, 15, 20]  //每页条数的选择项，默认：[10,20,30,40,50,60,70,80,90]。
                 , limit: 10 //每页默认显示的数量
                 // ,method:'POST'  //提交方式
@@ -42,7 +45,7 @@
                     , {
                         field: 'saleFinishTime',
                         title: '销售时间',
-                        templet: "<div>{{layui.util.toDateString(d.sbj_start, 'yyyy年-MM月-dd日 HH:mm:ss')}}</div>",
+                        templet: "<div>{{layui.util.toDateString(d.saleFinishTime, 'yyyy年-MM月-dd日 HH:mm:ss')}}</div>",
                         width: 210,
                         sort: true
                     }
@@ -63,6 +66,14 @@
                     })
                 }
             });
+
+            //常规用法
+            laydate.render({
+                elem: '#date1'
+            });//常规用法
+            laydate.render({
+                elem: '#date2'
+            });
         });
     </script>
 </head>
@@ -71,6 +82,21 @@
 <blockquote class="layui-elem-quote layui-text" style="font-size: 28px">
     个人销售记录查询
 </blockquote>
+<div class="layui-form-item">
+    <div class="layui-inline">
+        <label class="layui-form-label">日期范围</label>
+        <div class="layui-inline" id="test6">
+            <div class="layui-input-inline">
+                <input type="text" autocomplete="off" id="date1" class="layui-input" placeholder="开始日期">
+            </div>
+            <div class="layui-form-mid">-</div>
+            <div class="layui-input-inline">
+                <input type="text" autocomplete="off" id="date2" class="layui-input" placeholder="结束日期">
+            </div>
+        </div>
+        <button class="layui-btn-xs layui-btn btn" style="width: 80px;height: 38px; padding: 0 0 0 0">查询</button>
+    </div>
+</div>
 <table id="dome" lay-filter="test" class="layui-table-body"></table>
 
 </body>

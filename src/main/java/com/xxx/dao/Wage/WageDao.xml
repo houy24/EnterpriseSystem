@@ -22,7 +22,34 @@
     <include refid="Base_Column_List" />
     from wage
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+
+  <!--// 查询所有工资-->
+    <select id="selectAll" resultType="com.xxx.pojo.Wage">
+      select * from wage
+    </select>
+
+  <!-- /* 根据月份，获取当月所有的工资  */ -->
+  <select id="getWageByMonth" resultType="com.xxx.pojo.Wage">
+    select * from wage
+    where wageProvideTime like concat(#{timeMonthSearch},'%')
+  </select>
+
+  <!-- // 根据月份，用户编号，获取该用户该月的工资 -->
+  <select id="getWageByUserIdAndMonth" resultType="com.xxx.pojo.Wage">
+    select * from wage
+    where userId = #{userId} and wageProvideTime like concat(#{timeMonthSearch},'%')
+  </select>
+
+  <!-- // 统计某月份结算工资的条数 -->
+  <select id="getCountByMonth" resultType="java.lang.Integer">
+    select count(*) from wage
+    where wageProvideTime like concat(#{timeMonthSearch},'%')
+  </select>
+
+
+
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from wage
     where wageId = #{wageId,jdbcType=VARCHAR}
   </delete>

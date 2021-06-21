@@ -16,10 +16,12 @@
     from tax_rate
     where taxRateId = #{taxRateId,jdbcType=VARCHAR}
   </select>
+  <!--  修改，根据金额大小来获取所有税率情况  -->
   <select id="selectAll" resultType="com.xxx.pojo.TaxRate">
     select
     <include refid="Base_Column_List" />
     from tax_rate
+    order by money
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from tax_rate

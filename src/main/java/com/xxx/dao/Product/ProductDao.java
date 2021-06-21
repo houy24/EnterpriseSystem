@@ -11,7 +11,11 @@ public interface ProductDao {
 
     Product selectByPrimaryKey(String productId);
 
+    Product selectPyProductName(String productName);
+
     List<Product> selectAll();
+
+    List<Product> selectByProductTypeId(String productTypeId);
 
     int updateByPrimaryKeySelective(Product record);
 

@@ -18,4 +18,11 @@ public interface UserDataDao {
 
     /* 新增 ，根据职称id查询有几个用户，有该职称 */
     int selectCountByWorkTitleId(@Param("workTitleId") String workTitleId);
+
+
+    /* 新增 ，根据用户手机号获取用户信息 */
+    UserData selectByUserPhone(@Param("userPhone") String userPhone);
+
+    /* 新增 , 根据岗位id查询有几个用户，有该岗位 */
+    int selectCountByPositionId(@Param("positionId") String positionId);
 }

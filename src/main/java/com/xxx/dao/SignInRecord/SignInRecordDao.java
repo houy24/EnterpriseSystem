@@ -18,4 +18,8 @@ public interface SignInRecordDao {
     int updateByPrimaryKeySelective(SignInRecord record);
 
     int updateByPrimaryKey(SignInRecord record);
+
+    // 获取所有签到信息
+    List<SignInRecord> selectAll();
+
 }

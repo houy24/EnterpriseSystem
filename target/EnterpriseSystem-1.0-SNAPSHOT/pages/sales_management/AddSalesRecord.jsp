@@ -15,12 +15,11 @@
           href="${pageContext.request.contextPath}/resources/css/AddSalesRecord.css?time=<%=Math.random()%>">
     <script src="${pageContext.request.contextPath}/resources/js/jquery.min.js?time=<%=Math.random()%>"></script>
     <script src="${pageContext.request.contextPath}/resources/layui/layui.js?time=<%=Math.random()%>"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/addSalesRecord.js?time=<%=Math.random()%>"></script>
     <script>
         layui.use(['form', 'element', 'jquery'], function () {
             let form = layui.form,
                 element = layui.element,
-            $ = layui.jquery;
+                $ = layui.jquery;
 
             //监听提交
             form.on('submit(demo1)', function (data) {
@@ -30,14 +29,13 @@
                 let json = data.field;
                 json["userId"] = userId;
                 json["userName"] = userName;
-                alert(JSON.stringify(json));
                 $.ajax({
-                    url:"/AddOneSaleRecord",
-                    type:"post",
-                    data:JSON.stringify(json),
-                    dataType:"json",
-                    contentType:"json/application",
-                    success:function (data) {
+                    url: "/AddOneSaleRecord",
+                    type: "post",
+                    data: JSON.stringify(json),
+                    dataType: "json",
+                    contentType: "json/application",
+                    success: function (data) {
                         console.log(data);
                         layer.msg(JSON.stringify(data));
                     },
@@ -69,7 +67,8 @@
         <label class="layui-form-label lab">
             <span>销售任务编号:</span></label>
         <div class="layui-input-block bl">
-            <input type="text" name="salesTaskId" lay-verify="title" autocomplete="off" placeholder="销售任务编号" required lay-verify="required"
+            <input type="text" name="salesTaskId" lay-verify="title" autocomplete="off" placeholder="销售任务编号" required
+                   lay-verify="required" value="${saleTaskId}"
                    class="layui-input inp">
         </div>
     </div>
@@ -77,7 +76,8 @@
         <label class="layui-form-label lab">
             <span>产品编号:</span></label>
         <div class="layui-input-block bl">
-            <input type="text" name="productId" lay-verify="title" autocomplete="off" placeholder="产品编号" required lay-verify="required"
+            <input type="text" name="productId" lay-verify="title" autocomplete="off" placeholder="产品编号" required
+                   lay-verify="required" value="${productId}"
                    class="layui-input inp">
         </div>
     </div>
@@ -85,7 +85,8 @@
         <label class="layui-form-label lab">
             <span>销售数量:</span></label>
         <div class="layui-input-block bl">
-            <input type="text" name="saleNumber" lay-verify="title" autocomplete="off" placeholder="销售数量" required lay-verify="required"
+            <input type="text" name="saleNumber" lay-verify="title" autocomplete="off" placeholder="销售数量" required
+                   lay-verify="required"
                    class="layui-input inp">
         </div>
     </div>
@@ -93,14 +94,16 @@
         <label class="layui-form-label lab">
             <span>销售单价:</span></label>
         <div class="layui-input-block bl">
-            <input type="text" name="saleOneMoney" lay-verify="title" autocomplete="off" placeholder="销售单价" required lay-verify="required"
+            <input type="text" name="saleOneMoney" lay-verify="title" autocomplete="off" placeholder="销售单价" required
+                   lay-verify="required"
                    class="layui-input inp">
         </div>
     </div>
     <div class="layui-form-item item">
         <label class="layui-form-label lab"><span>销售总额:</span></label>
         <div class="layui-input-block bl">
-            <input type="text" name="saleSumMoney" lay-verify="title" autocomplete="off" placeholder="销售总额" required lay-verify="required"
+            <input type="text" name="saleSumMoney" lay-verify="title" autocomplete="off" placeholder="销售总额" required
+                   lay-verify="required"
                    class="layui-input inp">
         </div>
     </div>

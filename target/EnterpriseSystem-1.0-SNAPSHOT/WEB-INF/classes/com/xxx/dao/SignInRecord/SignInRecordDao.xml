@@ -23,7 +23,13 @@
     from sign_in_record
     where userId = #{userId,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+
+  <!--获取所有签到信息-->
+  <select id="selectAll" resultType="com.xxx.pojo.SignInRecord">
+    select signInId,userId,userName,signInTime,signOutTime
+    from sign_in_record
+  </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from sign_in_record
     where signInId = #{signInId,jdbcType=VARCHAR}
   </delete>

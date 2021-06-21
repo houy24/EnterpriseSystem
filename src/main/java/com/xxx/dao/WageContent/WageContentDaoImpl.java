@@ -8,7 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
 
-public class WageContentDaoImpl implements WageContentDao{
+public class WageContentDaoImpl implements WageContentDao {
     @Override
     public int deleteByPrimaryKey(String wageId) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
@@ -124,5 +124,53 @@ public class WageContentDaoImpl implements WageContentDao{
     @Override
     public int updateByPrimaryKey(WageContent record) {
         return 0;
+    }
+
+    @Override
+    public List<WageContent> getWageContentByMonth(String timeMonthSearch) {
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        WageContentDao wageContentDao = sqlSession.getMapper(WageContentDao.class);
+        System.out.println("WageContentDaoImpl => getWageContentByMonth");
+        List<WageContent> wageContent = null;
+        try {
+            wageContent = wageContentDao.getWageContentByMonth(timeMonthSearch);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+        return wageContent;
+    }
+
+    @Override
+    public WageContent getWageContentByUserIdAndMonth(String userId, String timeMonthSearch) {
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        WageContentDao wageContentDao = sqlSession.getMapper(WageContentDao.class);
+        System.out.println("WageContentDaoImpl => getWageContentByUserIdAndMonth");
+        WageContent wageContent = null;
+        try {
+            wageContent = wageContentDao.getWageContentByUserIdAndMonth(userId, timeMonthSearch);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+        return wageContent;
+    }
+
+    @Override
+    public int getCountByMonth(String timeMonthSearch) {
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        WageContentDao wageContentDao = sqlSession.getMapper(WageContentDao.class);
+        System.out.println("WageContentDaoImpl => updateByPrimaryKeySelective");
+        int i = 0;
+        try {
+            i = wageContentDao.getCountByMonth(timeMonthSearch);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+        return i;
     }
 }

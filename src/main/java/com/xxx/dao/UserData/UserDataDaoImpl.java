@@ -129,4 +129,42 @@ public class UserDataDaoImpl implements UserDataDao {
 
         return res;
     }
+
+    /* 新增 ，根据用户手机号获取用户信息 */
+    @Override
+    public UserData selectByUserPhone(String userPhone) {
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        UserDataDao userDataDao = sqlSession.getMapper(UserDataDao.class);
+
+        System.out.println("UserDataDaoImpl => selectByuserPhone");
+        UserData userData = null;
+        try {
+            userData = userDataDao.selectByUserPhone(userPhone);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+
+        return userData;
+    }
+
+    /* 新增 , 根据岗位id查询有几个用户，有该岗位 */
+    @Override
+    public int selectCountByPositionId(String positionId) {
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        UserDataDao userDataDao = sqlSession.getMapper(UserDataDao.class);
+
+        System.out.println("UserDataDaoImpl => selectCountByPositionId");
+        int count = 0;
+        try {
+            count = userDataDao.selectCountByPositionId(positionId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+
+        return count;
+    }
 }

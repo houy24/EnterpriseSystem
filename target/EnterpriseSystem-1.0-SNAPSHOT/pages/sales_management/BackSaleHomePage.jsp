@@ -32,7 +32,7 @@
                 </dl>
             </li>
             <li class="layui-nav-item">
-                <a href="" onclick="exit()">退出</a>
+                <a href="${pageContext.request.contextPath}/pages/homepage.jsp" onclick="exit()">退出</a>
             </li>
         </ul>
     </div>
@@ -43,36 +43,41 @@
                 <dl class="layui-nav-child">
                     <dd><a data-url="SalesRecordQuery" data-title="个人销售记录查询"  data-id="sales-1"  class="lis">个人销售记录查询</a></dd>
                     <dd><a data-url="AddSalesRecord" data-title="添加销售记录"  data-id="sales-2"  class="lis">添加销售记录</a></dd>
-                    <dd><a data-url="SalesRecordManagement" data-title="销售记录管理"  data-id="sales-3"  class="lis">销售记录管理</a></dd>
+                    <c:if test="${userData.userType.equals('manager')}">
+                        <dd><a data-url="SalesRecordManagement" data-title="销售记录管理"  data-id="sales-3"  class="lis">销售记录管理</a></dd>
+                    </c:if>
                 </dl>
             </li>
             <li class="layui-nav-item">
                 <a href="javascript:;">库存管理</a>
                 <dl class="layui-nav-child">
                     <dd><a data-url="InventoryQuery" data-title="库存查询"  data-id="sles-4"  class="lis">库存查询</a></dd>
+                    <c:if test="${userData.userType.equals('manager')}">
                     <dd><a data-url="InventoryManagement" data-title="库存管理"  data-id="sales-5"  class="lis">库存管理</a></dd>
                     <dd><a data-url="AddInventory" data-title="添加库存"  data-id="sales-6"  class="lis">添加库存</a></dd>
+                    </c:if>
                 </dl>
             </li>
             <li class="layui-nav-item">
                 <a href="javascript:;">销售任务</a>
                 <dl class="layui-nav-child">
                     <dd><a data-url="SalesTaskQuery" data-title="个人销售任务查询"  data-id="sales-7"  class="lis">个人销售任务查询</a></dd>
+                    <c:if test="${userData.userType.equals('manager')}">
                     <dd class="layui-nav-item">
                         <a href="javascript:;">销售任务管理</a>
                         <dl class="layui-nav-child">
                             <dd><a data-url="AssignSalesTasks" data-title="分配销售任务" data-id="sales-8" class="lis">分配销售任务</a></dd>
-                            <dd><a data-url="DeleteSalesTask" data-title="删除销售任务" data-id="sales-9" class="lis">删除销售任务</a></dd>
-                            <dd><a data-url="UpdateSalesTask" data-title="更新销售任务" data-id="sales-10" class="lis">更新销售任务</a></dd>
+                            <dd><a data-url="SaleTaskManagement" data-title="销售任务管理" data-id="sales-9" class="lis">销售任务管理</a></dd>
                         </dl>
                     </dd>
+                    </c:if>
                 </dl>
             </li>
             <li class="layui-nav-item">
                 <a href="javascript:;">销售排行</a>
                 <dl class="layui-nav-child">
-                    <dd><a data-url="MonthlySalesRanking" data-title="月销售额排行" data-id="sales-11" class="lis">月销售额排行</a></dd>
-                    <dd><a data-url="AnnualSalesRanking" data-title="年销售额排行" data-id="sales-12" class="lis">年销售额排行</a></dd>
+                    <dd><a data-url="MonthlySalesRanking" data-title="月销售额排行" data-id="sales-10" class="lis">月销售额排行</a></dd>
+                    <dd><a data-url="AnnualSalesRanking" data-title="年销售额排行" data-id="sales-11" class="lis">年销售额排行</a></dd>
                 </dl>
             </li>
         </ul>

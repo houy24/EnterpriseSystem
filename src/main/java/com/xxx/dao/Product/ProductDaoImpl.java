@@ -57,6 +57,22 @@ public class ProductDaoImpl implements ProductDao{
     }
 
     @Override
+    public Product selectPyProductName(String productName) {
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        ProductDao productDao = sqlSession.getMapper(ProductDao.class);
+        System.out.println("ProductDaoImpl => selectPyProductName");
+        Product product = null;
+        try {
+            product = productDao.selectPyProductName(productName);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+        return product;
+    }
+
+    @Override
     public List<Product> selectAll() {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         ProductDao productDao = sqlSession.getMapper(ProductDao.class);
@@ -64,6 +80,22 @@ public class ProductDaoImpl implements ProductDao{
         List<Product> products = null;
         try {
             products = productDao.selectAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+        return products;
+    }
+
+    @Override
+    public List<Product> selectByProductTypeId(String productTypeId) {
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        ProductDao productDao = sqlSession.getMapper(ProductDao.class);
+        System.out.println("ProductDaoImpl => selectByProductTypeId");
+        List<Product> products = null;
+        try {
+            products = productDao.selectByProductTypeId(productTypeId);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

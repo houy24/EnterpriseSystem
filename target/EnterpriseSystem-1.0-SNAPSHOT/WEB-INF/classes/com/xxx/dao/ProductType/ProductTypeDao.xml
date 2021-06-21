@@ -20,6 +20,19 @@
     <include refid="Base_Column_List" />
     from product_type
   </select>
+  <!-- 新增通过产品类型名称查询  -->
+  <select id="selectByProductTypeName" parameterType="java.lang.String" resultType="com.xxx.pojo.ProductType">
+    select
+    <include refid="Base_Column_List"/>
+    from product_type
+    where productTypeName LIKE "%"#{productTypeName,jdbcType=VARCHAR}"%"
+  </select>
+  <select id="getByProductTypeName" resultType="com.xxx.pojo.ProductType">
+    select
+    <include refid="Base_Column_List" />
+    from product_type
+    where productTypeName = #{productTypeName,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from product_type
     where productTypeId = #{productTypeId,jdbcType=VARCHAR}

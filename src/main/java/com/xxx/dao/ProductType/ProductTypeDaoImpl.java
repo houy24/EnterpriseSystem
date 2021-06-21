@@ -90,6 +90,38 @@ public class ProductTypeDaoImpl implements ProductTypeDao{
     }
 
     @Override
+    public ProductType selectByProductTypeName(String productTypeName) {
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        ProductTypeDao productDao = sqlSession.getMapper(ProductTypeDao.class);
+        System.out.println("ProductTypeDaoImpl => selectByProductTypeName");
+        ProductType productType = null;
+        try {
+            productType = productDao.selectByProductTypeName(productTypeName);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+        return productType;
+    }
+
+    @Override
+    public ProductType getByProductTypeName(String productTypeName) {
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        ProductTypeDao productDao = sqlSession.getMapper(ProductTypeDao.class);
+        System.out.println("ProductTypeDaoImpl => getByProductTypeName");
+        ProductType productType = null;
+        try {
+            productType = productDao.getByProductTypeName(productTypeName);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+        return productType;
+    }
+
+    @Override
     public int updateByPrimaryKeySelective(ProductType record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         ProductTypeDao productDao = sqlSession.getMapper(ProductTypeDao.class);
@@ -107,6 +139,17 @@ public class ProductTypeDaoImpl implements ProductTypeDao{
 
     @Override
     public int updateByPrimaryKey(ProductType record) {
-        return 0;
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        ProductTypeDao productDao = sqlSession.getMapper(ProductTypeDao.class);
+        System.out.println("ProductDaoImpl => updateByPrimaryKey");
+        int i = 0;
+        try {
+            i = productDao.updateByPrimaryKey(record);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+        return i;
     }
 }

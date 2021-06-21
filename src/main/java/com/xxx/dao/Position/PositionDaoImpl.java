@@ -1,7 +1,5 @@
 package com.xxx.dao.Position;
 
-import com.xxx.dao.Department.DepartmentDao;
-import com.xxx.pojo.Department;
 import com.xxx.pojo.Position;
 import com.xxx.utils.MybatisUtils;
 import org.apache.ibatis.session.SqlSession;
@@ -9,6 +7,21 @@ import org.apache.ibatis.session.SqlSession;
 import java.util.List;
 
 public class PositionDaoImpl implements PositionDao{
+    @Override
+    public List<Position> selectAll() {
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        PositionDao positionDao = sqlSession.getMapper(PositionDao.class);
+        System.out.println("PositionDaoImpl => selectAll");
+        List<Position> positionList = null;
+        try {
+            positionList = positionDao.selectAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+        return positionList;
+    }
     @Override
     public int deleteByPrimaryKey(String positionId) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();

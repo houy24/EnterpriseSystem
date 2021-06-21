@@ -5,6 +5,9 @@ import com.xxx.pojo.Position;
 import java.util.List;
 
 public interface PositionDao {
+    /*新增，查询所有岗位*/
+    List<Position> selectAll();
+
     int deleteByPrimaryKey(String positionId);
 
     int insert(Position record);

@@ -5,27 +5,37 @@
 <!--namespace=绑定一个对应的Dao/Mapper接口-->
 <mapper namespace="com.xxx.dao.Product.ProductDao">
   <resultMap id="BaseResultMap" type="com.xxx.pojo.Product">
-    <id column="product_productId" jdbcType="VARCHAR" property="productId" />
-    <result column="product_productName" jdbcType="VARCHAR" property="productName" />
-    <result column="product_productSalePrice" jdbcType="DOUBLE" property="productSalePrice" />
-    <result column="product_productTypeId" jdbcType="VARCHAR" property="productTypeId" />
-    <result column="product_productDescription" jdbcType="VARCHAR" property="productDescription" />
+    <id column="productId" jdbcType="VARCHAR" property="productId" />
+    <result column="productName" jdbcType="VARCHAR" property="productName" />
+    <result column="productSalePrice" jdbcType="DOUBLE" property="productSalePrice" />
+    <result column="productTypeId" jdbcType="VARCHAR" property="productTypeId" />
+    <result column="productDescription" jdbcType="VARCHAR" property="productDescription" />
   </resultMap>
   <sql id="Base_Column_List">
-    product.productId as product_productId, product.productName as product_productName, 
-    product.productSalePrice as product_productSalePrice, product.productTypeId as product_productTypeId, 
-    product.productDescription as product_productDescription
+    productId, productName , productSalePrice ,productTypeId , productDescription
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from product product
-    where product.productId = #{productId,jdbcType=VARCHAR}
+    from product
+    where productId = #{productId,jdbcType=VARCHAR}
   </select>
   <select id="selectAll" resultType="com.xxx.pojo.Product">
     select
     <include refid="Base_Column_List" />
-    from product product
+    from product
+  </select>
+  <select id="selectByProductTypeId" resultType="com.xxx.pojo.Product">
+    select
+    <include refid="Base_Column_List"/>
+    from product
+    where productTypeId = #{productTypeId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectPyProductName" resultType="com.xxx.pojo.Product">
+    select
+    <include refid="Base_Column_List"/>
+    from product
+    where productName = #{productName,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from product

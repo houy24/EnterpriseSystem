@@ -5,6 +5,7 @@
     <id column="saleTaskId" jdbcType="VARCHAR" property="saleTaskId" />
     <result column="userId" jdbcType="VARCHAR" property="userId" />
     <result column="productId" jdbcType="VARCHAR" property="productId" />
+    <result column="productWarehouseId" jdbcType="VARCHAR" property="productWarehouseId" />
     <result column="productPreSumNumber" jdbcType="INTEGER" property="productPreSumNumber" />
     <result column="productNumber" jdbcType="INTEGER" property="productNumber" />
     <result column="oneInPrice" jdbcType="DOUBLE" property="oneInPrice" />
@@ -15,7 +16,7 @@
     <result column="finishState" jdbcType="VARCHAR" property="finishState" />
   </resultMap>
   <sql id="Base_Column_List">
-    saleTaskId, userId, productId, productPreSumNumber, productNumber, oneInPrice, oneLowestPrice, 
+    saleTaskId, userId, productId,productWarehouseId, productPreSumNumber, productNumber, oneInPrice, oneLowestPrice,
     sumLowestPrice, taskStartTime, latestFinishTime, finishState
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -30,16 +31,21 @@
     from sale_task
     where userId = #{userId,jdbcType=VARCHAR}
   </select>
+  <select id="selectAll" resultType="com.xxx.pojo.SaleTask">
+    select
+    <include refid="Base_Column_List"/>
+    from sale_task
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from sale_task
     where saleTaskId = #{saleTaskId,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" keyColumn="saleTaskId" keyProperty="saleTaskId" parameterType="com.xxx.pojo.SaleTask" useGeneratedKeys="true">
-    insert into sale_task (saleTaskId, userId, productId, productPreSumNumber,
+    insert into sale_task (saleTaskId, userId, productId,productWarehouseId, productPreSumNumber,
       productNumber, oneInPrice, oneLowestPrice, 
       sumLowestPrice, taskStartTime, latestFinishTime, 
       finishState)
-    values (#{saleTaskId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{productId,jdbcType=VARCHAR}, #{productPreSumNumber,jdbcType=INTEGER},
+    values (#{saleTaskId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{productId,jdbcType=VARCHAR}, #{productWarehouseId,jdbcType=VARCHAR},#{productPreSumNumber,jdbcType=INTEGER},
       #{productNumber,jdbcType=INTEGER}, #{oneInPrice,jdbcType=DOUBLE}, #{oneLowestPrice,jdbcType=DOUBLE}, 
       #{sumLowestPrice,jdbcType=DOUBLE}, #{taskStartTime,jdbcType=TIMESTAMP}, #{latestFinishTime,jdbcType=TIMESTAMP}, 
       #{finishState,jdbcType=VARCHAR})
@@ -53,6 +59,9 @@
       </if>
       <if test="productId != null">
         productId,
+      </if>
+      <if test="productWarehouseId != null">
+        productWarehouseId,
       </if>
       <if test="productPreSumNumber != null">
         productPreSumNumber,
@@ -86,6 +95,9 @@
       </if>
       <if test="productId != null">
         #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="productWarehouseId != null">
+        #{productWarehouseId,jdbcType=VARCHAR},
       </if>
       <if test="productPreSumNumber != null">
         #{productPreSumNumber,jdbcType=INTEGER},
@@ -122,6 +134,9 @@
       <if test="productId != null">
         productId = #{productId,jdbcType=VARCHAR},
       </if>
+      <if test="productWarehouseId != null">
+        productWarehouseId = #{productWarehouseId,jdbcType=VARCHAR},
+      </if>
       <if test="productPreSumNumber != null">
         productPreSumNumber = #{productPreSumNumber,jdbcType=INTEGER},
       </if>
@@ -153,6 +168,7 @@
     update sale_task
     set userId = #{userId,jdbcType=VARCHAR},
       productId = #{productId,jdbcType=VARCHAR},
+      productWarehouseId = #{productWarehouseId,jdbcType=VARCHAR},
       productPreSumNumber = #{productPreSumNumber,jdbcType=INTEGER},
       productNumber = #{productNumber,jdbcType=INTEGER},
       oneInPrice = #{oneInPrice,jdbcType=DOUBLE},

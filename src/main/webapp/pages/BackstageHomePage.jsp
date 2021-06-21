@@ -29,7 +29,7 @@
                 </dl>
             </li>
             <li class="layui-nav-item">
-                <a href="" onclick="exit()">退出</a>
+                <a href="${pageContext.request.contextPath}/pages/homepage.jsp" onclick="exit()">退出</a>
             </li>
         </ul>
     </div>

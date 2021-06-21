@@ -11,6 +11,7 @@ public class SaleTask implements Serializable {  // 销售任务表
     private String saleTaskId; // 销售任务编号
     private String userId; // 用户编号
     private String productId; // 产品编号'
+    private String productWarehouseId;
     private int productPreSumNumber; //  产品初始需卖出数量, # 初始固定
     private int productNumber; // 产品数量
     private double oneInPrice; // 单件进价     # 进价
@@ -23,10 +24,11 @@ public class SaleTask implements Serializable {  // 销售任务表
     public SaleTask() {
     }
 
-    public SaleTask(String saleTaskId, String userId, String productId, int productPreSumNumber, int productNumber, double oneInPrice, double oneLowestPrice, double sumLowestPrice, Date taskStartTime, Date latestFinishTime, String finishState) {
+    public SaleTask(String saleTaskId, String userId, String productId, String productWarehouseId, int productPreSumNumber, int productNumber, double oneInPrice, double oneLowestPrice, double sumLowestPrice, Date taskStartTime, Date latestFinishTime, String finishState) {
         this.saleTaskId = saleTaskId;
         this.userId = userId;
         this.productId = productId;
+        this.productWarehouseId = productWarehouseId;
         this.productPreSumNumber = productPreSumNumber;
         this.productNumber = productNumber;
         this.oneInPrice = oneInPrice;
@@ -59,6 +61,14 @@ public class SaleTask implements Serializable {  // 销售任务表
 
     public void setProductId(String productId) {
         this.productId = productId;
+    }
+
+    public String getProductWarehouseId() {
+        return productWarehouseId;
+    }
+
+    public void setProductWarehouseId(String productWarehouseId) {
+        this.productWarehouseId = productWarehouseId;
     }
 
     public int getProductPreSumNumber() {

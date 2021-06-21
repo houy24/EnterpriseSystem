@@ -23,29 +23,33 @@
             //第一个实例
             table.render({
                 elem: '#dome'
-                , height: 523
+                , height: 563
                 , url: '${pageContext.request.contextPath}/getAllSalesRecord' //数据接口
                 , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
                 , skin: 'line'  //表格风格 line （行边框风格）row （列边框风格）nob （无边框风格）
                 , even: true    //隔行换色
-                , page: true    //开启分页
+                , page: {
+                    layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
+                }
                 , toolbar: 'default' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
                 , limits: [5, 10, 15, 20]  //每页条数的选择项，默认：[10,20,30,40,50,60,70,80,90]。
                 , limit: 10 //每页默认显示的数量
                 ,totalRow: true
                 // ,method:'POST'  //提交方式
                 , cols: [[ //表头
-                    {field: 'saleRecordId', title: '销售记录编号', width: 160, fixed: 'left', totalRowText: '合计'}
-                    , {field: 'userName', title: '用户编号', width: 100}
-                    , {field: 'saleTaskId', title: '销售任务编号', width: 160}
-                    , {field: 'productName', title: '产品编号', width: 160}
-                    , {field: 'saleNumber', title: '销售数量', width: 110, sort: true, totalRow: true}
-                    , {field: 'saleOneMoney', title: '销售单价成交价', width: 160, sort: true, totalRow: true}
-                    , {field: 'saleSumMoney', title: '销售总金额', width: 130, sort: true, totalRow: true}
+                    {field: 'saleRecordId', title: '销售记录编号', fixed: 'left', totalRowText: '合计'}
+                    , {field: 'userName', title: '用户姓名', width: 100}
+                    , {field: 'userId', title: '用户编号', hide:true}
+                    , {field: 'saleTaskId', title: '销售任务编号', hide:true}
+                    , {field: 'productName', title: '产品名称'}
+                    , {field: 'productId', title: '产品编号', hide:true}
+                    , {field: 'saleNumber', title: '销售数量', sort: true, totalRow: true}
+                    , {field: 'saleOneMoney', title: '销售单价成交价', sort: true, totalRow: true}
+                    , {field: 'saleSumMoney', title: '销售总金额', sort: true, totalRow: true}
                     , {
                         field: 'saleFinishTime',
                         title: '销售时间',
-                        templet: "<div>{{layui.util.toDateString(d.sbj_start, 'yyyy年-MM月-dd日 HH:mm:ss')}}</div>",
+                        templet: "<div>{{layui.util.toDateString(d.saleFinishTime, 'yyyy年-MM月-dd日 HH:mm:ss')}}</div>",
                         width: 210,
                         sort: true
                     }
@@ -74,7 +78,35 @@
                 var data = obj.data //获得当前行数据
                     ,layEvent = obj.event; //获得 lay-event 对应的值
                 if(layEvent === 'detail'){
-                    layer.msg('查看操作');
+                    layer.open({
+                        type: 2,
+                        title: "更新库存数据",
+                        closeBtn: 1,
+                        shade: [0],
+                        area: ['640px', '480px'],
+                        offset: 'auto',
+                        anim: 2,
+                        content: ['/pages/sales_management/MsgForSaleRecord.html', 'no'], //iframe的url，no代表不显示滚动条
+                        success: function(layero, index){
+                            let body = layer.getChildFrame('body', index);
+                            let iframeWin = window[layero.find('iframe')[0]['name']]; //得到iframe页的窗口对象，执行iframe页的方法：iframeWin.method();
+                            console.log(body.html()) //得到iframe页的body内容
+                            body.find('#saleRecordId').val(data.saleRecordId);
+                            body.find('#userId').val(data.userId);
+                            body.find('#productId').val(data.productId);
+                            body.find('#saleTaskId').val(data.saleTaskId);
+                            body.find('#saleNumber').val(data.saleNumber);
+                            body.find('#saleOneMoney').val(data.saleOneMoney);
+                            body.find('#saleSumMoney').val(data.saleSumMoney);
+
+                            let d1 = new Date(data.saleFinishTime);
+                            let batchTime = d1.getFullYear() + '-' + (d1.getMonth() + 1) + '-' + d1.getDate() + ' ' + d1.getHours() + ':' + d1.getMinutes() + ':' + d1.getSeconds();
+
+                            body.find('#saleFinishTime').val(batchTime);
+                            body.find('#saleRecordState').val(data.saleRecordState);
+                            iframeWin.layui.form.render('checkbox');
+                        }
+                    });
                 } else if(layEvent === 'more'){
                     //下拉菜单
                     dropdown.render({
@@ -92,11 +124,56 @@
                                 layer.confirm('真的删除行么', function(index){
                                     obj.del(); //删除对应行（tr）的DOM结构
                                     layer.close(index);
+
                                     //向服务端发送删除指令
-                                    layer.msg('删除操作，当前行 ID:'+ data.saleRecordId);
+                                    $.ajax({
+                                        url:'/deleteBySaleTaskId',
+                                        data:{
+                                            saleRecordId: data.saleRecordId
+                                        },
+                                        dataType: 'json'
+                                        ,success:function (res) {
+                                            console.log(res);
+                                            if (res.flag){
+                                                layer.msg("删除成功");
+                                                table.reload();
+                                            }
+                                            else {
+                                                layer.msg("删除失败");
+                                            }
+                                        }
+                                    })
+
                                 });
                             } else if(menudata.id === 'edit'){
-                                layer.msg('编辑操作，当前行 ID:'+ data.saleRecordId);
+                                layer.open({
+                                    type: 2,
+                                    title: "更新库存数据",
+                                    closeBtn: 1,
+                                    shade: [0],
+                                    area: ['640px', '480px'],
+                                    offset: 'auto',
+                                    anim: 2,
+                                    content: ['/pages/sales_management/MsgForSaleRecordManagement.html', 'no'], //iframe的url，no代表不显示滚动条
+                                    success: function(layero, index){
+                                        let body = layer.getChildFrame('body', index);
+                                        let iframeWin = window[layero.find('iframe')[0]['name']]; //得到iframe页的窗口对象，执行iframe页的方法：iframeWin.method();
+                                        console.log(body.html()) //得到iframe页的body内容
+                                        body.find('#saleRecordId').val(data.saleRecordId);
+                                        body.find('#userId').val(data.userId);
+                                        body.find('#productId').val(data.productId);
+                                        body.find('#saleTaskId').val(data.saleTaskId);
+                                        body.find('#saleNumber').val(data.saleNumber);
+                                        body.find('#saleOneMoney').val(data.saleOneMoney);
+                                        body.find('#saleSumMoney').val(data.saleSumMoney);
+                                        let d1 = new Date(data.saleFinishTime);
+                                        let batchTime = d1.getFullYear() + '-' + (d1.getMonth() + 1) + '-' + d1.getDate() + ' ' + d1.getHours() + ':' + d1.getMinutes() + ':' + d1.getSeconds();
+
+                                        body.find('#saleFinishTime').val(batchTime);
+                                        body.find('#saleRecordState').val(data.saleRecordState);
+                                        iframeWin.layui.form.render('checkbox');
+                                    }
+                                });
                             }
                         }
                         ,align: 'right' //右对齐弹出（v2.6.8 新增）
@@ -110,7 +187,7 @@
 <body>
 
 <blockquote class="layui-elem-quote layui-text" style="font-size: 28px">
-    个人销售记录查询
+    销售记录管理
 </blockquote>
 <div>
     <table id="dome" lay-filter="test" class="layui-table-body"></table>

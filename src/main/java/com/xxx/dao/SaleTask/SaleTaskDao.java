@@ -15,6 +15,8 @@ public interface SaleTaskDao {
 
     List<SaleTask> selectAllByUserId(String userId);
 
+    List<SaleTask> selectAll();
+
     int updateByPrimaryKeySelective(SaleTask record);
 
     int updateByPrimaryKey(SaleTask record);

@@ -6,6 +6,7 @@ import com.xxx.pojo.ProductWarehouse;
 import com.xxx.utils.MybatisUtils;
 import org.apache.ibatis.session.SqlSession;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductWarehouseDaoImpl implements ProductWarehouseDao{
@@ -81,6 +82,40 @@ public class ProductWarehouseDaoImpl implements ProductWarehouseDao{
         List<ProductWarehouse> productWarehouse = null;
         try {
             productWarehouse = productWarehouseDao.selectAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+        return productWarehouse;
+    }
+
+    @Override
+    public List<ProductWarehouse> selectAllByProductId(String productId) {
+        System.out.println("=========================================================");
+        System.out.println(productId);
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        ProductWarehouseDao productWarehouseDao = sqlSession.getMapper(ProductWarehouseDao.class);
+        System.out.println("ProductWarehouseDaoImpl => selectAllByProductId");
+        List<ProductWarehouse> productWarehouse = null;
+        try {
+            productWarehouse = productWarehouseDao.selectAllByProductId(productId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+        return productWarehouse;
+    }
+
+    @Override
+    public List<ProductWarehouse> selectAllByProductName(String productName) {
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        ProductWarehouseDao productWarehouseDao = sqlSession.getMapper(ProductWarehouseDao.class);
+        System.out.println("ProductWarehouseDaoImpl => selectAllByProductName");
+        List<ProductWarehouse> productWarehouse = null;
+        try {
+            productWarehouse = productWarehouseDao.selectAllByProductName(productName);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
