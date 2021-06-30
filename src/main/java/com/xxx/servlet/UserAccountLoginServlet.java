@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet("/userAccountLogin")
+@WebServlet(name = "UserAccountLoginServlet",urlPatterns = "/userAccountLogin")
 public class UserAccountLoginServlet extends HttpServlet { // 登录
 
     @Override

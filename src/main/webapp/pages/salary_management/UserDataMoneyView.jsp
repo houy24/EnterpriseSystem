@@ -116,25 +116,31 @@
 <div class="layui-row" style="">  <%--margin-left: 20px;margin-top: 20px;--%>
     <%--搜索，  搜索员工姓名，员工部门--%>
     <div class="layui-form">
-        <span style="font-size: 18px;">员工姓名：</span>
-        <div class="layui-inline">
-            <input class="layui-input" style="font-size: 18px;"
-                   name="search" id="demoReload" autocomplete="off">
-        </div>
 
-        <span style="font-size: 18px;">部门：</span>
-        <%--搜索选择框--%>
-        <div class="layui-inline">
-            <select name="departmentSearch" id="departmentSearch" lay-verify="required" lay-search="">
-                <option value="">选择或搜索</option>
-                <c:forEach items="<%=departmentList%>" var="departmentItem">
-                    <option value="${departmentItem.departmentId}">${departmentItem.departmentName}</option>
-                </c:forEach>
-            </select>
-        </div>
+        <%--管理员，正常搜索--%>
+        <c:if test="${userAccount.userType == 'manager'}">
+            <span style="font-size: 18px;">员工姓名：</span>
+            <div class="layui-inline">
+                <input class="layui-input" style="font-size: 18px;"
+                       name="search" id="demoReload" autocomplete="off">
+            </div>
 
-        <button type="button" class="layui-btn" data-type="reload" style="font-size: 16px;"
-                lay-filter="data-search-btn">搜索</button>
+            <span style="font-size: 18px;">部门：</span>
+            <%--搜索选择框--%>
+            <div class="layui-inline">
+                <select name="departmentSearch" id="departmentSearch" lay-verify="required" lay-search="">
+                    <option value="">选择或搜索</option>
+                    <c:forEach items="<%=departmentList%>" var="departmentItem">
+                        <option value="${departmentItem.departmentId}">${departmentItem.departmentName}</option>
+                    </c:forEach>
+                </select>
+            </div>
+
+            <button type="button" class="layui-btn" data-type="reload" style="font-size: 16px;"
+                    lay-filter="data-search-btn">搜索</button>
+        </c:if>
+
+
 
     </div>
 </div>
@@ -151,9 +157,6 @@
     <script type="text/html" id="barDemo" >
         <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail" style="font-size: 16px;width: 68px;height: 44px;line-height: 27px;">查看</a>
 
-        <%--无编辑删除功能--%>
-<%--        <a class="layui-btn layui-btn-xs" lay-event="edit" style="font-size: 16px;width: 68px;height: 44px;line-height: 27px;">编辑</a>--%>
-<%--        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del" style="font-size: 16px;width: 68px;height: 44px;line-height: 27px;">删除</a>--%>
     </script>
 
 </div>
@@ -261,33 +264,6 @@
         table.on('toolbar(demo)', function(obj){
             var layEvent = obj.event; //获得 lay-event 对应的值
 
-            // 无增加功能
-            <%--if (layEvent === 'add') { // 增加--%>
-            <%--    // layer.msg('add！');--%>
-
-            <%--    var index = layer.open({--%>
-            <%--        title: '增加职称信息',--%>
-            <%--        type: 2,--%>
-            <%--        shade: 0.2,--%>
-            <%--        maxmin:true,--%>
-            <%--        shadeClose: true,--%>
-            <%--        area: ['70%', '80%'],--%>
-            <%--        offset: '9%',--%>
-            <%--        //加载编辑页面的弹出层--%>
-            <%--        content: 'WorkTitleAdd.jsp',--%>
-            <%--        btn: '关闭',--%>
-            <%--        skin: 'editLayer',   // 自定义样式--%>
-            <%--        yes:function(){     // 点关闭按钮的话，刷新页面--%>
-            <%--            tableIns.reload("demo",{--%>
-            <%--                url:'${pageContext.request.contextPath}/getAllWorkTitle'--%>
-            <%--            });--%>
-            <%--            layer.closeAll();--%>
-            <%--        },--%>
-            <%--        btnAlign: 'c', //按钮居中--%>
-            <%--    });--%>
-            <%--    return false;--%>
-
-            <%--}--%>
         });
 
         //监听行工具事件
@@ -338,69 +314,7 @@
                 });
                 return false;
 
-
             }
-
-            /* 无删除和编辑功能 */
-            <%--if(layEvent === 'del')--%>
-            <%--{--%>
-            <%--    layer.confirm('确定要删除么', function(index){--%>
-
-            <%--        //向服务端发送删除指令--%>
-            <%--        $.ajax({--%>
-            <%--            url: "${pageContext.request.contextPath}/deleteWorkTitle",--%>
-            <%--            data: {  // 数据--%>
-            <%--                workTitleId : data.workTitleId,--%>
-            <%--            },--%>
-            <%--            dataType: 'json',--%>
-            <%--            success: function (result) {--%>
-            <%--                if (result.check.toString() === "exists") {--%>
-            <%--                    layer.msg("该职称已被使用，删除失败！");--%>
-            <%--                } else if (result.check.toString() === "false") {--%>
-            <%--                    layer.msg("删除失败！");--%>
-            <%--                } else if (result.check.toString() === "true") {--%>
-            <%--                    layer.msg("删除成功！");--%>
-            <%--                    obj.del(); //删除对应行（tr）的DOM结构--%>
-            <%--                    layer.close(index);--%>
-            <%--                }--%>
-            <%--            },--%>
-            <%--            error: function (XMLHttpRequest, textStatus, errorThrown) {--%>
-            <%--                layer.msg("删除失败！");--%>
-            <%--                console.log(XMLHttpRequest.status);--%>
-            <%--                console.log(XMLHttpRequest.readyState);--%>
-            <%--                console.log(textStatus);--%>
-            <%--            }--%>
-
-            <%--        });--%>
-
-            <%--        // ...--%>
-            <%--    });--%>
-            <%--} else if(layEvent === 'edit'){--%>
-
-            <%--    var index = layer.open({--%>
-            <%--        title: '编辑职称信息',--%>
-            <%--        type: 2,--%>
-            <%--        shade: 0.2,--%>
-            <%--        maxmin:true,--%>
-            <%--        shadeClose: true,--%>
-            <%--        area: ['70%', '80%'],--%>
-            <%--        offset: '9%',--%>
-            <%--        //加载编辑页面的弹出层--%>
-            <%--        content: 'WorkTitleEdit.jsp?' + 'workTitleId=' + data.workTitleId--%>
-            <%--            + '&' +'workTitleName=' + data.workTitleName--%>
-            <%--            + '&' + 'workTitleMoney=' + data.workTitleMoney,--%>
-            <%--        btn: '关闭',--%>
-            <%--        skin: 'editLayer',   // 自定义样式--%>
-            <%--        yes:function(){--%>
-            <%--            tableIns.reload("demo",{--%>
-            <%--                url:'${pageContext.request.contextPath}/getAllWorkTitle'--%>
-            <%--            });--%>
-            <%--            layer.closeAll();--%>
-            <%--        },--%>
-            <%--        btnAlign: 'c', //按钮居中--%>
-            <%--    });--%>
-            <%--    return false;--%>
-            <%--}--%>
 
         });
 

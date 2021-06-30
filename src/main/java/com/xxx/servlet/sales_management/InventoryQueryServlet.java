@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/InventoryQuery")
+@WebServlet(name = "InventoryQueryServlet",urlPatterns = "/InventoryQuery")
 public class InventoryQueryServlet extends HttpServlet {
 
     @Override

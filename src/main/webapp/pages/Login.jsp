@@ -3,10 +3,10 @@
 <html>
 <head>
     <title>生产型企业信息化管理系统</title>
-    <link rel="stylesheet" href="/resources/css/Login.css?time=<%=Math.random()%>" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/Login.css?time=<%=Math.random()%>" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/layui/css/layui.css?time=<%=Math.random()%>">
     <script src="${pageContext.request.contextPath}/resources/layui/layui.js?time=<%=Math.random()%>"></script>
-    <script type="text/javascript" charset="utf-8" src="/resources/js/jquery.min.js?time=<%=Math.random()%>"></script>
+    <script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath}/resources/js/jquery.min.js?time=<%=Math.random()%>"></script>
 <%--    <script type="text/javascript" charset="utf-8" src="/resources/js/Login.js"></script>--%>
 </head>
 <body>
@@ -29,7 +29,7 @@
         <div class="login_box_others">
             <input type="checkbox" class="remember_choose" id="remember_choose">
             <p>记住我</p>
-            <a href="/ChangePas" class="forget" target="_self">忘记密码？</a>
+            <a href="javascript:;" class="forget" target="_self">忘记密码？</a>
         </div>
     </form>
     <div class="login_box_click">

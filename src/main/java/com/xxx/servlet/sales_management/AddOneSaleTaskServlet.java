@@ -19,7 +19,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@WebServlet("/addOneSaleTask")
+@WebServlet(name = "AddOneSaleTaskServlet",urlPatterns = "/addOneSaleTask")
 public class AddOneSaleTaskServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

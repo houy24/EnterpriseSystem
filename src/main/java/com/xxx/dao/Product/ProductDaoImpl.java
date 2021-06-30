@@ -12,7 +12,6 @@ public class ProductDaoImpl implements ProductDao{
     public int deleteByPrimaryKey(String productId) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         ProductDao productDao = sqlSession.getMapper(ProductDao.class);
-        System.out.println("ProductDaoImpl => deleteByPrimaryKey");
         int i = 0;
         try {
             i = productDao.deleteByPrimaryKey(productId);
@@ -28,7 +27,6 @@ public class ProductDaoImpl implements ProductDao{
     public int insert(Product record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         ProductDao productDao = sqlSession.getMapper(ProductDao.class);
-        System.out.println("ProductDaoImpl => insert");
         int i = 0;
         try {
             i = productDao.insert(record);
@@ -44,7 +42,6 @@ public class ProductDaoImpl implements ProductDao{
     public Product selectByPrimaryKey(String productId) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         ProductDao productDao = sqlSession.getMapper(ProductDao.class);
-        System.out.println("ProductDaoImpl => selectByPrimaryKey");
         Product product = null;
         try {
             product = productDao.selectByPrimaryKey(productId);
@@ -60,7 +57,6 @@ public class ProductDaoImpl implements ProductDao{
     public Product selectPyProductName(String productName) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         ProductDao productDao = sqlSession.getMapper(ProductDao.class);
-        System.out.println("ProductDaoImpl => selectPyProductName");
         Product product = null;
         try {
             product = productDao.selectPyProductName(productName);
@@ -76,7 +72,6 @@ public class ProductDaoImpl implements ProductDao{
     public List<Product> selectAll() {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         ProductDao productDao = sqlSession.getMapper(ProductDao.class);
-        System.out.println("ProductDaoImpl => selectAll");
         List<Product> products = null;
         try {
             products = productDao.selectAll();
@@ -92,7 +87,6 @@ public class ProductDaoImpl implements ProductDao{
     public List<Product> selectByProductTypeId(String productTypeId) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         ProductDao productDao = sqlSession.getMapper(ProductDao.class);
-        System.out.println("ProductDaoImpl => selectByProductTypeId");
         List<Product> products = null;
         try {
             products = productDao.selectByProductTypeId(productTypeId);
@@ -108,7 +102,6 @@ public class ProductDaoImpl implements ProductDao{
     public int updateByPrimaryKeySelective(Product record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         ProductDao productDao = sqlSession.getMapper(ProductDao.class);
-        System.out.println("ProductDaoImpl => selectByPrimaryKey");
         int i = 0;
         try {
             i = productDao.updateByPrimaryKeySelective(record);
@@ -124,7 +117,6 @@ public class ProductDaoImpl implements ProductDao{
     public int updateByPrimaryKey(Product record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         ProductDao productDao = sqlSession.getMapper(ProductDao.class);
-        System.out.println("ProductDaoImpl => updateByPrimaryKey");
         int i = 0;
         try {
             i = productDao.updateByPrimaryKey(record);

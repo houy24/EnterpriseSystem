@@ -17,7 +17,6 @@ public class UserDataDaoImpl implements UserDataDao {
     public int deleteByPrimaryKey(String userid) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         UserDataDao userDataDao = sqlSession.getMapper(UserDataDao.class);
-        System.out.println("UserDataDaoImpl => deleteByPrimaryKey");
         int i=0;
         try {
             i = userDataDao.deleteByPrimaryKey(userid);
@@ -38,7 +37,6 @@ public class UserDataDaoImpl implements UserDataDao {
     public int insert(UserData record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         UserDataDao userDataDao = sqlSession.getMapper(UserDataDao.class);
-        System.out.println("UserDataDaoImpl => insert");
         int i=0;
         try {
             i = userDataDao.insert(record);
@@ -54,7 +52,6 @@ public class UserDataDaoImpl implements UserDataDao {
     public List<UserData> selectAll() {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         UserDataDao userDataDao = sqlSession.getMapper(UserDataDao.class);
-        System.out.println("UserDataDaoImpl => selectAll");
         List<UserData> userDataList = null;
         try {
             userDataList = userDataDao.selectAll();
@@ -75,7 +72,6 @@ public class UserDataDaoImpl implements UserDataDao {
     public UserData selectByPrimaryKey(String userid) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         UserDataDao userDataDao = sqlSession.getMapper(UserDataDao.class);
-        System.out.println("UserDataDaoImpl => selectByPrimaryKey");
         UserData userData = null;
         try {
             userData = userDataDao.selectByPrimaryKey(userid);
@@ -97,7 +93,6 @@ public class UserDataDaoImpl implements UserDataDao {
     public int updateByPrimaryKey(UserData record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         UserDataDao userDataDao = sqlSession.getMapper(UserDataDao.class);
-        System.out.println("UserDataDaoImpl => updateByPrimaryKey");
         int i=0;
         try {
             i = userDataDao.updateByPrimaryKey(record);
@@ -117,7 +112,6 @@ public class UserDataDaoImpl implements UserDataDao {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         UserDataDao userDataDao = sqlSession.getMapper(UserDataDao.class);
 
-        System.out.println("UserDataDaoImpl => selectCountByWorkTitleId");
         int res = 0;
         try {
             res = userDataDao.selectCountByWorkTitleId(workTitleId);
@@ -136,7 +130,6 @@ public class UserDataDaoImpl implements UserDataDao {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         UserDataDao userDataDao = sqlSession.getMapper(UserDataDao.class);
 
-        System.out.println("UserDataDaoImpl => selectByuserPhone");
         UserData userData = null;
         try {
             userData = userDataDao.selectByUserPhone(userPhone);
@@ -155,7 +148,6 @@ public class UserDataDaoImpl implements UserDataDao {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         UserDataDao userDataDao = sqlSession.getMapper(UserDataDao.class);
 
-        System.out.println("UserDataDaoImpl => selectCountByPositionId");
         int count = 0;
         try {
             count = userDataDao.selectCountByPositionId(positionId);

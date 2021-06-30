@@ -13,7 +13,6 @@ public class PersonalResumeDaoImpl implements PersonalResumeDao{
     public int deleteByPrimaryKey(String personalResumeId) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         PersonalResumeDao personalResumeDao = sqlSession.getMapper(PersonalResumeDao.class);
-        System.out.println("PersonalResumeDaoImpl => deleteByPrimaryKey");
         int i = 0;
         try {
             i = personalResumeDao.deleteByPrimaryKey(personalResumeId);
@@ -29,7 +28,6 @@ public class PersonalResumeDaoImpl implements PersonalResumeDao{
     public int insert(PersonalResume record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         PersonalResumeDao personalResumeDao = sqlSession.getMapper(PersonalResumeDao.class);
-        System.out.println("PersonalResumeDaoImpl => insert");
         int i = 0;
         try {
             i = personalResumeDao.insert(record);
@@ -45,7 +43,6 @@ public class PersonalResumeDaoImpl implements PersonalResumeDao{
     public int insertSelective(PersonalResume record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         PersonalResumeDao personalResumeDao = sqlSession.getMapper(PersonalResumeDao.class);
-        System.out.println("PersonalResumeDaoImpl => insertSelective");
         int i = 0;
         try {
             i = personalResumeDao.insertSelective(record);
@@ -61,7 +58,6 @@ public class PersonalResumeDaoImpl implements PersonalResumeDao{
     public PersonalResume selectByPrimaryKey(String personalResumeId) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         PersonalResumeDao personalResumeDao = sqlSession.getMapper(PersonalResumeDao.class);
-        System.out.println("PersonalResumeDaoImpl => selectByPrimaryKey");
         PersonalResume personalResume = null;
         try {
             personalResume = personalResumeDao.selectByPrimaryKey(personalResumeId);
@@ -77,7 +73,6 @@ public class PersonalResumeDaoImpl implements PersonalResumeDao{
     public PersonalResume selectAllByUserId(String userId) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         PersonalResumeDao personalResumeDao = sqlSession.getMapper(PersonalResumeDao.class);
-        System.out.println("PersonalResumeDaoImpl => selectAllByUserId");
         PersonalResume personalResume = null;
         try {
             personalResume = personalResumeDao.selectAllByUserId(userId);
@@ -93,7 +88,6 @@ public class PersonalResumeDaoImpl implements PersonalResumeDao{
     public List<PersonalResume> selectAll() {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         PersonalResumeDao personalResumeDao = sqlSession.getMapper(PersonalResumeDao.class);
-        System.out.println("PersonalResumeDaoImpl => selectAll");
         List<PersonalResume> personalResume = null;
         try {
             personalResume = personalResumeDao.selectAll();
@@ -109,7 +103,6 @@ public class PersonalResumeDaoImpl implements PersonalResumeDao{
     public int updateByPrimaryKeySelective(PersonalResume record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         PersonalResumeDao personalResumeDao = sqlSession.getMapper(PersonalResumeDao.class);
-        System.out.println("PersonalResumeDaoImpl => updateByPrimaryKeySelective");
         int i = 0;
         try {
             i = personalResumeDao.updateByPrimaryKeySelective(record);
@@ -125,7 +118,6 @@ public class PersonalResumeDaoImpl implements PersonalResumeDao{
     public int updateByPrimaryKey(PersonalResume record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         PersonalResumeDao personalResumeDao = sqlSession.getMapper(PersonalResumeDao.class);
-        System.out.println("PersonalResumeDaoImpl => updateByPrimaryKey");
         int i = 0;
         try {
             i = personalResumeDao.updateByPrimaryKey(record);

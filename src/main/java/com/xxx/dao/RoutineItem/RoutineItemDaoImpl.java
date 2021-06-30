@@ -9,7 +9,6 @@ public class RoutineItemDaoImpl implements RoutineItemDao{
     public int deleteByPrimaryKey(String routineItemId) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         RoutineItemDao routineItemDao = sqlSession.getMapper(RoutineItemDao.class);
-        System.out.println("RoutineItemDaoImpl => deleteByPrimaryKey");
         int i = 0;
         try {
             i = routineItemDao.deleteByPrimaryKey(routineItemId);
@@ -25,7 +24,6 @@ public class RoutineItemDaoImpl implements RoutineItemDao{
     public int insert(RoutineItem record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         RoutineItemDao routineItemDao = sqlSession.getMapper(RoutineItemDao.class);
-        System.out.println("RoutineItemDaoImpl => insert");
         int i = 0;
         try {
             i = routineItemDao.insert(record);
@@ -41,7 +39,6 @@ public class RoutineItemDaoImpl implements RoutineItemDao{
     public int insertSelective(RoutineItem record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         RoutineItemDao routineItemDao = sqlSession.getMapper(RoutineItemDao.class);
-        System.out.println("RoutineItemDaoImpl => insertSelective");
         int i = 0;
         try {
             i = routineItemDao.insertSelective(record);
@@ -57,7 +54,6 @@ public class RoutineItemDaoImpl implements RoutineItemDao{
     public RoutineItem selectByPrimaryKey(String routineItemId) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         RoutineItemDao routineItemDao = sqlSession.getMapper(RoutineItemDao.class);
-        System.out.println("RoutineItemDaoImpl => selectByPrimaryKey");
         RoutineItem routineItem = null;
         try {
             routineItem = routineItemDao.selectByPrimaryKey(routineItemId);
@@ -73,7 +69,6 @@ public class RoutineItemDaoImpl implements RoutineItemDao{
     public int updateByPrimaryKeySelective(RoutineItem record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         RoutineItemDao routineItemDao = sqlSession.getMapper(RoutineItemDao.class);
-        System.out.println("RoutineItemDaoImpl => updateByPrimaryKeySelective");
         int i = 0;
         try {
             i = routineItemDao.updateByPrimaryKeySelective(record);
@@ -89,7 +84,6 @@ public class RoutineItemDaoImpl implements RoutineItemDao{
     public int updateByPrimaryKey(RoutineItem record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         RoutineItemDao routineItemDao = sqlSession.getMapper(RoutineItemDao.class);
-        System.out.println("RoutineItemDaoImpl => updateByPrimaryKey");
         int i = 0;
         try {
             i = routineItemDao.updateByPrimaryKey(record);

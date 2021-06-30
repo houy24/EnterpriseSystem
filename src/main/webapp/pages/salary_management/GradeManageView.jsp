@@ -117,40 +117,39 @@
     <%--搜索，  搜索员工姓名，员工部门，月份--%>
     <div class="layui-form">
 
-        <%--员工姓名搜索--%>
-        <span style="font-size: 18px;">员工姓名：</span>
-        <div class="layui-inline">
-            <input class="layui-input" style="font-size: 18px;"
-                   name="search" id="demoReload" autocomplete="off">
-        </div>
+        <%--管理员，正常搜索--%>
+        <c:if test="${userAccount.userType == 'manager'}">
+            <%--员工姓名搜索--%>
+            <span style="font-size: 18px;">员工姓名：</span>
+            <div class="layui-inline">
+                <input class="layui-input" style="font-size: 18px;"
+                       name="search" id="demoReload" autocomplete="off">
+            </div>
 
-        <%--员工部门搜索--%>
-        <span style="font-size: 18px;">部门：</span>
-        <%--搜索选择框--%>
-        <div class="layui-inline">
-            <select name="departmentSearch" id="departmentSearch" lay-verify="required" lay-search="">
-                <option value="">选择或搜索</option>
-                <c:forEach items="<%=departmentList%>" var="departmentItem">
-                    <option value="${departmentItem.departmentId}">${departmentItem.departmentName}</option>
-                </c:forEach>
-            </select>
-        </div>
+            <%--员工部门搜索--%>
+            <span style="font-size: 18px;">部门：</span>
+            <%--搜索选择框--%>
+            <div class="layui-inline">
+                <select name="departmentSearch" id="departmentSearch" lay-verify="required" lay-search="">
+                    <option value="">选择或搜索</option>
+                    <c:forEach items="<%=departmentList%>" var="departmentItem">
+                        <option value="${departmentItem.departmentId}">${departmentItem.departmentName}</option>
+                    </c:forEach>
+                </select>
+            </div>
 
-        <%--考勤月份搜索--%>
-        <span style="font-size: 18px;">月份：</span>
+            <%--考勤月份搜索--%>
+            <span style="font-size: 18px;">月份：</span>
 
-        <%--        &lt;%&ndash;年月选择器&ndash;%&gt;--%>
-        <%--        <div class="layui-input-inline">--%>
-        <%--            <input type="text" class="layui-input" name="timeMonthSearch" id="timeMonthSearch" placeholder="yyyy-MM">--%>
-        <%--        </div>--%>
+            <div class="layui-inline">
+                <input class="layui-input" style="font-size: 18px;width: 200px;"
+                       name="timeMonthSearch" id="timeMonthSearch" autocomplete="off" placeholder="yyyy-MM">
+            </div>
 
-        <div class="layui-inline">
-            <input class="layui-input" style="font-size: 18px;width: 200px;"
-                   name="timeMonthSearch" id="timeMonthSearch" autocomplete="off" placeholder="yyyy-MM">
-        </div>
+            <button type="button" class="layui-btn" data-type="reload" style="font-size: 16px;"
+                    lay-filter="data-search-btn">搜索</button>
 
-        <button type="button" class="layui-btn" data-type="reload" style="font-size: 16px;"
-                lay-filter="data-search-btn">搜索</button>
+        </c:if>
 
     </div>
 </div>

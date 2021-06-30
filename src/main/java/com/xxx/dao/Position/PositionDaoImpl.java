@@ -11,7 +11,6 @@ public class PositionDaoImpl implements PositionDao{
     public List<Position> selectAll() {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         PositionDao positionDao = sqlSession.getMapper(PositionDao.class);
-        System.out.println("PositionDaoImpl => selectAll");
         List<Position> positionList = null;
         try {
             positionList = positionDao.selectAll();
@@ -26,7 +25,6 @@ public class PositionDaoImpl implements PositionDao{
     public int deleteByPrimaryKey(String positionId) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         PositionDao positionDao = sqlSession.getMapper(PositionDao.class);
-        System.out.println("PositionDaoImpl => deleteByPrimaryKey");
         int i = 0;
         try {
             i = positionDao.deleteByPrimaryKey(positionId);
@@ -42,7 +40,6 @@ public class PositionDaoImpl implements PositionDao{
     public int insert(Position record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         PositionDao positionDao = sqlSession.getMapper(PositionDao.class);
-        System.out.println("PositionDaoImpl => insert");
         int i = 0;
         try {
             i = positionDao.insert(record);
@@ -58,7 +55,6 @@ public class PositionDaoImpl implements PositionDao{
     public int insertSelective(Position record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         PositionDao positionDao = sqlSession.getMapper(PositionDao.class);
-        System.out.println("PositionDaoImpl => insertSelective");
         int i = 0;
         try {
             i = positionDao.insertSelective(record);
@@ -74,7 +70,6 @@ public class PositionDaoImpl implements PositionDao{
     public Position selectByPrimaryKey(String positionId) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         PositionDao positionDao = sqlSession.getMapper(PositionDao.class);
-        System.out.println("PositionDaoImpl => selectByPrimaryKey");
         Position position = null;
         try {
             position = positionDao.selectByPrimaryKey(positionId);
@@ -90,7 +85,6 @@ public class PositionDaoImpl implements PositionDao{
     public List<Position> selectAllByPositionDesrciption(String positionDesrciption) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         PositionDao positionDao = sqlSession.getMapper(PositionDao.class);
-        System.out.println("PositionDaoImpl => selectAllByPositionDesrciption");
         List<Position> position = null;
         try {
             position = positionDao.selectAllByPositionDesrciption(positionDesrciption);
@@ -106,7 +100,6 @@ public class PositionDaoImpl implements PositionDao{
     public int updateByPrimaryKeySelective(Position record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         PositionDao positionDao = sqlSession.getMapper(PositionDao.class);
-        System.out.println("PositionDaoImpl => updateByPrimaryKeySelective");
         int i = 0;
         try {
             i = positionDao.updateByPrimaryKeySelective(record);
@@ -122,7 +115,6 @@ public class PositionDaoImpl implements PositionDao{
     public int updateByPrimaryKey(Position record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         PositionDao positionDao = sqlSession.getMapper(PositionDao.class);
-        System.out.println("PositionDaoImpl => updateByPrimaryKey");
         int i = 0;
         try {
             i = positionDao.updateByPrimaryKey(record);

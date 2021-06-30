@@ -11,7 +11,6 @@ public class DepartmentDaoImpl implements DepartmentDao{
     public int deleteByPrimaryKey(String departmentId) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         DepartmentDao departmentDao = sqlSession.getMapper(DepartmentDao.class);
-        System.out.println("DepartmentDaoImpl => deleteByPrimaryKey");
         int i = 0;
         try {
             i = departmentDao.deleteByPrimaryKey(departmentId);
@@ -27,7 +26,6 @@ public class DepartmentDaoImpl implements DepartmentDao{
     public int insert(Department record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         DepartmentDao departmentDao = sqlSession.getMapper(DepartmentDao.class);
-        System.out.println("DepartmentDaoImpl => insert");
         int i = 0;
         try {
             i = departmentDao.insert(record);
@@ -43,7 +41,6 @@ public class DepartmentDaoImpl implements DepartmentDao{
     public int insertSelective(Department record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         DepartmentDao departmentDao = sqlSession.getMapper(DepartmentDao.class);
-        System.out.println("DepartmentDaoImpl => insertSelective");
         int i = 0;
         try {
             i = departmentDao.insertSelective(record);
@@ -59,7 +56,6 @@ public class DepartmentDaoImpl implements DepartmentDao{
     public Department selectByPrimaryKey(String departmentId) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         DepartmentDao departmentDao = sqlSession.getMapper(DepartmentDao.class);
-        System.out.println("DepartmentDaoImpl => selectByPrimaryKey");
         Department department = null;
         try {
             department = departmentDao.selectByPrimaryKey(departmentId);
@@ -75,7 +71,6 @@ public class DepartmentDaoImpl implements DepartmentDao{
     public List<Department> selectAll() {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         DepartmentDao departmentDao = sqlSession.getMapper(DepartmentDao.class);
-        System.out.println("DepartmentDaoImpl => selectAll");
         List<Department> department = null;
         try {
             department = departmentDao.selectAll();
@@ -91,7 +86,6 @@ public class DepartmentDaoImpl implements DepartmentDao{
     public int updateByPrimaryKeySelective(Department record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         DepartmentDao departmentDao = sqlSession.getMapper(DepartmentDao.class);
-        System.out.println("DepartmentDaoImpl => updateByPrimaryKeySelective");
         int i = 0;
         try {
             i = departmentDao.updateByPrimaryKeySelective(record);
@@ -107,7 +101,6 @@ public class DepartmentDaoImpl implements DepartmentDao{
     public int updateByPrimaryKey(Department record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         DepartmentDao departmentDao = sqlSession.getMapper(DepartmentDao.class);
-        System.out.println("DepartmentDaoImpl => updateByPrimaryKey");
         int i = 0;
         try {
             i = departmentDao.updateByPrimaryKey(record);

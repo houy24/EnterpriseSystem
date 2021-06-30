@@ -13,7 +13,6 @@ public class WageDaoImpl implements WageDao{
     public int deleteByPrimaryKey(String wageId) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         WageDao wageDao = sqlSession.getMapper(WageDao.class);
-        System.out.println("WageDaoImpl => deleteByPrimaryKey");
         int i = 0;
         try {
             i = wageDao.deleteByPrimaryKey(wageId);
@@ -29,7 +28,6 @@ public class WageDaoImpl implements WageDao{
     public int insert(Wage record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         WageDao wageDao = sqlSession.getMapper(WageDao.class);
-        System.out.println("WageDaoImpl => insert");
         int i = 0;
         try {
             i = wageDao.insert(record);
@@ -45,7 +43,6 @@ public class WageDaoImpl implements WageDao{
     public int insertSelective(Wage record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         WageDao wageDao = sqlSession.getMapper(WageDao.class);
-        System.out.println("WageDaoImpl => insertSelective");
         int i = 0;
         try {
             i = wageDao.insertSelective(record);
@@ -61,7 +58,6 @@ public class WageDaoImpl implements WageDao{
     public Wage selectByPrimaryKey(String wageId) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         WageDao wageDao = sqlSession.getMapper(WageDao.class);
-        System.out.println("WageDaoImpl => selectByPrimaryKey");
         Wage wage = null;
         try {
             wage = wageDao.selectByPrimaryKey(wageId);
@@ -77,7 +73,6 @@ public class WageDaoImpl implements WageDao{
     public List<Wage> selectAllByUserId(String userId) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         WageDao wageDao = sqlSession.getMapper(WageDao.class);
-        System.out.println("WageDaoImpl => selectAllByUserId");
         List<Wage> wage = null;
         try {
             wage = wageDao.selectAllByUserId(userId);
@@ -93,7 +88,6 @@ public class WageDaoImpl implements WageDao{
     public int updateByPrimaryKeySelective(Wage record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         WageDao wageDao = sqlSession.getMapper(WageDao.class);
-        System.out.println("WageDaoImpl => updateByPrimaryKeySelective");
         int i = 0;
         try {
             i = wageDao.updateByPrimaryKeySelective(record);
@@ -109,7 +103,6 @@ public class WageDaoImpl implements WageDao{
     public int updateByPrimaryKey(Wage record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         WageDao wageDao = sqlSession.getMapper(WageDao.class);
-        System.out.println("WageDaoImpl => updateByPrimaryKey");
         int i = 0;
         try {
             i = wageDao.updateByPrimaryKey(record);
@@ -125,7 +118,6 @@ public class WageDaoImpl implements WageDao{
     public List<Wage> selectAll() {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         WageDao wageDao = sqlSession.getMapper(WageDao.class);
-        System.out.println("WageDaoImpl => selectAll");
         List<Wage> wage = null;
         try {
             wage = wageDao.selectAll();
@@ -141,7 +133,6 @@ public class WageDaoImpl implements WageDao{
     public List<Wage> getWageByMonth(String timeMonthSearch) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         WageDao wageDao = sqlSession.getMapper(WageDao.class);
-        System.out.println("WageDaoImpl => getWageByMonth");
         List<Wage> wage = null;
         try {
             wage = wageDao.getWageByMonth(timeMonthSearch);
@@ -157,7 +148,6 @@ public class WageDaoImpl implements WageDao{
     public Wage getWageByUserIdAndMonth(String userId, String timeMonthSearch) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         WageDao wageDao = sqlSession.getMapper(WageDao.class);
-        System.out.println("WageDaoImpl => getWageByUserIdAndMonth");
         Wage wage = null;
         try {
             wage = wageDao.getWageByUserIdAndMonth(userId, timeMonthSearch);
@@ -173,7 +163,6 @@ public class WageDaoImpl implements WageDao{
     public int getCountByMonth(String timeMonthSearch) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         WageDao wageDao = sqlSession.getMapper(WageDao.class);
-        System.out.println("WageDaoImpl => getCountByMonth");
         int i = 0;
         try {
             i = wageDao.getCountByMonth(timeMonthSearch);
@@ -183,5 +172,20 @@ public class WageDaoImpl implements WageDao{
             sqlSession.close();
         }
         return i;
+    }
+
+    @Override
+    public List<Wage> getDepartmentYearWageList(String departmentId, String timeYearSearch) {
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        WageDao wageDao = sqlSession.getMapper(WageDao.class);
+        List<Wage> wage = null;
+        try {
+            wage = wageDao.getDepartmentYearWageList(departmentId, timeYearSearch);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+        return wage;
     }
 }

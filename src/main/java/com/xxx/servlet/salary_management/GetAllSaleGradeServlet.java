@@ -16,6 +16,7 @@ import com.xxx.service.UserData.UserDataService;
 import com.xxx.service.UserData.UserDataServiceImpl;
 import com.xxx.utils.MyDateTimeUtils;
 import com.xxx.utils.MyPageHelperUtils;
+import com.xxx.utils.UserTypeUtils;
 import lombok.SneakyThrows;
 
 import javax.servlet.ServletException;
@@ -61,6 +62,15 @@ public class GetAllSaleGradeServlet extends HttpServlet {
         ProductTypeService productTypeService = new ProductTypeServiceImpl(); // 产品类别业务
 
         List<SaleRecord> saleRecordList = saleRecordService.getSaleRecordByMonth(timeMonthSearch);
+
+        // 过滤。。。
+
+        // 权限过滤，如果是普通员工，不是管理员，则只能查看自己的情况
+        UserAccount userAccount = (UserAccount) request.getSession().getAttribute("userAccount");
+        if (userAccount.getUserType().equals(UserTypeUtils.UserType_Employee)) { // 员工
+            UserData userData = (UserData) request.getSession().getAttribute("userData");
+            userName = userData.getUserName(); // 当前员工
+        }
 
         // 过滤用户，部门。。。
         for (int i = 0; i < saleRecordList.size(); i++) {

@@ -13,7 +13,6 @@ public class ProductTypeDaoImpl implements ProductTypeDao{
     public int deleteByPrimaryKey(String productTypeId) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         ProductTypeDao productDao = sqlSession.getMapper(ProductTypeDao.class);
-        System.out.println("ProductDaoImpl => deleteByPrimaryKey");
         int i = 0;
         try {
             i = productDao.deleteByPrimaryKey(productTypeId);
@@ -29,7 +28,6 @@ public class ProductTypeDaoImpl implements ProductTypeDao{
     public int insert(ProductType record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         ProductTypeDao productDao = sqlSession.getMapper(ProductTypeDao.class);
-        System.out.println("ProductDaoImpl => insert");
         int i = 0;
         try {
             i = productDao.insert(record);
@@ -45,7 +43,6 @@ public class ProductTypeDaoImpl implements ProductTypeDao{
     public int insertSelective(ProductType record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         ProductTypeDao productDao = sqlSession.getMapper(ProductTypeDao.class);
-        System.out.println("ProductDaoImpl => insertSelective");
         int i = 0;
         try {
             i = productDao.insertSelective(record);
@@ -61,7 +58,6 @@ public class ProductTypeDaoImpl implements ProductTypeDao{
     public ProductType selectByPrimaryKey(String productTypeId) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         ProductTypeDao productDao = sqlSession.getMapper(ProductTypeDao.class);
-        System.out.println("ProductTypeDaoImpl => selectByPrimaryKey");
         ProductType productType = null;
         try {
             productType = productDao.selectByPrimaryKey(productTypeId);
@@ -77,7 +73,6 @@ public class ProductTypeDaoImpl implements ProductTypeDao{
     public List<ProductType> selectAll() {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         ProductTypeDao productDao = sqlSession.getMapper(ProductTypeDao.class);
-        System.out.println("ProductTypeDaoImpl => selectAll");
         List<ProductType> productTypes = null;
         try {
             productTypes = productDao.selectAll();
@@ -93,7 +88,6 @@ public class ProductTypeDaoImpl implements ProductTypeDao{
     public ProductType selectByProductTypeName(String productTypeName) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         ProductTypeDao productDao = sqlSession.getMapper(ProductTypeDao.class);
-        System.out.println("ProductTypeDaoImpl => selectByProductTypeName");
         ProductType productType = null;
         try {
             productType = productDao.selectByProductTypeName(productTypeName);
@@ -109,7 +103,6 @@ public class ProductTypeDaoImpl implements ProductTypeDao{
     public ProductType getByProductTypeName(String productTypeName) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         ProductTypeDao productDao = sqlSession.getMapper(ProductTypeDao.class);
-        System.out.println("ProductTypeDaoImpl => getByProductTypeName");
         ProductType productType = null;
         try {
             productType = productDao.getByProductTypeName(productTypeName);
@@ -125,7 +118,6 @@ public class ProductTypeDaoImpl implements ProductTypeDao{
     public int updateByPrimaryKeySelective(ProductType record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         ProductTypeDao productDao = sqlSession.getMapper(ProductTypeDao.class);
-        System.out.println("ProductDaoImpl => updateByPrimaryKeySelective");
         int i = 0;
         try {
             i = productDao.updateByPrimaryKeySelective(record);
@@ -141,7 +133,6 @@ public class ProductTypeDaoImpl implements ProductTypeDao{
     public int updateByPrimaryKey(ProductType record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         ProductTypeDao productDao = sqlSession.getMapper(ProductTypeDao.class);
-        System.out.println("ProductDaoImpl => updateByPrimaryKey");
         int i = 0;
         try {
             i = productDao.updateByPrimaryKey(record);

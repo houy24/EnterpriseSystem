@@ -14,7 +14,6 @@ public class ProductWarehouseDaoImpl implements ProductWarehouseDao{
     public int deleteByPrimaryKey(String productWarehouseId) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         ProductWarehouseDao productWarehouseDao = sqlSession.getMapper(ProductWarehouseDao.class);
-        System.out.println("ProductWarehouseDaoImpl => deleteByPrimaryKey");
         int i = 0;
         try {
             i = productWarehouseDao.deleteByPrimaryKey(productWarehouseId);
@@ -30,7 +29,6 @@ public class ProductWarehouseDaoImpl implements ProductWarehouseDao{
     public int insert(ProductWarehouse record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         ProductWarehouseDao productWarehouseDao = sqlSession.getMapper(ProductWarehouseDao.class);
-        System.out.println("ProductWarehouseDaoImpl => insert");
         int i = 0;
         try {
             i = productWarehouseDao.insert(record);
@@ -46,7 +44,6 @@ public class ProductWarehouseDaoImpl implements ProductWarehouseDao{
     public int insertSelective(ProductWarehouse record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         ProductWarehouseDao productWarehouseDao = sqlSession.getMapper(ProductWarehouseDao.class);
-        System.out.println("ProductWarehouseDaoImpl => insertSelective");
         int i = 0;
         try {
             i = productWarehouseDao.insertSelective(record);
@@ -62,7 +59,6 @@ public class ProductWarehouseDaoImpl implements ProductWarehouseDao{
     public ProductWarehouse selectByPrimaryKey(String productWarehouseId) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         ProductWarehouseDao productWarehouseDao = sqlSession.getMapper(ProductWarehouseDao.class);
-        System.out.println("ProductWarehouseDaoImpl => selectByPrimaryKey");
         ProductWarehouse productWarehouse = null;
         try {
             productWarehouse = productWarehouseDao.selectByPrimaryKey(productWarehouseId);
@@ -78,7 +74,6 @@ public class ProductWarehouseDaoImpl implements ProductWarehouseDao{
     public List<ProductWarehouse> selectAll() {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         ProductWarehouseDao productWarehouseDao = sqlSession.getMapper(ProductWarehouseDao.class);
-        System.out.println("ProductWarehouseDaoImpl => selectAll");
         List<ProductWarehouse> productWarehouse = null;
         try {
             productWarehouse = productWarehouseDao.selectAll();
@@ -92,11 +87,9 @@ public class ProductWarehouseDaoImpl implements ProductWarehouseDao{
 
     @Override
     public List<ProductWarehouse> selectAllByProductId(String productId) {
-        System.out.println("=========================================================");
         System.out.println(productId);
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         ProductWarehouseDao productWarehouseDao = sqlSession.getMapper(ProductWarehouseDao.class);
-        System.out.println("ProductWarehouseDaoImpl => selectAllByProductId");
         List<ProductWarehouse> productWarehouse = null;
         try {
             productWarehouse = productWarehouseDao.selectAllByProductId(productId);
@@ -112,7 +105,6 @@ public class ProductWarehouseDaoImpl implements ProductWarehouseDao{
     public List<ProductWarehouse> selectAllByProductName(String productName) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         ProductWarehouseDao productWarehouseDao = sqlSession.getMapper(ProductWarehouseDao.class);
-        System.out.println("ProductWarehouseDaoImpl => selectAllByProductName");
         List<ProductWarehouse> productWarehouse = null;
         try {
             productWarehouse = productWarehouseDao.selectAllByProductName(productName);
@@ -128,7 +120,6 @@ public class ProductWarehouseDaoImpl implements ProductWarehouseDao{
     public int updateByPrimaryKeySelective(ProductWarehouse record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         ProductWarehouseDao productWarehouseDao = sqlSession.getMapper(ProductWarehouseDao.class);
-        System.out.println("ProductWarehouseDaoImpl => updateByPrimaryKeySelective");
         int i = 0;
         try {
             i = productWarehouseDao.updateByPrimaryKeySelective(record);

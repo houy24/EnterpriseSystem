@@ -11,7 +11,6 @@ public class TaxRateDaoImpl implements TaxRateDao{
     public int deleteByPrimaryKey(String taxRateId) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         TaxRateDao taxRateDao = sqlSession.getMapper(TaxRateDao.class);
-        System.out.println("TaxRateDaoImpl => deleteByPrimaryKey");
         int i = 0;
         try {
             i = taxRateDao.deleteByPrimaryKey(taxRateId);
@@ -27,7 +26,6 @@ public class TaxRateDaoImpl implements TaxRateDao{
     public int insert(TaxRate record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         TaxRateDao taxRateDao = sqlSession.getMapper(TaxRateDao.class);
-        System.out.println("TaxRateDaoImpl => insert");
         int i = 0;
         try {
             i = taxRateDao.insert(record);
@@ -43,7 +41,6 @@ public class TaxRateDaoImpl implements TaxRateDao{
     public int insertSelective(TaxRate record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         TaxRateDao taxRateDao = sqlSession.getMapper(TaxRateDao.class);
-        System.out.println("TaxRateDaoImpl => insertSelective");
         int i = 0;
         try {
             i = taxRateDao.insertSelective(record);
@@ -59,7 +56,6 @@ public class TaxRateDaoImpl implements TaxRateDao{
     public TaxRate selectByPrimaryKey(String taxRateId) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         TaxRateDao taxRateDao = sqlSession.getMapper(TaxRateDao.class);
-        System.out.println("TaxRateDaoImpl => selectByPrimaryKey");
         TaxRate taxRate = null;
         try {
             taxRate = taxRateDao.selectByPrimaryKey(taxRateId);
@@ -75,7 +71,6 @@ public class TaxRateDaoImpl implements TaxRateDao{
     public List<TaxRate> selectAll() {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         TaxRateDao taxRateDao = sqlSession.getMapper(TaxRateDao.class);
-        System.out.println("TaxRateDaoImpl => selectAll");
         List<TaxRate> taxRate = null;
         try {
             taxRate = taxRateDao.selectAll();
@@ -91,7 +86,6 @@ public class TaxRateDaoImpl implements TaxRateDao{
     public int updateByPrimaryKeySelective(TaxRate record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         TaxRateDao taxRateDao = sqlSession.getMapper(TaxRateDao.class);
-        System.out.println("TaxRateDaoImpl => updateByPrimaryKeySelective");
         int i = 0;
         try {
             i = taxRateDao.updateByPrimaryKeySelective(record);
@@ -107,7 +101,6 @@ public class TaxRateDaoImpl implements TaxRateDao{
     public int updateByPrimaryKey(TaxRate record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         TaxRateDao taxRateDao = sqlSession.getMapper(TaxRateDao.class);
-        System.out.println("TaxRateDaoImpl => updateByPrimaryKey");
         int i = 0;
         try {
             i = taxRateDao.updateByPrimaryKey(record);

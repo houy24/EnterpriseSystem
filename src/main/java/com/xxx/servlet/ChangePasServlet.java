@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet("/ChangePas")
+@WebServlet(name = "ChangePasServlet",urlPatterns = "/ChangePas")
 public class ChangePasServlet extends HttpServlet {
 
     @Override

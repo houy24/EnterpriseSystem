@@ -13,7 +13,6 @@ public class SaleTaskDaoImpl implements SaleTaskDao{
     public int deleteByPrimaryKey(String saleTaskId) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         SaleTaskDao saleTaskDao = sqlSession.getMapper(SaleTaskDao.class);
-        System.out.println("SaleTaskDaoImpl => deleteByPrimaryKey");
         int i = 0;
         try {
             i = saleTaskDao.deleteByPrimaryKey(saleTaskId);
@@ -29,7 +28,6 @@ public class SaleTaskDaoImpl implements SaleTaskDao{
     public int insert(SaleTask record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         SaleTaskDao saleTaskDao = sqlSession.getMapper(SaleTaskDao.class);
-        System.out.println("SaleTaskDaoImpl => insert");
         int i = 0;
         try {
             i = saleTaskDao.insert(record);
@@ -45,7 +43,6 @@ public class SaleTaskDaoImpl implements SaleTaskDao{
     public int insertSelective(SaleTask record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         SaleTaskDao saleTaskDao = sqlSession.getMapper(SaleTaskDao.class);
-        System.out.println("SaleTaskDaoImpl => insertSelective");
         int i = 0;
         try {
             i = saleTaskDao.insertSelective(record);
@@ -61,7 +58,6 @@ public class SaleTaskDaoImpl implements SaleTaskDao{
     public SaleTask selectByPrimaryKey(String saleTaskId) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         SaleTaskDao saleTaskDao = sqlSession.getMapper(SaleTaskDao.class);
-        System.out.println("SaleTaskDaoImpl => selectByPrimaryKey");
         SaleTask saleTask = null;
         try {
             saleTask = saleTaskDao.selectByPrimaryKey(saleTaskId);
@@ -77,7 +73,6 @@ public class SaleTaskDaoImpl implements SaleTaskDao{
     public List<SaleTask> selectAllByUserId(String userId) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         SaleTaskDao saleTaskDao = sqlSession.getMapper(SaleTaskDao.class);
-        System.out.println("SaleTaskDaoImpl => selectAllByUserId");
         List<SaleTask> saleTask = null;
         try {
             saleTask = saleTaskDao.selectAllByUserId(userId);
@@ -93,7 +88,6 @@ public class SaleTaskDaoImpl implements SaleTaskDao{
     public List<SaleTask> selectAll() {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         SaleTaskDao saleTaskDao = sqlSession.getMapper(SaleTaskDao.class);
-        System.out.println("SaleTaskDaoImpl => selectAll");
         List<SaleTask> saleTask = null;
         try {
             saleTask = saleTaskDao.selectAll();
@@ -109,7 +103,6 @@ public class SaleTaskDaoImpl implements SaleTaskDao{
     public int updateByPrimaryKeySelective(SaleTask record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         SaleTaskDao saleTaskDao = sqlSession.getMapper(SaleTaskDao.class);
-        System.out.println("SaleTaskDaoImpl => updateByPrimaryKeySelective");
         int i = 0;
         try {
             i = saleTaskDao.updateByPrimaryKeySelective(record);
@@ -123,6 +116,16 @@ public class SaleTaskDaoImpl implements SaleTaskDao{
 
     @Override
     public int updateByPrimaryKey(SaleTask record) {
-        return 0;
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        SaleTaskDao saleTaskDao = sqlSession.getMapper(SaleTaskDao.class);
+        int i = 0;
+        try {
+            i = saleTaskDao.updateByPrimaryKey(record);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+        return i;
     }
 }

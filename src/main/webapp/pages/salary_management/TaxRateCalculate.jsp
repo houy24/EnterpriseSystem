@@ -118,7 +118,7 @@
                 <div class="layui-input-inline ">
                     <%-- 尝试给下拉框添加事件  --%>
                     <select class="selectTaxRateType" name="taxRateType" id="taxRateType"
-                            lay-verify="required" lay-filter="selectDemo"  >
+                            lay-verify="required" lay-filter="selectDemo" >
                         <option value="1" selected>总工资（不计算五险一金）</option>
                         <option value="2">总工资（计算五险一金）</option>
                     </select>
@@ -251,86 +251,44 @@
 
 <script>
 
-    <%--layui.use('form', function(){--%>
-    <%--    var form = layui.form;--%>
-    <%--    var layer = layui.layer;--%>
-
-    <%--    //监听提交--%>
-    <%--    form.on('submit(myForm)', function(data){--%>
-    <%--        //   layer.msg(JSON.stringify(data.field));--%>
-
-    <%--        $.ajax({--%>
-    <%--            url: "${pageContext.request.contextPath}/queryTaxRateMoney",--%>
-    <%--            data: {     // 表单数据--%>
-    <%--                taxRateType : data.field.taxRateType,   // 收入类型--%>
-    <%--                preMoney : data.field.preMoney,     // 税前工资--%>
-    <%--                baseMoney : data.field.baseMoney,   // 起征点--%>
-    <%--            },--%>
-    <%--            dataType: 'json',--%>
-    <%--            success: function (result) {--%>
-    <%--                console.log(result);--%>
-
-    <%--                if (result.check.toString() === "false") {--%>
-
-    <%--                    layer.alert("查询失败！");--%>
-
-    <%--                } else if (result.check.toString() === "true") {--%>
-    <%--                    let obj = eval(result);--%>
-    <%--                    console.log(obj.check);--%>
-    <%--                    // console.log("eval(result) : " + eval(result))--%>
-    <%--                    // console.log("eval(result.nowWorkTitle) : " + eval(result.nowWorkTitle))--%>
-
-    <%--                    // let nowWorkTitle = eval(obj.nowWorkTitle);--%>
-    <%--                    // let nowUserData = eval(obj.nowUserData);--%>
-
-    <%--                    layer.open({--%>
-    <%--                        shade:0,--%>
-    <%--                        type:0,--%>
-    <%--                        icon:6,--%>
-    <%--                        content:'查询成功！',--%>
-    <%--                        anim:3,--%>
-    <%--                        button:'确定',--%>
-    <%--                        yes() {--%>
-    <%--                            // 更改值--%>
-    <%--                            $('#shouldTaxRateMoney').val(obj.shouldTaxRateMoney);--%>
-    <%--                            $('#fiveOneMoney').val(obj.fiveOneMoney);--%>
-    <%--                            $('#realyMoney').val(obj.realyMoney);--%>
-
-    <%--                            // 关闭当前弹出层--%>
-    <%--                            var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引--%>
-    <%--                            parent.layer.close(index); //再执行关闭--%>
-    <%--                            // // 父页面更新--%>
-    <%--                            // window.parent.location.replace(window.parent.location.href)--%>
-    <%--                            layer.closeAll();--%>
-    <%--                        }--%>
-    <%--                    });--%>
-    <%--                }--%>
-    <%--            },--%>
-    <%--            error: function (XMLHttpRequest, textStatus, errorThrown) {--%>
-    <%--                layer.alert("查询失败！");--%>
-    <%--                console.log(XMLHttpRequest.status);--%>
-    <%--                console.log(XMLHttpRequest.readyState);--%>
-    <%--                console.log(textStatus);--%>
-    <%--            }--%>
-    <%--        });--%>
-
-    <%--        return false; // 表单提交--%>
-    <%--    });--%>
-    <%--});--%>
-
     layui.use('form', function(){
         var form = layui.form;
         var layer = layui.layer;
 
+
         // 监听下拉框改变事件
         form.on('select(selectDemo)', function (data) {
+
+            let s = document.getElementById('fiveOneMoneyDiv').style.display;
+
             if (data.value === '1') {
                 console.log('111');
+
+                // 当前要隐藏
+                if (s === '') {
+                    // 未隐藏，清空三个框的值
+                    document.getElementById('shouldTaxRateMoney').value = '';
+                    document.getElementById('fiveOneMoney').value = '';
+                    document.getElementById('realyMoney').value = '';
+                }
+
                 $('#fiveOneMoneyDiv').hide();
             } else if (data.value === '2') {
                 console.log('222');
+
+                // 当前要展示
+                if (s === 'none') {
+                    // 隐藏了，清空三个框的值
+                    document.getElementById('shouldTaxRateMoney').value = '';
+                    document.getElementById('fiveOneMoney').value = '';
+                    document.getElementById('realyMoney').value = '';
+                }
+
                 $('#fiveOneMoneyDiv').show();
             }
+
+
+
         });
 
         //监听提交

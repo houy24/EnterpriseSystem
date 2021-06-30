@@ -13,7 +13,6 @@ public class WorkTitleDaoImpl implements WorkTitleDao{
     public int deleteByPrimaryKey(String workTitleId) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         WorkTitleDao workTitleDao = sqlSession.getMapper(WorkTitleDao.class);
-        System.out.println("WorkTitleDaoImpl => deleteByPrimaryKey");
         int i = 0;
         try {
             i = workTitleDao.deleteByPrimaryKey(workTitleId);
@@ -29,7 +28,6 @@ public class WorkTitleDaoImpl implements WorkTitleDao{
     public int insert(WorkTitle record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         WorkTitleDao workTitleDao = sqlSession.getMapper(WorkTitleDao.class);
-        System.out.println("WorkTitleDaoImpl => insert");
         int i = 0;
         try {
             i = workTitleDao.insert(record);
@@ -45,7 +43,6 @@ public class WorkTitleDaoImpl implements WorkTitleDao{
     public int insertSelective(WorkTitle record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         WorkTitleDao workTitleDao = sqlSession.getMapper(WorkTitleDao.class);
-        System.out.println("WorkTitleDaoImpl => insertSelective");
         int i = 0;
         try {
             i = workTitleDao.insertSelective(record);
@@ -61,7 +58,6 @@ public class WorkTitleDaoImpl implements WorkTitleDao{
     public WorkTitle selectByPrimaryKey(String workTitleId) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         WorkTitleDao workTitleDao = sqlSession.getMapper(WorkTitleDao.class);
-        System.out.println("WorkTitleDaoImpl => selectByPrimaryKey");
         WorkTitle workTitle = null;
         try {
             workTitle = workTitleDao.selectByPrimaryKey(workTitleId);
@@ -77,7 +73,6 @@ public class WorkTitleDaoImpl implements WorkTitleDao{
     public List<WorkTitle> selectAll() {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         WorkTitleDao workTitleDao = sqlSession.getMapper(WorkTitleDao.class);
-        System.out.println("WorkTitleDaoImpl => selectAll");
         List<WorkTitle> workTitle = null;
         try {
             workTitle = workTitleDao.selectAll();
@@ -93,7 +88,6 @@ public class WorkTitleDaoImpl implements WorkTitleDao{
     public int updateByPrimaryKeySelective(WorkTitle record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         WorkTitleDao workTitleDao = sqlSession.getMapper(WorkTitleDao.class);
-        System.out.println("WorkTitleDaoImpl => updateByPrimaryKeySelective");
         int i = 0;
         try {
             i = workTitleDao.updateByPrimaryKeySelective(record);
@@ -109,7 +103,6 @@ public class WorkTitleDaoImpl implements WorkTitleDao{
     public int updateByPrimaryKey(WorkTitle record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         WorkTitleDao workTitleDao = sqlSession.getMapper(WorkTitleDao.class);
-        System.out.println("WorkTitleDaoImpl => updateByPrimaryKey");
         int i = 0;
         try {
             i = workTitleDao.updateByPrimaryKey(record);

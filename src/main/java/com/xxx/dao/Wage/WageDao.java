@@ -33,4 +33,8 @@ public interface WageDao {
     // 统计某月份结算工资的条数
     int getCountByMonth(String timeMonthSearch);
 
+
+    // 根据部门编号，年份，来获取该部门的工资
+    List<Wage> getDepartmentYearWageList(@Param("departmentId") String departmentId,@Param("timeYearSearch") String timeYearSearch);
+
 }

@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet("/updateInventoryManagement")
+@WebServlet(name = "UpdateInventoryManagementServlet",urlPatterns = "/updateInventoryManagement")
 public class UpdateInventoryManagementServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -24,7 +24,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
 
-@WebServlet("/addOneInventory")
+@WebServlet(name = "AddOneInventoryServlet",urlPatterns = "/addOneInventory")
 public class AddOneInventoryServlet extends HttpServlet {
 
     @Override
@@ -55,6 +55,7 @@ public class AddOneInventoryServlet extends HttpServlet {
             ProductWarehouse productWarehouse = new ProductWarehouse();
             productWarehouse.setProductWarehouseId(UUIDUtils.getUUIDArg_("productWarehouse-w"));
             productWarehouse.setProductId(product.getProductId());
+            productWarehouse.setProductName(product.getProductName());
             productWarehouse.setProductNumber(Integer.parseInt(json.getString("productNumber")));
             Date time = new Date();
             productWarehouse.setInWareHouseTime(time);

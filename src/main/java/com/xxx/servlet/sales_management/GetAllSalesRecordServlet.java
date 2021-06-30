@@ -22,7 +22,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet("/getAllSalesRecord")
+@WebServlet(name = "GetAllSalesRecordServlet",urlPatterns = "/getAllSalesRecord")
 public class GetAllSalesRecordServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

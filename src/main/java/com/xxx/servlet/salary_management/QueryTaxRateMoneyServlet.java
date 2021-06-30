@@ -108,9 +108,9 @@ public class QueryTaxRateMoneyServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("check","true");
-        jsonObject.put("fiveOneMoney",fiveOneMoney); // 五险一金
-        jsonObject.put("shouldTaxRateMoney",shouldTaxRateMoney); // 应交税款
-        jsonObject.put("realyMoney",realyMoney); // 税后工资
+        jsonObject.put("fiveOneMoney",String.format("%.2f",fiveOneMoney)); // 五险一金
+        jsonObject.put("shouldTaxRateMoney",String.format("%.2f",shouldTaxRateMoney)); // 应交税款
+        jsonObject.put("realyMoney",String.format("%.2f",realyMoney)); // 税后工资
         out.print(jsonObject);
         out.close();
 

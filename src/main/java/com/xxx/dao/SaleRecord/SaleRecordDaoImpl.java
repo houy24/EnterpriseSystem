@@ -11,7 +11,6 @@ public class SaleRecordDaoImpl implements SaleRecordDao{
     public int deleteByPrimaryKey(String saleRecordId) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         SaleRecordDao saleRecordDao = sqlSession.getMapper(SaleRecordDao.class);
-        System.out.println("SaleRecordDaoImpl => deleteByPrimaryKey");
         int i = 0;
         try {
             i = saleRecordDao.deleteByPrimaryKey(saleRecordId);
@@ -27,7 +26,6 @@ public class SaleRecordDaoImpl implements SaleRecordDao{
     public int insert(SaleRecord record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         SaleRecordDao saleRecordDao = sqlSession.getMapper(SaleRecordDao.class);
-        System.out.println("SaleRecordDaoImpl => insert");
         int i = 0;
         try {
             i = saleRecordDao.insert(record);
@@ -43,7 +41,6 @@ public class SaleRecordDaoImpl implements SaleRecordDao{
     public int insertSelective(SaleRecord record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         SaleRecordDao saleRecordDao = sqlSession.getMapper(SaleRecordDao.class);
-        System.out.println("SaleRecordDaoImpl => insertSelective");
         int i = 0;
         try {
             i = saleRecordDao.insertSelective(record);
@@ -59,7 +56,6 @@ public class SaleRecordDaoImpl implements SaleRecordDao{
     public SaleRecord selectByPrimaryKey(String saleRecordId) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         SaleRecordDao saleRecordDao = sqlSession.getMapper(SaleRecordDao.class);
-        System.out.println("SaleRecordDaoImpl => selectByPrimaryKey");
         SaleRecord saleRecord = null;
         try {
             saleRecord = saleRecordDao.selectByPrimaryKey(saleRecordId);
@@ -75,7 +71,6 @@ public class SaleRecordDaoImpl implements SaleRecordDao{
     public List<SaleRecord> selectAllByUserId(String userId) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         SaleRecordDao saleRecordDao = sqlSession.getMapper(SaleRecordDao.class);
-        System.out.println("SaleRecordDaoImpl => selectAllByUserId");
         List<SaleRecord> saleRecords = null;
         try {
             saleRecords = saleRecordDao.selectAllByUserId(userId);
@@ -91,7 +86,6 @@ public class SaleRecordDaoImpl implements SaleRecordDao{
     public List<SaleRecord> selectAll() {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         SaleRecordDao saleRecordDao = sqlSession.getMapper(SaleRecordDao.class);
-        System.out.println("SaleRecordDaoImpl => selectAll");
         List<SaleRecord> saleRecords = null;
         try {
             saleRecords = saleRecordDao.selectAll();
@@ -107,7 +101,6 @@ public class SaleRecordDaoImpl implements SaleRecordDao{
     public int updateSaleRecordStateBySaleRecordId(String saleRecordState, String saleRecordId) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         SaleRecordDao saleRecordDao = sqlSession.getMapper(SaleRecordDao.class);
-        System.out.println("SaleRecordDaoImpl => updateSaleRecordStateBySaleRecordId");
         int i = 0;
         try {
             i = saleRecordDao.updateSaleRecordStateBySaleRecordId(saleRecordState, saleRecordId);
@@ -123,7 +116,6 @@ public class SaleRecordDaoImpl implements SaleRecordDao{
     public int updateByPrimaryKeySelective(SaleRecord record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         SaleRecordDao saleRecordDao = sqlSession.getMapper(SaleRecordDao.class);
-        System.out.println("SaleRecordDaoImpl => updateByPrimaryKeySelective");
         int i = 0;
         try {
             i = saleRecordDao.updateByPrimaryKeySelective(record);
@@ -139,7 +131,6 @@ public class SaleRecordDaoImpl implements SaleRecordDao{
     public int updateByPrimaryKey(SaleRecord record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         SaleRecordDao saleRecordDao = sqlSession.getMapper(SaleRecordDao.class);
-        System.out.println("SaleRecordDaoImpl => updateByPrimaryKey");
         int i = 0;
         try {
             i = saleRecordDao.updateByPrimaryKey(record);

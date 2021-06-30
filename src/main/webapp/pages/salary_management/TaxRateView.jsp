@@ -1,4 +1,4 @@
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -108,13 +108,16 @@
         <button type="button" class="layui-btn" data-type="reload" style="font-size: 16px;"
                 lay-filter="data-search-btn">搜索</button>
 
-        <div class="layui-inline" style="float: right;margin-right: 100px;" >
-            <button class="layui-btn"  lay-event="add"
-                    style="font-size: 18px; margin-top: 0px; padding: 2px 10px 4px 10px;line-height: 32px;margin-right: -37px;" onclick="">
-                <i class="layui-icon" style="font-size: 16px;">&#xe61f;</i>
-                <span style="font-size: 16px;">添加</span>
-            </button>
-        </div>
+        <%--管理员，正常添加--%>
+        <c:if test="${userAccount.userType == 'manager'}">
+            <div class="layui-inline" style="float: right;margin-right: 100px;" >
+                <button class="layui-btn"  lay-event="add"
+                        style="font-size: 18px; margin-top: 0px; padding: 2px 10px 4px 10px;line-height: 32px;margin-right: -37px;" onclick="">
+                    <i class="layui-icon" style="font-size: 16px;">&#xe61f;</i>
+                    <span style="font-size: 16px;">添加</span>
+                </button>
+            </div>
+        </c:if>
     </div>
 </div>
 
@@ -126,12 +129,15 @@
     <%--职称表格--%>
     <table class="layui-hide" id="TaxRateList"  lay-filter="demo"></table>
 
-    <%--操作栏--%>
-    <script type="text/html" id="barDemo" >
-        <%--            <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>--%>
-        <a class="layui-btn layui-btn-xs" lay-event="edit" style="font-size: 16px;width: 68px;height: 44px;line-height: 27px;">编辑</a>
-        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del" style="font-size: 16px;width: 68px;height: 44px;line-height: 27px;">删除</a>
-    </script>
+    <%--管理员，正常添加--%>
+<%--    <c:if test="${userAccount.userType == 'manager'}">--%>
+        <%--操作栏--%>
+        <script type="text/html" id="barDemo" >
+            <%--            <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>--%>
+            <a class="layui-btn layui-btn-xs" lay-event="edit" style="font-size: 16px;width: 68px;height: 44px;line-height: 27px;">编辑</a>
+            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del" style="font-size: 16px;width: 68px;height: 44px;line-height: 27px;">删除</a>
+        </script>
+<%--    </c:if>--%>
 
 </div>
 
@@ -167,17 +173,31 @@
 
                 {type:'checkbox'},  //复选框
 
+                <%--管理员，正常操作--%>
+                <c:if test="${userAccount.userType == 'manager'}">
+                    {field: 'taxRateId', width: 217, align:'center',  title: 'ID',
+                        style: 'font-size:18px;'} //职称编号
+                    ,{field: 'money',width: 253, align:'center', title: '工资', sort: true, // 根据工资排序
+                        style: 'font-size:18px;'}
+                    ,{field: 'rate',width: 169, align:'center',title: '适用税率',
+                        style: 'font-size:18px;'}
+                    ,{field: 'quicklyReduce',width: 332, align:'center',title: '速算扣除数',
+                        style: 'font-size:18px;'}
+                    ,{title: '操作',/*fixed: 'right',*/ width: 265, align:'center', toolbar: '#barDemo',
+                        style: 'font-size:18px;'}, //常驻右边工具栏
+                </c:if>
+
+                <%--员工，没有操作--%>
+                <c:if test="${userAccount.userType == 'employee'}">
                 {field: 'taxRateId', width: 217, align:'center',  title: 'ID',
                     style: 'font-size:18px;'} //职称编号
-                ,{field: 'money',width: 253, align:'center', title: '工资', sort: true, // 根据工资排序
+                ,{field: 'money',width: 354 , align:'center', title: '工资', sort: true, // 根据工资排序
                     style: 'font-size:18px;'}
-                ,{field: 'rate',width: 169, align:'center',title: '适用税率',
+                ,{field: 'rate',width: 289 , align:'center',title: '适用税率',
                     style: 'font-size:18px;'}
-                ,{field: 'quicklyReduce',width: 332, align:'center',title: '速算扣除数',
-                    style: 'font-size:18px;'}
-
-                ,{title: '操作',/*fixed: 'right',*/ width: 265, align:'center', toolbar: '#barDemo',
-                    style: 'font-size:18px;'} //常驻右边工具栏
+                ,{field: 'quicklyReduce',width: 284 , align:'center',title: '速算扣除数',
+                    style: 'font-size:18px;'},
+                </c:if>
 
             ]],
 

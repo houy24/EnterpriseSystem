@@ -13,7 +13,6 @@ public class SignInRecordDaoImpl implements SignInRecordDao{
     public int deleteByPrimaryKey(String signInId) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         SignInRecordDao signInRecordDao = sqlSession.getMapper(SignInRecordDao.class);
-        System.out.println("SignInRecordDaoDaoImpl => deleteByPrimaryKey");
         int i = 0;
         try {
             i = signInRecordDao.deleteByPrimaryKey(signInId);
@@ -29,7 +28,6 @@ public class SignInRecordDaoImpl implements SignInRecordDao{
     public int insert(SignInRecord record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         SignInRecordDao signInRecordDao = sqlSession.getMapper(SignInRecordDao.class);
-        System.out.println("SignInRecordDaoDaoImpl => insert");
         int i = 0;
         try {
             i = signInRecordDao.insert(record);
@@ -45,7 +43,6 @@ public class SignInRecordDaoImpl implements SignInRecordDao{
     public int insertSelective(SignInRecord record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         SignInRecordDao signInRecordDao = sqlSession.getMapper(SignInRecordDao.class);
-        System.out.println("SignInRecordDaoDaoImpl => insertSelective");
         int i = 0;
         try {
             i = signInRecordDao.insertSelective(record);
@@ -61,7 +58,6 @@ public class SignInRecordDaoImpl implements SignInRecordDao{
     public SignInRecord selectByPrimaryKey(String signInId) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         SignInRecordDao signInRecordDao = sqlSession.getMapper(SignInRecordDao.class);
-        System.out.println("SignInRecordDaoDaoImpl => selectByPrimaryKey");
         SignInRecord signInRecord = null;
         try {
             signInRecord = signInRecordDao.selectByPrimaryKey(signInId);
@@ -77,7 +73,6 @@ public class SignInRecordDaoImpl implements SignInRecordDao{
     public List<SignInRecord> selectAllByUserId(String userId) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         SignInRecordDao signInRecordDao = sqlSession.getMapper(SignInRecordDao.class);
-        System.out.println("SignInRecordDaoDaoImpl => selectAllByUserId");
         List<SignInRecord> signInRecord = null;
         try {
             signInRecord = signInRecordDao.selectAllByUserId(userId);
@@ -93,7 +88,6 @@ public class SignInRecordDaoImpl implements SignInRecordDao{
     public int updateByPrimaryKeySelective(SignInRecord record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         SignInRecordDao signInRecordDao = sqlSession.getMapper(SignInRecordDao.class);
-        System.out.println("SignInRecordDaoDaoImpl => updateByPrimaryKeySelective");
         int i = 0;
         try {
             i = signInRecordDao.updateByPrimaryKeySelective(record);
@@ -109,7 +103,6 @@ public class SignInRecordDaoImpl implements SignInRecordDao{
     public int updateByPrimaryKey(SignInRecord record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         SignInRecordDao signInRecordDao = sqlSession.getMapper(SignInRecordDao.class);
-        System.out.println("SignInRecordDaoDaoImpl => updateByPrimaryKey");
         int i = 0;
         try {
             i = signInRecordDao.updateByPrimaryKey(record);
@@ -125,7 +118,6 @@ public class SignInRecordDaoImpl implements SignInRecordDao{
     public List<SignInRecord> selectAll() {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         SignInRecordDao signInRecordDao = sqlSession.getMapper(SignInRecordDao.class);
-        System.out.println("SignInRecordDaoDaoImpl => selectAll");
         List<SignInRecord> signInRecordList = null;
         try {
             signInRecordList = signInRecordDao.selectAll();

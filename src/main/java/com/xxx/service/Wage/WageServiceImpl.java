@@ -44,4 +44,41 @@ public class WageServiceImpl implements WageService {
         int res = wageDao.getCountByMonth(timeMonthSearch);
         return res > 0;
     }
+
+    @Override
+    public double getUserMonthWage(String userId, String timeMonthSearch) {
+        Wage wageByUserIdAndMonth = wageDao.getWageByUserIdAndMonth(userId, timeMonthSearch);
+        if (null == wageByUserIdAndMonth)
+            return 0;
+        // 保留两位小数
+        return Double.parseDouble(String.format("%.2f",wageByUserIdAndMonth.getRealyWage()));
+    }
+
+    @Override
+    public double getUserYearWage(String userId, String timeYearSearch) {
+
+        double sum = 0;
+        for (int i = 1; i <= 12; i++) {
+            String timeMonthSearch;
+            if (i < 10) {
+                timeMonthSearch = timeYearSearch + "-0" + i;
+            } else {
+                timeMonthSearch = timeYearSearch + "-" + i;
+            }
+
+            sum += getUserMonthWage(userId, timeMonthSearch);
+        }
+        return Double.parseDouble(String.format("%.2f",sum));
+    }
+
+    @Override
+    public double getDepartmentYearWage(String departmentId, String timeYearSearch) {
+        List<Wage> departmentYearWageList = wageDao.getDepartmentYearWageList(departmentId, timeYearSearch);
+
+        double sum = 0;
+        for (Wage wage : departmentYearWageList) {
+            sum += wage.getRealyWage();
+        }
+        return Double.parseDouble(String.format("%.2f",sum));
+    }
 }

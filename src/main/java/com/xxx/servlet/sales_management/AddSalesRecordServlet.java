@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.IOException;
 
-@WebServlet("/AddSalesRecord")
+@WebServlet(name = "AddSalesRecordServlet",urlPatterns = "/AddSalesRecord")
 public class AddSalesRecordServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

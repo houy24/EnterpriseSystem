@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet("/getAllInventory")
+@WebServlet(name = "GetAllInventoryServlet",urlPatterns = "/getAllInventory")
 public class GetAllInventoryServlet extends HttpServlet {
 
     @Override

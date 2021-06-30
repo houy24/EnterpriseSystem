@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/InventoryManagement")
+@WebServlet(name = "InventoryManagementServlet",urlPatterns = "/InventoryManagement")
 public class InventoryManagementServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -1,10 +1,7 @@
 package com.xxx.servlet.salary_management;
 
 import com.alibaba.fastjson.JSONObject;
-import com.xxx.pojo.Department;
-import com.xxx.pojo.RoutineItem;
-import com.xxx.pojo.SignInRecord;
-import com.xxx.pojo.UserData;
+import com.xxx.pojo.*;
 import com.xxx.service.Department.DepartmentService;
 import com.xxx.service.Department.DepartmentServiceImpl;
 import com.xxx.service.RoutineItem.RoutineItemService;
@@ -15,6 +12,7 @@ import com.xxx.service.UserData.UserDataService;
 import com.xxx.service.UserData.UserDataServiceImpl;
 import com.xxx.utils.MyDateTimeUtils;
 import com.xxx.utils.MyPageHelperUtils;
+import com.xxx.utils.UserTypeUtils;
 import lombok.SneakyThrows;
 
 import javax.servlet.ServletException;
@@ -67,6 +65,16 @@ public class GetAllSignManageServlet extends HttpServlet {
             out.close();
             return;
         }
+
+        // 过滤。。。
+
+        // 权限过滤，如果是普通员工，不是管理员，则只能查看自己的情况
+        UserAccount userAccount = (UserAccount) request.getSession().getAttribute("userAccount");
+        if (userAccount.getUserType().equals(UserTypeUtils.UserType_Employee)) { // 员工
+            UserData userData = (UserData) request.getSession().getAttribute("userData");
+            userName = userData.getUserName(); // 当前员工
+        }
+
 
         SignInRecordService signInRecordService = new SignInRecordServiceImpl(); // 登录表，考勤业务
         UserDataService userDataService = new UserDataServiceImpl(); // 用户信息业务

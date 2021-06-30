@@ -13,6 +13,7 @@ import com.xxx.service.WorkAgeMoney.WorkAgeMoneyServiceImpl;
 import com.xxx.service.WorkTitle.WorkTitleService;
 import com.xxx.service.WorkTitle.WorkTitleServiceImpl;
 import com.xxx.utils.MyPageHelperUtils;
+import com.xxx.utils.UserTypeUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -61,6 +62,13 @@ public class GetAllUserDataMoneyServlet extends HttpServlet {
         List<UserData> allUserData = userDataService.selectAll(); // 所有用户的信息
 
         // ... 过滤
+
+        // 权限过滤，如果是普通员工，不是管理员，则只能查看自己的情况
+        UserAccount userAccount = (UserAccount) request.getSession().getAttribute("userAccount");
+        if (userAccount.getUserType().equals(UserTypeUtils.UserType_Employee)) { // 员工
+            UserData userData = (UserData) request.getSession().getAttribute("userData");
+            userName = userData.getUserName(); // 当前员工
+        }
 
         // 搜索过滤
         for (int i = 0; i < allUserData.size(); i++) {

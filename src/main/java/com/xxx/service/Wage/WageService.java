@@ -28,6 +28,17 @@ public interface WageService {
 
 
 
+    // 根据月份，用户编号，获取该用户，该月份的工资
+    double getUserMonthWage(String userId,String timeMonthSearch);
+
+    // 根据年份，用户编号，获取该用户，该年份的总工资
+    double getUserYearWage(String userId,String timeYearSearch);
+
+    // 根据 部门编号，年份，获取该部门，该年份的总工资
+    double getDepartmentYearWage(String departmentId,String timeYearSearch);
+
+
+
 
 
 

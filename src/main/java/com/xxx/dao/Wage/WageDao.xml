@@ -45,11 +45,13 @@
     select count(*) from wage
     where wageProvideTime like concat(#{timeMonthSearch},'%')
   </select>
+  <!-- // 根据部门编号，年份，来获取该部门的工资  -->
+  <select id="getDepartmentYearWageList" resultType="com.xxx.pojo.Wage">
+    select * from wage
+    where departmentId = #{departmentId} and wageProvideTime like concat(#{timeYearSearch},'%')
+  </select>
 
-
-
-
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from wage
     where wageId = #{wageId,jdbcType=VARCHAR}
   </delete>

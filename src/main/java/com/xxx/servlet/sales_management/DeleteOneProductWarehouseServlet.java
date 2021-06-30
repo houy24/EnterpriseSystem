@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet("/deleteOneProductWarehouse")
+@WebServlet(name = "DeleteOneProductWarehouseServlet",urlPatterns = "/deleteOneProductWarehouse")
 public class DeleteOneProductWarehouseServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

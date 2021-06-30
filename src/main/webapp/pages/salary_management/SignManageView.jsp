@@ -117,6 +117,8 @@
     <%--搜索，  搜索员工姓名，员工部门，考勤月份--%>
     <div class="layui-form">
 
+    <%--管理员，正常搜索--%>
+    <c:if test="${userAccount.userType == 'manager'}">
         <%--员工姓名搜索--%>
         <span style="font-size: 18px;">员工姓名：</span>
         <div class="layui-inline">
@@ -135,6 +137,7 @@
                 </c:forEach>
             </select>
         </div>
+    </c:if>
 
         <%--考勤月份搜索--%>
         <span style="font-size: 18px;">考勤月份：</span>

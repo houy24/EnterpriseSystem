@@ -26,10 +26,8 @@
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
                 <a href="javascript:;">
+                    <img src="${userData.userPhoto}" class="layui-nav-img">
                 </a>
-                <dl class="layui-nav-child">
-                    <dd><a onclick="">个人信息</a></dd>
-                </dl>
             </li>
             <li class="layui-nav-item">
                 <a href="${pageContext.request.contextPath}/pages/homepage.jsp" onclick="exit()">退出</a>

@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet("/GetRemnantInventory")
+@WebServlet(name = "GetRemnantInventoryServlet",urlPatterns = "/GetRemnantInventory")
 public class GetRemnantInventoryServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

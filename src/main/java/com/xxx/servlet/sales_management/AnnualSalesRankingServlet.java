@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/AnnualSalesRanking")
+@WebServlet(name = "AnnualSalesRankingServlet",urlPatterns = "/AnnualSalesRanking")
 public class AnnualSalesRankingServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

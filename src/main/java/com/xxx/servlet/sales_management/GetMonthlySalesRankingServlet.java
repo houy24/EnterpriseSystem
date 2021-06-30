@@ -23,7 +23,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-@WebServlet("/getMonthlySalesRanking")
+@WebServlet(name = "GetMonthlySalesRankingServlet",urlPatterns = "/getMonthlySalesRanking")
 public class GetMonthlySalesRankingServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

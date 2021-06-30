@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet("/deleteOneSaleRecord")
+@WebServlet(name = "DeleteOneSaleRecordServlet",urlPatterns = "/deleteOneSaleRecord")
 public class DeleteOneSaleRecordServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

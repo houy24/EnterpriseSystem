@@ -12,7 +12,6 @@ public class UserAccountMapperImpl implements UserAccountMapper {
     public List<UserAccount> getAllUserAccount() {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         UserAccountMapper userAccountMapper = sqlSession.getMapper(UserAccountMapper.class);
-        System.out.println("UserAccountMapperImpl => getAllUserAccount");
 
         List<UserAccount> userAccountList = null;
         try {
@@ -30,7 +29,6 @@ public class UserAccountMapperImpl implements UserAccountMapper {
     public UserAccount getUserAccountByUserAccountId(String userId) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         UserAccountMapper userAccountMapper = sqlSession.getMapper(UserAccountMapper.class);
-        System.out.println("UserAccountMapperImpl => getUserAccountByUserAccountId");
 
         UserAccount userAccount = null;
         try {
@@ -48,7 +46,6 @@ public class UserAccountMapperImpl implements UserAccountMapper {
     public UserAccount getUserAccountByUserPhone(String userPhone) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         UserAccountMapper userAccountMapper = sqlSession.getMapper(UserAccountMapper.class);
-        System.out.println("UserAccountMapperImpl => getUserAccountByuserPhone");
 
         UserAccount userAccount = null;
         try {
@@ -66,7 +63,6 @@ public class UserAccountMapperImpl implements UserAccountMapper {
     public int addUserAccount(UserAccount userAccount) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         UserAccountMapper userAccountMapper = sqlSession.getMapper(UserAccountMapper.class);
-        System.out.println("UserAccountMapperImpl => addUserAccount");
 
         int res = 0;
         try {
@@ -84,7 +80,6 @@ public class UserAccountMapperImpl implements UserAccountMapper {
     public int updateUserAccount(UserAccount userAccount) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         UserAccountMapper userAccountMapper = sqlSession.getMapper(UserAccountMapper.class);
-        System.out.println("UserAccountMapperImpl => updateUserAccount");
 
         int res = 0;
         try {
@@ -102,7 +97,6 @@ public class UserAccountMapperImpl implements UserAccountMapper {
     public int deleteUserAccountByUserId(String userId) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         UserAccountMapper userAccountMapper = sqlSession.getMapper(UserAccountMapper.class);
-        System.out.println("UserAccountMapperImpl => deleteUserAccountByUserId");
 
         int res = 0;
         try {

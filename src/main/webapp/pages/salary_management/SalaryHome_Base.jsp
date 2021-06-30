@@ -24,7 +24,11 @@
     <div style="margin-left: 30px;">
         <div style="padding: 15px;margin-bottom: 5px;margin-left: -10px;margin-top: 10px;">
             <blockquote class="layui-elem-quote">
-                <h1>您好，管理员 <span style="color: #40AFFE;">${userData.userName}</span> ！</h1>
+                <h1>您好，<c:if test="${userAccount.userType == 'manager'}">管理员</c:if><c:if test="${userAccount.userType == 'employee'}">员工</c:if>
+                    <%--显示当前用户身份--%>
+
+                    <span style="color: #40AFFE;">${userData.userName}</span> ！</h1>
+
             </blockquote>
         </div>
         <div class="index">
