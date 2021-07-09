@@ -22,6 +22,9 @@ public class AddPositionServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        response.setContentType("text/html;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("utf-8");
         System.out.println("============进入 AddPositionServlet============");
 
         // positionId 为随机生成的UUID，后台服务中生成

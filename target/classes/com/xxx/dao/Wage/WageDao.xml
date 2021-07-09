@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxx.dao.Wage.WageDao">
+  <resultMap id="BaseResultMap" type="com.xxx.pojo.Wage">
+    <id column="wageId" jdbcType="VARCHAR" property="wageId" />
+    <result column="userId" jdbcType="VARCHAR" property="userId" />
+    <result column="departmentId" jdbcType="VARCHAR" property="departmentId" />
+    <result column="wageProvideTime" jdbcType="TIMESTAMP" property="wageProvideTime" />
+    <result column="realyWage" jdbcType="DOUBLE" property="realyWage" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    wageId, userId, departmentId, wageProvideTime, realyWage
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from wage
+    where wageId = #{wageId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAllByUserId" resultType="com.xxx.pojo.Wage">
+    select
+    <include refid="Base_Column_List" />
+    from wage
+  </select>
+
+  <!--// 查询所有工资-->
+    <select id="selectAll" resultType="com.xxx.pojo.Wage">
+      select * from wage
+    </select>
+
+  <!-- /* 根据月份，获取当月所有的工资  */ -->
+  <select id="getWageByMonth" resultType="com.xxx.pojo.Wage">
+    select * from wage
+    where wageProvideTime like concat(#{timeMonthSearch},'%')
+  </select>
+
+  <!-- // 根据月份，用户编号，获取该用户该月的工资 -->
+  <select id="getWageByUserIdAndMonth" resultType="com.xxx.pojo.Wage">
+    select * from wage
+    where userId = #{userId} and wageProvideTime like concat(#{timeMonthSearch},'%')
+  </select>
+
+  <!-- // 统计某月份结算工资的条数 -->
+  <select id="getCountByMonth" resultType="java.lang.Integer">
+    select count(*) from wage
+    where wageProvideTime like concat(#{timeMonthSearch},'%')
+  </select>
+  <!-- // 根据部门编号，年份，来获取该部门的工资  -->
+  <select id="getDepartmentYearWageList" resultType="com.xxx.pojo.Wage">
+    select * from wage
+    where departmentId = #{departmentId} and wageProvideTime like concat(#{timeYearSearch},'%')
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from wage
+    where wageId = #{wageId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" keyColumn="wageId" keyProperty="wageId" parameterType="com.xxx.pojo.Wage" useGeneratedKeys="true">
+    insert into wage (wageId, userId, departmentId, wageProvideTime,
+      realyWage)
+    values (#{wageId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{departmentId,jdbcType=VARCHAR}, #{wageProvideTime,jdbcType=TIMESTAMP},
+      #{realyWage,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" keyColumn="wageId" keyProperty="wageId" parameterType="com.xxx.pojo.Wage" useGeneratedKeys="true">
+    insert into wage
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      wageId,
+      <if test="userId != null">
+        userId,
+      </if>
+      <if test="departmentId != null">
+        departmentId,
+      </if>
+      <if test="wageProvideTime != null">
+        wageProvideTime,
+      </if>
+      <if test="realyWage != null">
+        realyWage,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{wageId,jdbcType=VARCHAR},
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentId != null">
+        #{departmentId,jdbcType=VARCHAR},
+      </if>
+      <if test="wageProvideTime != null">
+        #{wageProvideTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="realyWage != null">
+        #{realyWage,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xxx.pojo.Wage">
+    update wage
+    <set>
+      <if test="userId != null">
+        userId = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentId != null">
+        departmentId = #{departmentId,jdbcType=VARCHAR},
+      </if>
+      <if test="wageProvideTime != null">
+        wageProvideTime = #{wageProvideTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="realyWage != null">
+        realyWage = #{realyWage,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where wageId = #{wageId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xxx.pojo.Wage">
+    update wage
+    set userId = #{userId,jdbcType=VARCHAR},
+      departmentId = #{departmentId,jdbcType=VARCHAR},
+      wageProvideTime = #{wageProvideTime,jdbcType=TIMESTAMP},
+      realyWage = #{realyWage,jdbcType=DOUBLE}
+    where wageId = #{wageId,jdbcType=VARCHAR}
+  </update>
+</mapper>

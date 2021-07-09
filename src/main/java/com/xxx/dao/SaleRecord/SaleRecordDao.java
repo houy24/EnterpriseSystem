@@ -23,4 +23,13 @@ public interface SaleRecordDao {
     int updateByPrimaryKeySelective(SaleRecord record);
 
     int updateByPrimaryKey(SaleRecord record);
+
+    List<SaleRecord> selectAllByUserIdAndTime(@Param("userId")String userId,@Param("startTime") String startTime, @Param("endTime") String endTime);
+
+    //查询某员工销售记录总数
+    int selectCountByUserId(String userId);
+    //通过最大销售数量查询销售记录
+    List<SaleRecord> selectAllByMaxNumber(@Param("userId")String userId,@Param("MaxNumber")String MaxNumber);
+    //通过日期查询销售记录
+    List<SaleRecord> selectAllByDate(@Param("userId")String userId,@Param("saleFinishTime") String saleFinishTime);
 }

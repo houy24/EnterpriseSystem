@@ -1,0 +1,92 @@
+.employeeName{
+    display: inline-block;
+    margin-top: 0px;
+    width: 400px;
+}
+.employeePhone{
+    margin-left: 300px;
+    display: inline-block;
+    width: 400px;
+}
+.employeeSex{
+    display: inline-block;
+    margin-top: 50px;
+    width: 400px;
+}
+.employeeEmail{
+    display: inline-block;
+    margin-left: 300px;
+    width: 400px;
+}
+.employeeAge{
+    display: inline-block;
+    margin-top: 50px;
+    width: 400px;
+}
+.employeeType{
+    display: inline-block;
+    width: 400px;
+}
+.employeeDepartment{
+    display: inline-block;
+    margin-left: 300px;
+    margin-top: 50px;
+    width: 400px;
+}
+.employeePosition{
+    display: inline-block;
+    width: 400px;
+}
+.employeeWorkTitle{
+    display: inline-block;
+    margin-top: 50px;
+    margin-left: 300px;
+    width: 400px;
+}
+.employeeWorkAge{
+    display: inline-block;
+    margin-left: 300px;
+    margin-top: 50px;
+    width: 400px;
+}
+.employeePhoto{
+    position: relative;
+    display: inline-block;
+    margin-top: 100px;
+    margin-left: 300px;
+    width: 400px;
+}
+.employee-input{
+    display: inline-block;
+    border: none;
+    width: 120px;
+    font-size: 25px;
+}
+.employee-context{
+    display: inline-block;
+    width: 200px;
+    font-size: 20px;
+    text-align: center;
+}
+.employee{
+    width: 200px;
+    height: 30px;
+}
+.fileInput{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    display: block;
+    width: 3.5rem;
+    clear: both;
+    display: block;
+    margin: auto;
+    background-color: red;
+}
+.btn{
+    margin-top: 50px;
+    margin-left: 700px;
+}

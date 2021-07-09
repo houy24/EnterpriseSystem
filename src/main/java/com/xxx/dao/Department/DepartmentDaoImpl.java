@@ -111,4 +111,19 @@ public class DepartmentDaoImpl implements DepartmentDao{
         }
         return i;
     }
+    //通过部门名称查询部门编号
+    @Override
+    public Department selectAllByDepartmentName(String departmentName) {
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        DepartmentDao departmentDao = sqlSession.getMapper(DepartmentDao.class);
+        Department department = null;
+        try {
+            department = departmentDao.selectAllByDepartmentName(departmentName);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+        return department;
+    }
 }

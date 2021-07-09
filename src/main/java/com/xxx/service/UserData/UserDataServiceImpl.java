@@ -41,4 +41,32 @@ public class UserDataServiceImpl implements UserDataService {
     public List<UserData> selectAll() {
         return userDataDao.selectAll();
     }
+
+
+    @Override
+    public void updateByUserId(String userid,String ImgPath){
+        userDataDao.updateByUserId(userid,ImgPath);
+    }
+
+    @Override
+    public List<UserData> selectAllByUserName(String userName){
+        return userDataDao.selectAllByUserName(userName);
+    }
+
+    @Override
+    public List<UserData> selectAllByDepartmentId(String departmentId){
+        return  userDataDao.selectAllByDepartmentId(departmentId);
+    }
+    @Override
+    public int insert(UserData record){
+        return userDataDao.insert(record);
+    }
+    @Override
+    public int updateByPrimaryKey(UserData record){
+        return userDataDao.updateByPrimaryKey(record);
+    }
+    @Override
+    public int deleteByPrimaryKey(String userid){
+        return userDataDao.deleteByPrimaryKey(userid);
+    }
 }

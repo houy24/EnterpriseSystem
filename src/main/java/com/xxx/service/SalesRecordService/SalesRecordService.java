@@ -12,4 +12,5 @@ public interface SalesRecordService {
     JSONArray toJSONArray(List<SaleRecord> saleRecords);
     boolean deleteOneSaleRecord(String saleRecordId);
     boolean updateOneSaleRecord(SaleRecord saleRecord);
+    List<SaleRecord> getSaleRecordByUserAndTime(String userId, String startTime, String endTime);
 }

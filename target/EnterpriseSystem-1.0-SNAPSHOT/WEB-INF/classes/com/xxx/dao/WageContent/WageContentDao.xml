@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxx.dao.WageContent.WageContentDao">
+  <resultMap id="BaseResultMap" type="com.xxx.pojo.WageContent">
+    <id column="wageId" jdbcType="VARCHAR" property="wageId" />
+    <result column="userId" jdbcType="VARCHAR" property="userId" />
+    <result column="wageProvideTime" jdbcType="TIMESTAMP" property="wageProvideTime" />
+    <result column="shouldWage" jdbcType="DOUBLE" property="shouldWage" />
+    <result column="realyWage" jdbcType="DOUBLE" property="realyWage" />
+    <result column="positionMoney" jdbcType="DOUBLE" property="positionMoney" />
+    <result column="workResultMoney" jdbcType="DOUBLE" property="workResultMoney" />
+    <result column="workAgeMoney" jdbcType="DOUBLE" property="workAgeMoney" />
+    <result column="fullTimeMoney" jdbcType="DOUBLE" property="fullTimeMoney" />
+    <result column="workTitleMoney" jdbcType="DOUBLE" property="workTitleMoney" />
+    <result column="workOverTimeMoney" jdbcType="DOUBLE" property="workOverTimeMoney" />
+    <result column="eatAllowance" jdbcType="DOUBLE" property="eatAllowance" />
+    <result column="carAllowance" jdbcType="DOUBLE" property="carAllowance" />
+    <result column="travelAllowance" jdbcType="DOUBLE" property="travelAllowance" />
+    <result column="houseAllowance" jdbcType="DOUBLE" property="houseAllowance" />
+    <result column="lateMoney" jdbcType="DOUBLE" property="lateMoney" />
+    <result column="outEarlyMoney" jdbcType="DOUBLE" property="outEarlyMoney" />
+    <result column="absentMoney" jdbcType="DOUBLE" property="absentMoney" />
+    <result column="oldEnsure" jdbcType="DOUBLE" property="oldEnsure" />
+    <result column="medicalEnsure" jdbcType="DOUBLE" property="medicalEnsure" />
+    <result column="lostJobEnsure" jdbcType="DOUBLE" property="lostJobEnsure" />
+    <result column="workHurtEnsure" jdbcType="DOUBLE" property="workHurtEnsure" />
+    <result column="birthEnsure" jdbcType="DOUBLE" property="birthEnsure" />
+    <result column="houseFundEnsure" jdbcType="DOUBLE" property="houseFundEnsure" />
+    <result column="oneSelfTax" jdbcType="DOUBLE" property="oneSelfTax" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    wageId, userId, wageProvideTime, shouldWage, realyWage, positionMoney, workResultMoney, 
+    workAgeMoney, fullTimeMoney, workTitleMoney, workOverTimeMoney, eatAllowance, carAllowance, 
+    travelAllowance, houseAllowance, lateMoney, outEarlyMoney, absentMoney, oldEnsure, 
+    medicalEnsure, lostJobEnsure, workHurtEnsure, birthEnsure, houseFundEnsure, oneSelfTax
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from wage_content
+    where wageId = #{wageId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultType="com.xxx.pojo.WageContent">
+    select
+    <include refid="Base_Column_List" />
+    from wage_content
+  </select>
+  <select id="selectAllByUserId" resultType="com.xxx.pojo.WageContent">
+    select
+    <include refid="Base_Column_List" />
+    from wage_content
+    where userId = #{userId,jdbcType=VARCHAR}
+  </select>
+
+  <!-- /* 根据月份，获取当月所有的工资详情  */ -->
+    <select id="getWageContentByMonth" resultType="com.xxx.pojo.WageContent">
+      select * from wage_content
+        where wageProvideTime like concat(#{timeMonthSearch},'%')
+    </select>
+
+  <!-- // 根据月份，用户编号，获取该用户该月的工资详情 -->
+  <select id="getWageContentByUserIdAndMonth" resultType="com.xxx.pojo.WageContent">
+    select * from wage_content
+        where userId = #{userId} and wageProvideTime like concat(#{timeMonthSearch},'%')
+  </select>
+
+  <!-- // 统计某月份结算工资的条数 -->
+  <select id="getCountByMonth" resultType="java.lang.Integer">
+        select count(*) from wage_content
+            where wageProvideTime like concat(#{timeMonthSearch},'%')
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from wage_content
+    where wageId = #{wageId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" keyColumn="wageId" keyProperty="wageId" parameterType="com.xxx.pojo.WageContent" useGeneratedKeys="true">
+    insert into wage_content (wageId,userId, wageProvideTime, shouldWage,
+      realyWage, positionMoney, workResultMoney, 
+      workAgeMoney, fullTimeMoney, workTitleMoney, 
+      workOverTimeMoney, eatAllowance, carAllowance, 
+      travelAllowance, houseAllowance, lateMoney, 
+      outEarlyMoney, absentMoney, oldEnsure, 
+      medicalEnsure, lostJobEnsure, workHurtEnsure, 
+      birthEnsure, houseFundEnsure, oneSelfTax
+      )
+    values (#{wageId,jdbcType=VARCHAR},#{userId,jdbcType=VARCHAR}, #{wageProvideTime,jdbcType=TIMESTAMP}, #{shouldWage,jdbcType=DOUBLE},
+      #{realyWage,jdbcType=DOUBLE}, #{positionMoney,jdbcType=DOUBLE}, #{workResultMoney,jdbcType=DOUBLE}, 
+      #{workAgeMoney,jdbcType=DOUBLE}, #{fullTimeMoney,jdbcType=DOUBLE}, #{workTitleMoney,jdbcType=DOUBLE}, 
+      #{workOverTimeMoney,jdbcType=DOUBLE}, #{eatAllowance,jdbcType=DOUBLE}, #{carAllowance,jdbcType=DOUBLE}, 
+      #{travelAllowance,jdbcType=DOUBLE}, #{houseAllowance,jdbcType=DOUBLE}, #{lateMoney,jdbcType=DOUBLE}, 
+      #{outEarlyMoney,jdbcType=DOUBLE}, #{absentMoney,jdbcType=DOUBLE}, #{oldEnsure,jdbcType=DOUBLE}, 
+      #{medicalEnsure,jdbcType=DOUBLE}, #{lostJobEnsure,jdbcType=DOUBLE}, #{workHurtEnsure,jdbcType=DOUBLE}, 
+      #{birthEnsure,jdbcType=DOUBLE}, #{houseFundEnsure,jdbcType=DOUBLE}, #{oneSelfTax,jdbcType=DOUBLE}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="wageId" keyProperty="wageId" parameterType="com.xxx.pojo.WageContent" useGeneratedKeys="true">
+    insert into wage_content
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      wageId,
+      <if test="userId != null">
+        userId,
+      </if>
+      <if test="wageProvideTime != null">
+        wageProvideTime,
+      </if>
+      <if test="shouldWage != null">
+        shouldWage,
+      </if>
+      <if test="realyWage != null">
+        realyWage,
+      </if>
+      <if test="positionMoney != null">
+        positionMoney,
+      </if>
+      <if test="workResultMoney != null">
+        workResultMoney,
+      </if>
+      <if test="workAgeMoney != null">
+        workAgeMoney,
+      </if>
+      <if test="fullTimeMoney != null">
+        fullTimeMoney,
+      </if>
+      <if test="workTitleMoney != null">
+        workTitleMoney,
+      </if>
+      <if test="workOverTimeMoney != null">
+        workOverTimeMoney,
+      </if>
+      <if test="eatAllowance != null">
+        eatAllowance,
+      </if>
+      <if test="carAllowance != null">
+        carAllowance,
+      </if>
+      <if test="travelAllowance != null">
+        travelAllowance,
+      </if>
+      <if test="houseAllowance != null">
+        houseAllowance,
+      </if>
+      <if test="lateMoney != null">
+        lateMoney,
+      </if>
+      <if test="outEarlyMoney != null">
+        outEarlyMoney,
+      </if>
+      <if test="absentMoney != null">
+        absentMoney,
+      </if>
+      <if test="oldEnsure != null">
+        oldEnsure,
+      </if>
+      <if test="medicalEnsure != null">
+        medicalEnsure,
+      </if>
+      <if test="lostJobEnsure != null">
+        lostJobEnsure,
+      </if>
+      <if test="workHurtEnsure != null">
+        workHurtEnsure,
+      </if>
+      <if test="birthEnsure != null">
+        birthEnsure,
+      </if>
+      <if test="houseFundEnsure != null">
+        houseFundEnsure,
+      </if>
+      <if test="oneSelfTax != null">
+        oneSelfTax,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{wageId,jdbcType=VARCHAR},
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="wageProvideTime != null">
+        #{wageProvideTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shouldWage != null">
+        #{shouldWage,jdbcType=DOUBLE},
+      </if>
+      <if test="realyWage != null">
+        #{realyWage,jdbcType=DOUBLE},
+      </if>
+      <if test="positionMoney != null">
+        #{positionMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="workResultMoney != null">
+        #{workResultMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="workAgeMoney != null">
+        #{workAgeMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="fullTimeMoney != null">
+        #{fullTimeMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="workTitleMoney != null">
+        #{workTitleMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="workOverTimeMoney != null">
+        #{workOverTimeMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="eatAllowance != null">
+        #{eatAllowance,jdbcType=DOUBLE},
+      </if>
+      <if test="carAllowance != null">
+        #{carAllowance,jdbcType=DOUBLE},
+      </if>
+      <if test="travelAllowance != null">
+        #{travelAllowance,jdbcType=DOUBLE},
+      </if>
+      <if test="houseAllowance != null">
+        #{houseAllowance,jdbcType=DOUBLE},
+      </if>
+      <if test="lateMoney != null">
+        #{lateMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="outEarlyMoney != null">
+        #{outEarlyMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="absentMoney != null">
+        #{absentMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="oldEnsure != null">
+        #{oldEnsure,jdbcType=DOUBLE},
+      </if>
+      <if test="medicalEnsure != null">
+        #{medicalEnsure,jdbcType=DOUBLE},
+      </if>
+      <if test="lostJobEnsure != null">
+        #{lostJobEnsure,jdbcType=DOUBLE},
+      </if>
+      <if test="workHurtEnsure != null">
+        #{workHurtEnsure,jdbcType=DOUBLE},
+      </if>
+      <if test="birthEnsure != null">
+        #{birthEnsure,jdbcType=DOUBLE},
+      </if>
+      <if test="houseFundEnsure != null">
+        #{houseFundEnsure,jdbcType=DOUBLE},
+      </if>
+      <if test="oneSelfTax != null">
+        #{oneSelfTax,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xxx.pojo.WageContent">
+    update wage_content
+    <set>
+      <if test="userId != null">
+        userId = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="wageProvideTime != null">
+        wageProvideTime = #{wageProvideTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shouldWage != null">
+        shouldWage = #{shouldWage,jdbcType=DOUBLE},
+      </if>
+      <if test="realyWage != null">
+        realyWage = #{realyWage,jdbcType=DOUBLE},
+      </if>
+      <if test="positionMoney != null">
+        positionMoney = #{positionMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="workResultMoney != null">
+        workResultMoney = #{workResultMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="workAgeMoney != null">
+        workAgeMoney = #{workAgeMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="fullTimeMoney != null">
+        fullTimeMoney = #{fullTimeMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="workTitleMoney != null">
+        workTitleMoney = #{workTitleMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="workOverTimeMoney != null">
+        workOverTimeMoney = #{workOverTimeMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="eatAllowance != null">
+        eatAllowance = #{eatAllowance,jdbcType=DOUBLE},
+      </if>
+      <if test="carAllowance != null">
+        carAllowance = #{carAllowance,jdbcType=DOUBLE},
+      </if>
+      <if test="travelAllowance != null">
+        travelAllowance = #{travelAllowance,jdbcType=DOUBLE},
+      </if>
+      <if test="houseAllowance != null">
+        houseAllowance = #{houseAllowance,jdbcType=DOUBLE},
+      </if>
+      <if test="lateMoney != null">
+        lateMoney = #{lateMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="outEarlyMoney != null">
+        outEarlyMoney = #{outEarlyMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="absentMoney != null">
+        absentMoney = #{absentMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="oldEnsure != null">
+        oldEnsure = #{oldEnsure,jdbcType=DOUBLE},
+      </if>
+      <if test="medicalEnsure != null">
+        medicalEnsure = #{medicalEnsure,jdbcType=DOUBLE},
+      </if>
+      <if test="lostJobEnsure != null">
+        lostJobEnsure = #{lostJobEnsure,jdbcType=DOUBLE},
+      </if>
+      <if test="workHurtEnsure != null">
+        workHurtEnsure = #{workHurtEnsure,jdbcType=DOUBLE},
+      </if>
+      <if test="birthEnsure != null">
+        birthEnsure = #{birthEnsure,jdbcType=DOUBLE},
+      </if>
+      <if test="houseFundEnsure != null">
+        houseFundEnsure = #{houseFundEnsure,jdbcType=DOUBLE},
+      </if>
+      <if test="oneSelfTax != null">
+        oneSelfTax = #{oneSelfTax,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where wageId = #{wageId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xxx.pojo.WageContent">
+    update wage_content
+    set userId = #{userId,jdbcType=VARCHAR},
+      wageProvideTime = #{wageProvideTime,jdbcType=TIMESTAMP},
+      shouldWage = #{shouldWage,jdbcType=DOUBLE},
+      realyWage = #{realyWage,jdbcType=DOUBLE},
+      positionMoney = #{positionMoney,jdbcType=DOUBLE},
+      workResultMoney = #{workResultMoney,jdbcType=DOUBLE},
+      workAgeMoney = #{workAgeMoney,jdbcType=DOUBLE},
+      fullTimeMoney = #{fullTimeMoney,jdbcType=DOUBLE},
+      workTitleMoney = #{workTitleMoney,jdbcType=DOUBLE},
+      workOverTimeMoney = #{workOverTimeMoney,jdbcType=DOUBLE},
+      eatAllowance = #{eatAllowance,jdbcType=DOUBLE},
+      carAllowance = #{carAllowance,jdbcType=DOUBLE},
+      travelAllowance = #{travelAllowance,jdbcType=DOUBLE},
+      houseAllowance = #{houseAllowance,jdbcType=DOUBLE},
+      lateMoney = #{lateMoney,jdbcType=DOUBLE},
+      outEarlyMoney = #{outEarlyMoney,jdbcType=DOUBLE},
+      absentMoney = #{absentMoney,jdbcType=DOUBLE},
+      oldEnsure = #{oldEnsure,jdbcType=DOUBLE},
+      medicalEnsure = #{medicalEnsure,jdbcType=DOUBLE},
+      lostJobEnsure = #{lostJobEnsure,jdbcType=DOUBLE},
+      workHurtEnsure = #{workHurtEnsure,jdbcType=DOUBLE},
+      birthEnsure = #{birthEnsure,jdbcType=DOUBLE},
+      houseFundEnsure = #{houseFundEnsure,jdbcType=DOUBLE},
+      oneSelfTax = #{oneSelfTax,jdbcType=DOUBLE}
+    where wageId = #{wageId,jdbcType=VARCHAR}
+  </update>
+</mapper>

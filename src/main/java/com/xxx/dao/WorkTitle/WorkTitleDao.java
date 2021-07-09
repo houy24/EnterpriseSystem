@@ -18,4 +18,7 @@ public interface WorkTitleDao {
     int updateByPrimaryKeySelective(WorkTitle record);
 
     int updateByPrimaryKey(WorkTitle record);
+
+    //根据职称名称查询信息
+    WorkTitle selectAllByWorkTitleName(String workTitleName);
 }

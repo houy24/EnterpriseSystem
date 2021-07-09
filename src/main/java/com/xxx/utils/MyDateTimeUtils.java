@@ -3,6 +3,7 @@ package com.xxx.utils;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 // 关于 Date、String 的转化
 public class MyDateTimeUtils {
@@ -71,7 +72,8 @@ public class MyDateTimeUtils {
     // 判断周几
     public static String getWeekday(String date){//必须yyyy-MM-dd
         SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
-        SimpleDateFormat sdw = new SimpleDateFormat("E");
+//        SimpleDateFormat sdw = new SimpleDateFormat("E");
+        SimpleDateFormat sdw = new SimpleDateFormat("E", Locale.CHINESE);
         Date d = null;
         try {
             d = sd.parse(date);

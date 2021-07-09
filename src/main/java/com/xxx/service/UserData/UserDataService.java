@@ -20,4 +20,18 @@ public interface UserDataService {
 
     List<UserData> selectAll();
 
+    //根据用户编号更换头像
+    void updateByUserId(String userid,String ImgPath);
+
+    //通过名字进行模糊查询
+    List<UserData> selectAllByUserName( String userName);
+    //通过部门查询人员
+    List<UserData> selectAllByDepartmentId( String departmentId);
+    //添加新员工
+    int insert( UserData record);
+    //更新数据
+    int updateByPrimaryKey(UserData record);
+    //删除
+    int deleteByPrimaryKey(String userId);
+
 }

@@ -59,4 +59,9 @@ public class SaleRecordServiceImpl implements SaleRecordService {
 
         return saleRecordList;
     }
+
+    @Override
+    public List<SaleRecord> getSaleRecordByUserAndTime(String userId, String startTime, String endTime) {
+        return saleRecordDao.selectAllByUserIdAndTime(userId,startTime,endTime);
+    }
 }

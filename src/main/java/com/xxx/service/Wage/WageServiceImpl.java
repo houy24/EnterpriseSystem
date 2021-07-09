@@ -77,8 +77,13 @@ public class WageServiceImpl implements WageService {
 
         double sum = 0;
         for (Wage wage : departmentYearWageList) {
-            sum += wage.getRealyWage();
+            /* 不计算负工资 */
+            if (wage.getRealyWage() >= 0) {
+                sum += wage.getRealyWage();
+            }
+
         }
         return Double.parseDouble(String.format("%.2f",sum));
     }
+
 }

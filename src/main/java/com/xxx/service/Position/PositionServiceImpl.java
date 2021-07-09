@@ -68,4 +68,9 @@ public class PositionServiceImpl implements PositionService {
         int res = userDataDao.selectCountByPositionId(positionId);
         return res > 0;
     }
+
+    @Override
+    public Position selectAllByPositionName(String positionName){
+        return positionDao.selectAllByPositionName(positionName);
+    }
 }

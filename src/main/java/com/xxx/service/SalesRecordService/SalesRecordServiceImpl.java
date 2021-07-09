@@ -88,4 +88,9 @@ public class SalesRecordServiceImpl implements SalesRecordService {
     public boolean updateOneSaleRecord(SaleRecord saleRecord) {
         return saleRecordDao.updateByPrimaryKeySelective(saleRecord)>0;
     }
+
+    @Override
+    public List<SaleRecord> getSaleRecordByUserAndTime(String userId, String startTime, String endTime) {
+        return saleRecordDao.selectAllByUserIdAndTime(userId, startTime, endTime);
+    }
 }

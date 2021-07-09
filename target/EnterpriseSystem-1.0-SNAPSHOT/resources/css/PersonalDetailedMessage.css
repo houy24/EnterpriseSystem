@@ -1,0 +1,129 @@
+.detailedUserId{
+    display: inline-block;
+    margin-top: -220px;
+    margin-left: 400px;
+    width: 400px;
+    height: 50px;
+}
+.detailedHeadMessage{
+    width: 150px;
+    height: 200px;
+}
+.detailedUserName{
+    display: inline-block;
+    margin-top: -170px;
+    margin-left: 400px;
+    width: 400px;
+    height: 50px;
+}
+.detailedUserPhone{
+    display: inline-block;
+    margin-top: -120px;
+    margin-left: 400px;
+    width: 400px;
+    height: 50px;
+}
+.detailedUserSex{
+    display: inline-block;
+    margin-top: -70px;
+    margin-left: 400px;
+    width: 400px;
+    height: 50px;
+}
+.detailedUserEmail{
+    display: inline-block;
+    margin-top: -20px;
+    margin-left: 400px;
+    width: 400px;
+    height: 50px;
+}
+.detailedUserAge{
+    display: inline-block;
+    margin-top: 0px;
+    margin-left: 20px;
+    width: 400px;
+    height: 50px;
+}
+.detailedUserType{
+    display: inline-block;
+    margin-top: -50px;
+    margin-left: 400px;
+    width: 400px;
+    height: 50px;
+}
+.detailedUserDepartmentId{
+    display: inline-block;
+    margin-top: 0px;
+    margin-left: 20px;
+    width: 400px;
+    height: 50px;
+}
+.detailedUserPositionId{
+    display: inline-block;
+    margin-top: -50px;
+    margin-left: 400px;
+    width: 400px;
+    height: 50px;
+}
+.detailedUserWorkTitleId{
+    display: inline-block;
+    margin-top: 0px;
+    margin-left: 20px;
+    width: 400px;
+    height: 50px;
+}
+.detailedUserWorkAge{
+    display: inline-block;
+    margin-top: -50px;
+    margin-left: 400px;
+    width: 400px;
+    height: 50px;
+}
+.departmentId{
+    display: inline-block;
+    margin-left: 200px;
+    width: 400px;
+    height: 50px;
+}
+.departmentUserName{
+    display: inline-block;
+    margin-top: 50px;
+    margin-left: 200px;
+    width: 400px;
+    height: 50px;
+}
+.departmentDesrciption{
+    display: inline-block;
+    margin-top: 50px;
+    margin-left: 200px;
+    width: 400px;
+    height: 50px;
+}
+.signInId{
+    display: inline-block;
+    margin-top: 0px;
+    margin-left: 200px;
+    width: 400px;
+    height: 50px;
+}
+.signInUserName{
+    display: inline-block;
+    margin-top: 50px;
+    margin-left: 200px;
+    width: 400px;
+    height: 50px;
+}
+.signInTime{
+    display: inline-block;
+    margin-top: 50px;
+    margin-left: 200px;
+    width: 400px;
+    height: 50px;
+}
+.signOutTime{
+    display: inline-block;
+    margin-top: 50px;
+    margin-left: 200px;
+    width: 400px;
+    height: 50px;
+}

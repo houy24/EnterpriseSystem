@@ -22,6 +22,9 @@ public class SaveWorkAgeMoneyServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        response.setContentType("text/html;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("utf-8");
         System.out.println("============进入 SaveWorkAgeMoneyServlet============");
 
         String workAgeStr = request.getParameter("workAge");

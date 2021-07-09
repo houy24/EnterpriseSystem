@@ -21,6 +21,6 @@ public interface SaleRecordService {
     // 获取某个用户在某个月份的销售记录
     List<SaleRecord> getSaleRecordByUserIdAndMonth(String userId, String timeMonthSearch);
 
-
+    List<SaleRecord> getSaleRecordByUserAndTime(String userId, String startTime, String endTime);
 
 }

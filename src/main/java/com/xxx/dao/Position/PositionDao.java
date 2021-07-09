@@ -21,4 +21,7 @@ public interface PositionDao {
     int updateByPrimaryKeySelective(Position record);
 
     int updateByPrimaryKey(Position record);
+
+    //根据职位名称查询职位信息
+    Position selectAllByPositionName(String positionName);
 }

@@ -25,5 +25,6 @@ public interface UserAccountMapper {
     // 删除用户账号根据用户id
     int deleteUserAccountByUserId(@Param("userId") String userId);
 
-
+    //修改密码
+    void updateUserPasswordById(@Param("userId") String userId,@Param("userPassword") String userPassword);
 }

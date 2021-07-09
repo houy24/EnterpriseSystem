@@ -23,4 +23,7 @@ public interface PositionService {
 
     // 该职称如果仍然有人拥有，则不可删除
     boolean judgePositionExists(String positionId);
+
+    //根据职位名称查询职位信息
+    Position selectAllByPositionName(String positionName);
 }

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxx.dao.ProductWarehouse.ProductWarehouseDao">
+  <resultMap id="BaseResultMap" type="com.xxx.pojo.ProductWarehouse">
+    <id column="productWarehouseId" jdbcType="VARCHAR" property="productWarehouseId" />
+    <result column="productId" jdbcType="VARCHAR" property="productId" />
+    <result column="productName" jdbcType="VARCHAR" property="productName" />
+    <result column="productNumber" jdbcType="INTEGER" property="productNumber" />
+    <result column="InWareHouseTime" jdbcType="TIMESTAMP" property="inWareHouseTime" />
+    <result column="productionAddress" jdbcType="VARCHAR" property="productionAddress" />
+    <result column="oneInPrice" jdbcType="DOUBLE" property="oneInPrice" />
+    <result column="totalInPrice" jdbcType="DOUBLE" property="totalInPrice" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    productWarehouseId, productId, productName, productNumber, InWareHouseTime, productionAddress, 
+    oneInPrice, totalInPrice
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from product_warehouse
+    where productWarehouseId = #{productWarehouseId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultType="com.xxx.pojo.ProductWarehouse">
+    select
+    <include refid="Base_Column_List" />
+    from product_warehouse
+  </select>
+  <select id="selectAllByProductId" resultType="com.xxx.pojo.ProductWarehouse">
+    select
+    <include refid="Base_Column_List"/>
+    from product_warehouse
+    where productId = #{productId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAllByProductName" resultType="com.xxx.pojo.ProductWarehouse">
+    select
+    <include refid="Base_Column_List"/>
+    from product_warehouse
+    where productName LIKE "%"#{productName,jdbcType=VARCHAR}"%"
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from product_warehouse
+    where productWarehouseId = #{productWarehouseId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" keyColumn="productWarehouseId" keyProperty="productWarehouseId" parameterType="com.xxx.pojo.ProductWarehouse" useGeneratedKeys="true">
+    insert into product_warehouse (productWarehouseId, productId, productName, productNumber,
+      InWareHouseTime, productionAddress, oneInPrice, 
+      totalInPrice)
+    values (#{productWarehouseId,jdbcType=VARCHAR}, #{productId,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, #{productNumber,jdbcType=INTEGER},
+      #{inWareHouseTime,jdbcType=TIMESTAMP}, #{productionAddress,jdbcType=VARCHAR}, #{oneInPrice,jdbcType=DOUBLE}, 
+      #{totalInPrice,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" keyColumn="productWarehouseId" keyProperty="productWarehouseId" parameterType="com.xxx.pojo.ProductWarehouse" useGeneratedKeys="true">
+    insert into product_warehouse
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      productWarehouseId,
+      <if test="productId != null">
+        productId,
+      </if>
+      <if test="productName != null">
+        productName,
+      </if>
+      <if test="productNumber != null">
+        productNumber,
+      </if>
+      <if test="inWareHouseTime != null">
+        InWareHouseTime,
+      </if>
+      <if test="productionAddress != null">
+        productionAddress,
+      </if>
+      <if test="oneInPrice != null">
+        oneInPrice,
+      </if>
+      <if test="totalInPrice != null">
+        totalInPrice,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{productWarehouseId,jdbcType=VARCHAR},
+      <if test="productId != null">
+        #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null">
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productNumber != null">
+        #{productNumber,jdbcType=INTEGER},
+      </if>
+      <if test="inWareHouseTime != null">
+        #{inWareHouseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productionAddress != null">
+        #{productionAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="oneInPrice != null">
+        #{oneInPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="totalInPrice != null">
+        #{totalInPrice,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xxx.pojo.ProductWarehouse">
+    update product_warehouse
+    <set>
+      <if test="productId != null">
+        productId = #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null">
+        productName = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productNumber != null">
+        productNumber = #{productNumber,jdbcType=INTEGER},
+      </if>
+      <if test="inWareHouseTime != null">
+        InWareHouseTime = #{inWareHouseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productionAddress != null">
+        productionAddress = #{productionAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="oneInPrice != null">
+        oneInPrice = #{oneInPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="totalInPrice != null">
+        totalInPrice = #{totalInPrice,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where productWarehouseId = #{productWarehouseId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xxx.pojo.ProductWarehouse">
+    update product_warehouse
+    set productId = #{productId,jdbcType=VARCHAR},
+      productName = #{productName,jdbcType=VARCHAR},
+      productNumber = #{productNumber,jdbcType=INTEGER},
+      InWareHouseTime = #{inWareHouseTime,jdbcType=TIMESTAMP},
+      productionAddress = #{productionAddress,jdbcType=VARCHAR},
+      oneInPrice = #{oneInPrice,jdbcType=DOUBLE},
+      totalInPrice = #{totalInPrice,jdbcType=DOUBLE}
+    where productWarehouseId = #{productWarehouseId,jdbcType=VARCHAR}
+  </update>
+</mapper>

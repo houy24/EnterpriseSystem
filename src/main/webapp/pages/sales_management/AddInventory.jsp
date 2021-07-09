@@ -5,7 +5,7 @@
   Time: 16:00
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8"%>
 <html>
 <head>
     <title>添加库存</title>
@@ -18,16 +18,14 @@
     <script>
         layui.use(['form', 'element', 'jquery'], function () {
             let form = layui.form,
-                element = layui.element,
                 $ = layui.jquery;
 
             //监听提交
             form.on('submit(demo1)', function (data) {
                 console.log(data);
                 let json = data.field;
-                alert(JSON.stringify(json));
                 $.ajax({
-                    url:"/addOneInventory",
+                    url:"${pageContext.request.contextPath}/addOneInventory",
                     type:"post",
                     data:JSON.stringify(json),
                     dataType:"json",

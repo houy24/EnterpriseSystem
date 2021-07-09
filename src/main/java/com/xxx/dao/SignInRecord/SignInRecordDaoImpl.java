@@ -128,4 +128,76 @@ public class SignInRecordDaoImpl implements SignInRecordDao{
         }
         return signInRecordList;
     }
+    //查询迟到
+    @Override
+    public List<SignInRecord> selectAllByUserIdLate(String userId){
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        SignInRecordDao signInRecordDao = sqlSession.getMapper(SignInRecordDao.class);
+        List<SignInRecord> signInRecords = null;
+        try{
+            signInRecords = signInRecordDao.selectAllByUserIdLate(userId);
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            sqlSession.close();
+        }
+        return signInRecords;
+    }
+    //查询早退
+    @Override
+    public List<SignInRecord> selectAllByUserIdLeaveEarly(String userId){
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        SignInRecordDao signInRecordDao = sqlSession.getMapper(SignInRecordDao.class);
+        List<SignInRecord> signInRecords = null;
+        try{
+            signInRecords = signInRecordDao.selectAllByUserIdLeaveEarly(userId);
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            sqlSession.close();
+        }
+        return signInRecords;
+    }
+    @Override
+    public List<SignInRecord> selectAllByUserName(String userName){
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        SignInRecordDao signInRecordDao = sqlSession.getMapper(SignInRecordDao.class);
+        List<SignInRecord> signInRecordList = null;
+        try{
+            signInRecordList = signInRecordDao.selectAllByUserName(userName);
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            sqlSession.close();
+        }
+        return signInRecordList;
+    }
+    @Override
+    public int selectDayByUserId(String userId){
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        SignInRecordDao signInRecordDao = sqlSession.getMapper(SignInRecordDao.class);
+        int i = 0;
+        try {
+            i = signInRecordDao.selectDayByUserId(userId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+        return i;
+    }
+    @Override
+    public SignInRecord selectTodayByUserId(String userId){
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        SignInRecordDao signInRecordDao = sqlSession.getMapper(SignInRecordDao.class);
+        SignInRecord signInRecord = null;
+        try {
+            signInRecord = signInRecordDao.selectTodayByUserId(userId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+        return signInRecord;
+    }
 }

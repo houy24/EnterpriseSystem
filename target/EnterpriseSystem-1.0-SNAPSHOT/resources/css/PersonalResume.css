@@ -1,0 +1,100 @@
+.index{
+    width: 1800px;
+    height: 800px;
+}
+.resume{
+    margin-top: 50px;
+    margin-left: 600px;
+    font-size: 40px;
+}
+.resumneName{
+    display: inline-block;
+    margin-top: 30px;
+    margin-left: 200px;
+    width: 500px;
+    height: 50px;
+}
+.resumeSex{
+    display: inline-block;
+    margin-top: 30px;
+    margin-left: 100px;
+    width: 500px;
+    height: 50px;
+}
+.resumeAge{
+    display: inline-block;
+    margin-top: 50px;
+    margin-left: 200px;
+    width: 500px;
+    height: 50px;
+}
+.resumePhone{
+    display: inline-block;
+    margin-top: 50px;
+    margin-left: 100px;
+    width: 500px;
+    height: 50px;
+}
+.resumeEmail{
+    display: inline-block;
+    margin-top: 50px;
+    margin-left: 200px;
+    width: 500px;
+    height: 50px;
+}
+.resumeEducation{
+    display: inline-block;
+    margin-top: 50px;
+    margin-left: 100px;
+    width: 500px;
+    height: 50px;
+}
+.resumejobTarget{
+    display: inline-block;
+    margin-top: 50px;
+    margin-left: 200px;
+    width: 500px;
+    height: 50px;
+}
+.resumeWork{
+    display: inline-block;
+    margin-top: 50px;
+    margin-left: 100px;
+    width: 500px;
+    height: 50px;
+}
+.resumeAwards{
+    display: inline-block;
+    margin-top: 50px;
+    margin-left: 200px;
+    width: 500px;
+    height: 50px;
+}
+.resumeSkills{
+    display: inline-block;
+    margin-top: 50px;
+    margin-left: 200px;
+    width: 500px;
+    height: 50px;
+}
+.resumeThink{
+    display: inline-block;
+    margin-top: 50px;
+    margin-left: 200px;
+    width: 500px;
+    height: 50px;
+}
+.inputTable{
+    width: 120px;
+    border: none;
+    font-size: 25px;
+}
+.inputContent{
+    width: 400px;
+    font-size: 20px;
+    text-align: center;
+}
+.areaContent{
+    width: 1010px;
+    font-size: 20px;
+}

@@ -65,4 +65,9 @@ public class UserAccountServiceImpl implements UserAccountService {
         }
         return userAccount; //返回员工
     }
+
+    @Override
+    public void updateUserPasswordById(String userid,String userPassword){
+        userAccountMapper.updateUserPasswordById(userid, userPassword);
+    }
 }

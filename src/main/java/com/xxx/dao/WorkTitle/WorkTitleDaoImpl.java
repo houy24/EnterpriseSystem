@@ -113,4 +113,19 @@ public class WorkTitleDaoImpl implements WorkTitleDao{
         }
         return i;
     }
+
+    @Override
+    public WorkTitle selectAllByWorkTitleName(String workTitleName){
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        WorkTitleDao workTitleDao = sqlSession.getMapper(WorkTitleDao.class);
+        WorkTitle workTitle = null;
+        try {
+            workTitle = workTitleDao.selectAllByWorkTitleName(workTitleName);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+        return workTitle;
+    }
 }

@@ -125,4 +125,21 @@ public class PositionDaoImpl implements PositionDao{
         }
         return i;
     }
+
+
+    //根据职位名称查询所有信息
+    @Override
+    public Position selectAllByPositionName(String positionName){
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        PositionDao positionDao = sqlSession.getMapper(PositionDao.class);
+        Position position = null;
+        try {
+            position = positionDao.selectAllByPositionName(positionName);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+        return position;
+    }
 }

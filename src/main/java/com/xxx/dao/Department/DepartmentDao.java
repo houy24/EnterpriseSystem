@@ -18,4 +18,7 @@ public interface DepartmentDao {
     int updateByPrimaryKeySelective(Department record);
 
     int updateByPrimaryKey(Department record);
+
+    //通过部门名称查询部门信息
+    Department selectAllByDepartmentName(String departmentName);
 }

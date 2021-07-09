@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxx.dao.TaxRate.TaxRateDao">
+  <resultMap id="BaseResultMap" type="com.xxx.pojo.TaxRate">
+    <id column="taxRateId" jdbcType="VARCHAR" property="taxRateId" />
+    <result column="money" jdbcType="DOUBLE" property="money" />
+    <result column="rate" jdbcType="DOUBLE" property="rate" />
+    <result column="quicklyReduce" jdbcType="DOUBLE" property="quicklyReduce" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    taxRateId, money, rate, quicklyReduce
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tax_rate
+    where taxRateId = #{taxRateId,jdbcType=VARCHAR}
+  </select>
+  <!--  修改，根据金额大小来获取所有税率情况  -->
+  <select id="selectAll" resultType="com.xxx.pojo.TaxRate">
+    select
+    <include refid="Base_Column_List" />
+    from tax_rate
+    order by money
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tax_rate
+    where taxRateId = #{taxRateId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" keyColumn="taxRateId" keyProperty="taxRateId" parameterType="com.xxx.pojo.TaxRate" useGeneratedKeys="true">
+    insert into tax_rate (taxRateId,money, rate, quicklyReduce
+      )
+    values (#{taxRateId,jdbcType=VARCHAR}, #{money,jdbcType=DOUBLE}, #{rate,jdbcType=DOUBLE}, #{quicklyReduce,jdbcType=DOUBLE}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="taxRateId" keyProperty="taxRateId" parameterType="com.xxx.pojo.TaxRate" useGeneratedKeys="true">
+    insert into tax_rate
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      taxRateId,
+      <if test="money != null">
+        money,
+      </if>
+      <if test="rate != null">
+        rate,
+      </if>
+      <if test="quicklyReduce != null">
+        quicklyReduce,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{taxRateId,jdbcType=VARCHAR},
+      <if test="money != null">
+        #{money,jdbcType=DOUBLE},
+      </if>
+      <if test="rate != null">
+        #{rate,jdbcType=DOUBLE},
+      </if>
+      <if test="quicklyReduce != null">
+        #{quicklyReduce,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xxx.pojo.TaxRate">
+    update tax_rate
+    <set>
+      <if test="money != null">
+        money = #{money,jdbcType=DOUBLE},
+      </if>
+      <if test="rate != null">
+        rate = #{rate,jdbcType=DOUBLE},
+      </if>
+      <if test="quicklyReduce != null">
+        quicklyReduce = #{quicklyReduce,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where taxRateId = #{taxRateId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xxx.pojo.TaxRate">
+    update tax_rate
+    set money = #{money,jdbcType=DOUBLE},
+      rate = #{rate,jdbcType=DOUBLE},
+      quicklyReduce = #{quicklyReduce,jdbcType=DOUBLE}
+    where taxRateId = #{taxRateId,jdbcType=VARCHAR}
+  </update>
+</mapper>

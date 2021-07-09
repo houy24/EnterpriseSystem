@@ -28,4 +28,6 @@ public interface UserAccountService {
     // 用户登录     service层调用dao层
     UserAccount login(String userPhone, String userPassword);
 
+    //修改密码
+    void updateUserPasswordById(String userId,String userPassword);
 }

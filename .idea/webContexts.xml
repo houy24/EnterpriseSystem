@@ -5,6 +5,8 @@
       <map>
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/BackstageHomePage.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/pages/sales_management/InventoryManagement.jsp" value="file://$PROJECT_DIR$/src/main/webapp/pages/sales_management" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/pages/sales_management/MsgForSaleTask.jsp" value="file://$PROJECT_DIR$/src/main/webapp/pages/sales_management" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/pages/sales_management/SalesRecordManagement.jsp" value="file://$PROJECT_DIR$/src/main/webapp/pages/sales_management" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/pages/sales_management/SalesTaskQuery.jsp" value="file://$PROJECT_DIR$/src/main/webapp/pages/sales_management" />
       </map>
     </option>

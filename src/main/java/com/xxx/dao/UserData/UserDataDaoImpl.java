@@ -8,11 +8,6 @@ import java.util.List;
 
 
 public class UserDataDaoImpl implements UserDataDao {
-    /**
-     *
-     * @param userid
-     * @return
-     */
     @Override
     public int deleteByPrimaryKey(String userid) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
@@ -28,11 +23,6 @@ public class UserDataDaoImpl implements UserDataDao {
         return i;
     }
 
-    /**
-     *
-     * @param record
-     * @return
-     */
     @Override
     public int insert(UserData record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
@@ -63,11 +53,6 @@ public class UserDataDaoImpl implements UserDataDao {
         return userDataList;
     }
 
-    /**
-     *
-     * @param userid
-     * @return
-     */
     @Override
     public UserData selectByPrimaryKey(String userid) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
@@ -84,11 +69,6 @@ public class UserDataDaoImpl implements UserDataDao {
         return userData;
     }
 
-    /**
-     *
-     * @param record
-     * @return
-     */
     @Override
     public int updateByPrimaryKey(UserData record) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
@@ -158,5 +138,54 @@ public class UserDataDaoImpl implements UserDataDao {
         }
 
         return count;
+    }
+    @Override
+    public void updateByUserId(String userid,String ImgPath) {
+
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        UserDataDao userDataDao = sqlSession.getMapper(UserDataDao.class);
+
+
+        try {
+            userDataDao.updateByUserId(userid,ImgPath);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+    }
+
+    @Override
+    public List<UserData> selectAllByUserName(String userName) {
+
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        UserDataDao userDataDao = sqlSession.getMapper(UserDataDao.class);
+
+        List<UserData> userData = null;
+        try {
+            userData = userDataDao.selectAllByUserName(userName);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+        return userData;
+    }
+
+    @Override
+    public List<UserData> selectAllByDepartmentId(String departmentId) {
+
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        UserDataDao userDataDao = sqlSession.getMapper(UserDataDao.class);
+
+        List<UserData> userDataList = null;
+        try {
+            userDataList = userDataDao.selectAllByDepartmentId(departmentId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+        return userDataList;
     }
 }

@@ -109,4 +109,18 @@ public class UserAccountMapperImpl implements UserAccountMapper {
 
         return res;
     }
+
+    @Override
+    public void updateUserPasswordById(String userId,String userPassword){
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        UserAccountMapper userAccountMapper = sqlSession.getMapper(UserAccountMapper.class);
+
+        try{
+            userAccountMapper.updateUserPasswordById(userId,userPassword);
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            sqlSession.close();
+        }
+    }
 }

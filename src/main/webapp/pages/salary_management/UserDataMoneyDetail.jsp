@@ -233,7 +233,7 @@
             <%--。。。。。右边头像。。。--%>
             <div class="layui-inline">
                 <%--头像显示， 当找不到对应头像时，显示默认头像 default.png --%>
-                <img src="${pageContext.request.contextPath}/<%=userPhoto%>"
+                <img src="<%=userPhoto%>"
                      class="myHeadImg" onerror="this.src='${pageContext.request.contextPath}/resources/images/head/default.png'">
             </div>
 

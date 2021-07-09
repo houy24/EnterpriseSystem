@@ -3,7 +3,6 @@ package com.xxx.servlet.sales_management;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.xxx.pojo.SaleTask;
-import com.xxx.pojo.UserAccount;
 import com.xxx.service.SaleTaskService.SaleTaskService;
 import com.xxx.service.SaleTaskService.SaleTaskServiceImpl;
 import com.xxx.utils.MyPageHelperUtils;

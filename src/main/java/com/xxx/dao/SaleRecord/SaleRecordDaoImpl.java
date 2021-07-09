@@ -141,4 +141,63 @@ public class SaleRecordDaoImpl implements SaleRecordDao{
         }
         return i;
     }
+
+    @Override
+    public List<SaleRecord> selectAllByUserIdAndTime(String userId, String startTime, String endTime) {
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        SaleRecordDao saleRecordDao = sqlSession.getMapper(SaleRecordDao.class);
+        List<SaleRecord> saleRecords = null;
+        try {
+            saleRecords = saleRecordDao.selectAllByUserIdAndTime(userId, startTime, endTime);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+        return saleRecords;
+    }
+
+    @Override
+    public int selectCountByUserId(String userId){
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        SaleRecordDao saleRecordDao = sqlSession.getMapper(SaleRecordDao.class);
+        int sum = 0;
+        try {
+            sum = saleRecordDao.selectCountByUserId(userId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+        return sum;
+    }
+
+    @Override
+    public List<SaleRecord> selectAllByMaxNumber(String userId,String MaxNumber){
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        SaleRecordDao saleRecordDao = sqlSession.getMapper(SaleRecordDao.class);
+        List<SaleRecord> saleRecords = null;
+        try{
+            saleRecords = saleRecordDao.selectAllByMaxNumber(userId, MaxNumber);
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            sqlSession.close();
+        }
+        return saleRecords;
+    }
+    @Override
+    public List<SaleRecord> selectAllByDate(String userId, String saleFinishTime){
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        SaleRecordDao saleRecordDao = sqlSession.getMapper(SaleRecordDao.class);
+        List<SaleRecord> saleRecords = null;
+        try{
+            saleRecords = saleRecordDao.selectAllByDate(userId, saleFinishTime);
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            sqlSession.close();
+        }
+        return saleRecords;
+    }
 }

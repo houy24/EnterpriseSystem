@@ -19,6 +19,9 @@ public class AddWorkTitleServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        response.setContentType("text/html;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("utf-8");
         System.out.println("============进入 AddWorkTitleServlet============");
 
 

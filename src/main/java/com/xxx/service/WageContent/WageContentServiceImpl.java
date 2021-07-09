@@ -369,15 +369,42 @@ public class WageContentServiceImpl implements WageContentService {
             }
         }
         realyWage += baseMoney; // 加回起征点工资
-
+    
         realyWage = realyWage - oneSelfTax;
 
-        // 工资详情
+
+// 工资详情
+//        WageContent wageContent = new WageContent(wageId,userId,wageProvideTime,
+//                    shouldWage,realyWage,positionMoney,workResultMoney,workAgeMoney,
+//                    fullTimeMoney,workTitleMoney,workOverTimeMoney,eatAllowance,carAllowance,
+//                    travelAllowance,houseAllowance,lateMoney,outEarlyMoney,absentMoney,oldEnsure,
+//                    medicalEnsure,lostJobEnsure,workHurtEnsure,birthEnsure,houseFundEnsure,oneSelfTax);
+
+        // 全部保留两位小数
         WageContent wageContent = new WageContent(wageId,userId,wageProvideTime,
-                    shouldWage,realyWage,positionMoney,workResultMoney,workAgeMoney,
-                    fullTimeMoney,workTitleMoney,workOverTimeMoney,eatAllowance,carAllowance,
-                    travelAllowance,houseAllowance,lateMoney,outEarlyMoney,absentMoney,oldEnsure,
-                    medicalEnsure,lostJobEnsure,workHurtEnsure,birthEnsure,houseFundEnsure,oneSelfTax);
+                Double.parseDouble(String.format("%.2f",shouldWage)),
+                Double.parseDouble(String.format("%.2f",realyWage)),
+                Double.parseDouble(String.format("%.2f",positionMoney)),
+                Double.parseDouble(String.format("%.2f",workResultMoney)),
+                Double.parseDouble(String.format("%.2f",workAgeMoney)),
+                Double.parseDouble(String.format("%.2f",fullTimeMoney)),
+                Double.parseDouble(String.format("%.2f",workTitleMoney)),
+                Double.parseDouble(String.format("%.2f",workOverTimeMoney)),
+                Double.parseDouble(String.format("%.2f",eatAllowance)),
+                Double.parseDouble(String.format("%.2f",carAllowance)),
+                Double.parseDouble(String.format("%.2f",travelAllowance)),
+                Double.parseDouble(String.format("%.2f",houseAllowance)),
+                Double.parseDouble(String.format("%.2f",lateMoney)),
+                Double.parseDouble(String.format("%.2f",outEarlyMoney)),
+                Double.parseDouble(String.format("%.2f",absentMoney)),
+                Double.parseDouble(String.format("%.2f",oldEnsure)),
+                Double.parseDouble(String.format("%.2f",medicalEnsure)),
+                Double.parseDouble(String.format("%.2f",lostJobEnsure)),
+                Double.parseDouble(String.format("%.2f",workHurtEnsure)),
+                Double.parseDouble(String.format("%.2f",birthEnsure)),
+                Double.parseDouble(String.format("%.2f",houseFundEnsure)),
+                Double.parseDouble(String.format("%.2f",oneSelfTax))
+        );
 
         return wageContent;
     }

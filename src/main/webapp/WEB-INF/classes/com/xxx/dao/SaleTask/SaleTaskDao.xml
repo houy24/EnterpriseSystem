@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxx.dao.SaleTask.SaleTaskDao">
+  <resultMap id="BaseResultMap" type="com.xxx.pojo.SaleTask">
+    <id column="saleTaskId" jdbcType="VARCHAR" property="saleTaskId" />
+    <result column="userId" jdbcType="VARCHAR" property="userId" />
+    <result column="productId" jdbcType="VARCHAR" property="productId" />
+    <result column="productWarehouseId" jdbcType="VARCHAR" property="productWarehouseId" />
+    <result column="productPreSumNumber" jdbcType="INTEGER" property="productPreSumNumber" />
+    <result column="productNumber" jdbcType="INTEGER" property="productNumber" />
+    <result column="oneInPrice" jdbcType="DOUBLE" property="oneInPrice" />
+    <result column="oneLowestPrice" jdbcType="DOUBLE" property="oneLowestPrice" />
+    <result column="sumLowestPrice" jdbcType="DOUBLE" property="sumLowestPrice" />
+    <result column="taskStartTime" jdbcType="TIMESTAMP" property="taskStartTime" />
+    <result column="latestFinishTime" jdbcType="TIMESTAMP" property="latestFinishTime" />
+    <result column="finishState" jdbcType="VARCHAR" property="finishState" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    saleTaskId, userId, productId,productWarehouseId, productPreSumNumber, productNumber, oneInPrice, oneLowestPrice,
+    sumLowestPrice, taskStartTime, latestFinishTime, finishState
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sale_task
+    where saleTaskId = #{saleTaskId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAllByUserId" resultType="com.xxx.pojo.SaleTask">
+    select
+    <include refid="Base_Column_List" />
+    from sale_task
+    where userId = #{userId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultType="com.xxx.pojo.SaleTask">
+    select
+    <include refid="Base_Column_List"/>
+    from sale_task
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sale_task
+    where saleTaskId = #{saleTaskId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" keyColumn="saleTaskId" keyProperty="saleTaskId" parameterType="com.xxx.pojo.SaleTask" useGeneratedKeys="true">
+    insert into sale_task (saleTaskId, userId, productId,productWarehouseId, productPreSumNumber,
+      productNumber, oneInPrice, oneLowestPrice, 
+      sumLowestPrice, taskStartTime, latestFinishTime, 
+      finishState)
+    values (#{saleTaskId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{productId,jdbcType=VARCHAR}, #{productWarehouseId,jdbcType=VARCHAR},#{productPreSumNumber,jdbcType=INTEGER},
+      #{productNumber,jdbcType=INTEGER}, #{oneInPrice,jdbcType=DOUBLE}, #{oneLowestPrice,jdbcType=DOUBLE}, 
+      #{sumLowestPrice,jdbcType=DOUBLE}, #{taskStartTime,jdbcType=TIMESTAMP}, #{latestFinishTime,jdbcType=TIMESTAMP}, 
+      #{finishState,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="saleTaskId" keyProperty="saleTaskId" parameterType="com.xxx.pojo.SaleTask" useGeneratedKeys="true">
+    insert into sale_task
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      saleTaskId,
+      <if test="userId != null">
+        userId,
+      </if>
+      <if test="productId != null">
+        productId,
+      </if>
+      <if test="productWarehouseId != null">
+        productWarehouseId,
+      </if>
+      <if test="productPreSumNumber != null">
+        productPreSumNumber,
+      </if>
+      <if test="productNumber != null">
+        productNumber,
+      </if>
+      <if test="oneInPrice != null">
+        oneInPrice,
+      </if>
+      <if test="oneLowestPrice != null">
+        oneLowestPrice,
+      </if>
+      <if test="sumLowestPrice != null">
+        sumLowestPrice,
+      </if>
+      <if test="taskStartTime != null">
+        taskStartTime,
+      </if>
+      <if test="latestFinishTime != null">
+        latestFinishTime,
+      </if>
+      <if test="finishState != null">
+        finishState,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{saleTaskId,jdbcType=VARCHAR},
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="productWarehouseId != null">
+        #{productWarehouseId,jdbcType=VARCHAR},
+      </if>
+      <if test="productPreSumNumber != null">
+        #{productPreSumNumber,jdbcType=INTEGER},
+      </if>
+      <if test="productNumber != null">
+        #{productNumber,jdbcType=INTEGER},
+      </if>
+      <if test="oneInPrice != null">
+        #{oneInPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="oneLowestPrice != null">
+        #{oneLowestPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="sumLowestPrice != null">
+        #{sumLowestPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="taskStartTime != null">
+        #{taskStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="latestFinishTime != null">
+        #{latestFinishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="finishState != null">
+        #{finishState,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xxx.pojo.SaleTask">
+    update sale_task
+    <set>
+      <if test="userId != null">
+        userId = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null">
+        productId = #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="productWarehouseId != null">
+        productWarehouseId = #{productWarehouseId,jdbcType=VARCHAR},
+      </if>
+      <if test="productPreSumNumber != null">
+        productPreSumNumber = #{productPreSumNumber,jdbcType=INTEGER},
+      </if>
+      <if test="productNumber != null">
+        productNumber = #{productNumber,jdbcType=INTEGER},
+      </if>
+      <if test="oneInPrice != null">
+        oneInPrice = #{oneInPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="oneLowestPrice != null">
+        oneLowestPrice = #{oneLowestPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="sumLowestPrice != null">
+        sumLowestPrice = #{sumLowestPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="taskStartTime != null">
+        taskStartTime = #{taskStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="latestFinishTime != null">
+        latestFinishTime = #{latestFinishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="finishState != null">
+        finishState = #{finishState,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where saleTaskId = #{saleTaskId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xxx.pojo.SaleTask">
+    update sale_task
+    set userId = #{userId,jdbcType=VARCHAR},
+      productId = #{productId,jdbcType=VARCHAR},
+      productWarehouseId = #{productWarehouseId,jdbcType=VARCHAR},
+      productPreSumNumber = #{productPreSumNumber,jdbcType=INTEGER},
+      productNumber = #{productNumber,jdbcType=INTEGER},
+      oneInPrice = #{oneInPrice,jdbcType=DOUBLE},
+      oneLowestPrice = #{oneLowestPrice,jdbcType=DOUBLE},
+      sumLowestPrice = #{sumLowestPrice,jdbcType=DOUBLE},
+      taskStartTime = #{taskStartTime,jdbcType=TIMESTAMP},
+      latestFinishTime = #{latestFinishTime,jdbcType=TIMESTAMP},
+      finishState = #{finishState,jdbcType=VARCHAR}
+    where saleTaskId = #{saleTaskId,jdbcType=VARCHAR}
+  </update>
+</mapper>
